@@ -37,7 +37,7 @@ namespace Ngen {
 	namespace Reflection {
 		/** @brief A reflected meta-information object that encapsulates the details of a namespace code element.
 		 */
-        class ngen_reflection_api NamespaceInfo : public class Type {
+        class ngen_reflection_api NamespaceInfo : public Type {
 		public:
 		   /** @brief Constructor.  Initializer. (const mirror&, (void)(NamespaceDescriptor)*) */
 			NamespaceInfo() : Type(), mIsMuted(false), mAssembly(null), mDirectory(null),
@@ -189,7 +189,7 @@ namespace Ngen {
 				return false;
 			}
 
-			virtual Structure* Structure() const {
+			virtual Structure* Struct() const {
                 return null;
 			}
 
@@ -212,7 +212,7 @@ namespace Ngen {
 				return (Assembly*)this->mAssembly;
 			}
 
-         AssemblyInfo* GetAssemblyInfo() const {
+            AssemblyInfo* GetAssemblyInfo() const {
 				return this->mAssembly;
 			}
 
@@ -280,7 +280,8 @@ namespace Ngen {
 
          /** @brief Constructor.  Initializer. (const mirror&, (void)(NamespaceDescriptor)*) */
          NamespaceInfo* Initialize(AssemblyInfo* assmebly, NamespaceInfo* directory, const mirror& relativeName, VoidStaticDelegate<NamespaceBuilder>::TFunction initalizer);
-		protected:
+
+		 protected:
             void pMute() { mIsMuted = true; }
             void pUnmute() { mIsMuted = false; }
             bool pIsMuted() const { return mIsMuted; }
@@ -294,9 +295,9 @@ namespace Ngen {
             Map<Mirror, MethodInfo>    mStaticMethodMap;
             Map<Mirror, NamespaceInfo> mNestedNamespaceMap;
             Map<Mirror, TypeInfo>      mNestedTypeMap;
-            Array<Attribute>           mCustomAttributes;          // all the custom attributes found inside the assembly
+            Array<Attribute>           mCustomAttributes; // all the custom attributes found inside the assembly
 
-         friend class Assembly;
+            friend class Assembly;
 			friend class AssemblyInfo;
 			friend class TypeBuilder;
 			friend class NamespaceBuilder;

@@ -26,7 +26,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#include "Ngen.Object.hpp"
+
 #include "Ngen.Type.hpp"
 
 namespace Ngen {
@@ -35,54 +35,55 @@ namespace Ngen {
 	const Object& Object::Null() {
 		return __nullObject;
 	}
-        Object::Object(Type* type) : mType(type), mPointer(0), mReference(new Reference(1)), mIsReadonly(false) {
-            if(!IsUnknown()) {
-                type->Structure()->New(mPointer);
-            }
-        }
-        Object::Object(unknown pointer, Type* type, bool readOnly) :
-            mType(type), mPointer(pointer), mReference(null), mIsReadonly(readOnly) {
-            if(!readOnly) {
-                mType->Structure()->CopyNew(pointer, mPointer);
-                mReference = new Reference(1);
-            }
-        }
 
-        bool Object::operator==(const Object& rhs) const {
-            bool result = false;
-            if(IsNull() || rhs.IsNull()) {
-                if(IsNull() && rhs.IsNull()) {
-                    result = true;
-                }
-            } else if(isnull(rhs.mType) || isnull(mType)) {
-                return rhs.mPointer == mPointer;
-            } else if(rhs.mType == mType || mType->IsRelated(rhs.mType)) {
-                result = mType->Structure()->Compare(rhs.mPointer, mPointer);
-            }
+   Object::Object(Type* type) : mType(type), mPointer(0), mReference(new Reference(1)), mIsReadonly(false) {
+      if(!IsUnknown()) {
+          type->Struct()->New(mPointer);
+      }
+   }
+   Object::Object(unknown pointer, Type* type, bool readOnly) :
+      mType(type), mPointer(pointer), mReference(null), mIsReadonly(readOnly) {
+      if(!readOnly) {
+          mType->Struct()->CopyNew(pointer, mPointer);
+          mReference = new Reference(1);
+      }
+   }
 
-            return result;
-        }
+   bool Object::operator==(const Object& rhs) const {
+      bool result = false;
+      if(IsNull() || rhs.IsNull()) {
+          if(IsNull() && rhs.IsNull()) {
+              result = true;
+          }
+      } else if(isnull(rhs.mType) || isnull(mType)) {
+          return rhs.mPointer == mPointer;
+      } else if(rhs.mType == mType || mType->IsRelated(rhs.mType)) {
+          result = mType->Struct()->Compare(rhs.mPointer, mPointer);
+      }
 
-        bool Object::Drop() {
-            if(IsManaged() && !IsReadonly()) {
-                if(mReference->Drop()) {
-                    delete mReference;
-                    mType->Structure()->Delete(mPointer);
-                    mReference = null;
-                    mPointer = null;
-                    return true;
-                }
-            }
+      return result;
+   }
 
-            return false;
-        }
+   bool Object::Drop() {
+      if(IsManaged() && !IsReadonly()) {
+          if(mReference->Drop()) {
+              delete mReference;
+              mType->Struct()->Delete(mPointer);
+              mReference = null;
+              mPointer = null;
+              return true;
+          }
+      }
 
-        Object Object::As(Type* type) const {
-            auto result = Object::Null();
-            if(isnull(mType) || mType->IsRelated(type)) {
-                result = Object(mPointer, type, true);
-            }
+      return false;
+   }
 
-            return result;
-        }
+   Object Object::As(Type* type) const {
+      auto result = Object::Null();
+      if(isnull(mType) || mType->IsRelated(type)) {
+          result = Object(mPointer, type, true);
+      }
+
+      return result;
+   }
 }

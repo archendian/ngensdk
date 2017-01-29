@@ -61,7 +61,7 @@ namespace Ngen {
 					return *this;
 				}
 
-            *this = TypeInfo(rhs);
+                *this = TypeInfo(rhs);
 				return *this;
 			}
 
@@ -94,7 +94,7 @@ namespace Ngen {
          }
 
 			/** @brief Gets the size (in bytes) of the type. */
-			virtual Structure* Structure() const {
+			virtual Structure* Struct() const {
 				return mStructure;
 			}
 
@@ -118,7 +118,7 @@ namespace Ngen {
 			 * static or constructable.
 			 */
 			virtual bool IsConstructable() const {
-				return IsStatic() && mConstructors.Length() != 0;
+				return !IsStatic() && !IsAbstract() && !IsTemplate();
 			}
 
 			/** @brief Determines if the type is public. */
@@ -233,7 +233,7 @@ namespace Ngen {
 
          static TypeInfo* CreateAlias(const mirror& name, const mirror& alias) {
             if(!mAlias.ContainsKey(alias)) {
-                 mAlias.Add(alias, (TypeInfo*)Type::GetType(name));
+                 mAlias.Add(alias,(TypeInfo*)Type::GetType(name));
             }
 
             return mAlias[alias];
@@ -243,14 +243,14 @@ namespace Ngen {
 //         void pUnmute() { this->mIsMuted = false; }
 //         bool pIsMuted() { return this->mIsMuted; }
 
-         TypeTraitFlags             mTraits;
-			Map<Mirror, MethodInfo>    mMemberMethods;
-          Map<Mirror, FieldInfo>     mMemberFields;
-			Map<Mirror, TypeInfo*>     mChildren; // types inheriting this
-			Map<Mirror, TypeInfo*>     mParents;  // types this inherits
-            Structure* mStructure;
-         static Map<mirror, TypeInfo*>     mAlias;
-			friend class TypeBuilder;
+           Structure* mStructure;
+           TypeTraitFlags             mTraits;
+           Map<Mirror, MethodInfo>    mMemberMethods;
+           Map<Mirror, FieldInfo>     mMemberFields;
+           Map<Mirror, TypeInfo*>     mChildren; // types inheriting this
+           Map<Mirror, TypeInfo*>     mParents;  // types this inherits
+           static Map<mirror, TypeInfo*>     mAlias;
+           friend class TypeBuilder;
 		};
 	}
 }

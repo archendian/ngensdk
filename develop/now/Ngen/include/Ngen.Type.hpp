@@ -30,6 +30,7 @@ THE SOFTWARE.
 #define __NGEN_TYPE_HPP
 
 #include "Ngen.Attribute.hpp"
+#include "Ngen.Structure.hpp"
 
 namespace Ngen {
 	/** @brief */
@@ -167,7 +168,7 @@ namespace Ngen {
 		   return false;
 		}
 
-        virtual Structure* Structure() const pure;
+        virtual Structure* Struct() const pure;
 
 		/** @brief Gets the assembly where the type is located.
 		 */

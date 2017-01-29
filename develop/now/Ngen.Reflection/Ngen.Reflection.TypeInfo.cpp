@@ -35,18 +35,18 @@ THE SOFTWARE.
 
 namespace Ngen {
    namespace Reflection {
-         TypeInfo* TypeInfo::Initialize(NamespaceInfo* directory, const mirror& typeName, uword size, typename VoidStaticDelegate<TypeBuilder>::TFunction initializer) {
-				this->pMute();
-				this->mName = typeName;
+         TypeInfo* TypeInfo::Initialize(NamespaceInfo* directory, const mirror& typeName, Structure* unknownType, typename VoidStaticDelegate<TypeBuilder>::TFunction initializer) {
+            this->pMute();
+            this->mName = typeName;
             this->mFullName = (directory->FullName().ToLongName() + E'@' + typeName.ToLongName());
             this->mAssembly = directory->GetAssemblyInfo();
             this->mAssembly->mTypeInfoMap.Add(mFullName, this);
             this->mDirectory = directory;
-            this->mSize = size;
-				initializer(TypeBuilder(this));
-				this->pUnmute();
-				return this;
-			}
+            this->mStructure = unknownType;
+            initializer(TypeBuilder(this));
+            this->pUnmute();
+            return this;
+        }
 
          TypeBuilder::TypeBuilder(TypeInfo* type) : mInfo(type) {
             if(!mInfo->pIsMuted()) {

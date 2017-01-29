@@ -80,8 +80,8 @@ namespace Ngen {
             }
 
             this->mInfo->mNestedTypeMap.Add(relativeTypeName, TypeInfo());
-            Structure::CreateAlias(unknownType->Name(), relativeTypeName);
-            TypeInfo::CreateAlias(relativeTypeName, unknownType->Name());
+            //Structure::CreateAlias(unknownType->Name(), relativeTypeName);
+            //TypeInfo::CreateAlias(relativeTypeName, unknownType->Name());
             return this->mInfo->mNestedTypeMap[relativeTypeName].Initialize(this->mInfo, relativeTypeName, unknownType, initializer);
 			}
 

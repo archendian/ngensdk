@@ -98,7 +98,7 @@ t_begin_test(CODE_BASE, ConsoleClear) [] (TestResult& result) {
     try {
         Console::Clear();
     } catch (Exception& e) {
-        result.Error(e);
+        result.Error(e.what());
     }
 }
 t_end_test

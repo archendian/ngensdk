@@ -88,7 +88,7 @@ namespace Ngen {
          pLibraryAssemblyCount.Add(lib, 0);
       }
 
-      pAssemblyReferenceMap[result]->Increment();
+      pAssemblyReferenceMap[result]->Grab();
       pLibraryAssemblyCount[lib]++;
       return (Assembly*)result;
    }
@@ -101,7 +101,7 @@ namespace Ngen {
 
       Library* lib = pAssemblyLibraryMap[result];
       auto refc = pAssemblyReferenceMap[result];
-      if(refc->Decrement().Current() == 0) {
+      if(refc->Drop() == 0) {
          delete refc;
 
          // remove all map bindings and references

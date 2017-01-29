@@ -34,6 +34,5 @@ THE SOFTWARE.
 
 
 namespace Ngen {
-    Object::Object(const mirror& typeName) : Object(Type::GetType(typeName)) {}
 }
 #endif // __NGEN_REFLECTION_HPP

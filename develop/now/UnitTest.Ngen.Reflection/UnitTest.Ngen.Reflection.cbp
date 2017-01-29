@@ -8,7 +8,7 @@
 		<Option virtualFolders="include\;doc\;source\;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/debug/UnitTest.Ngen" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/debug/UnitTest" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -23,7 +23,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="../bin/release/UnitTest.Ngen" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/release/UnitTest" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -38,8 +38,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-std=c++14" />
 			<Add option="-DNGEN_EXPORT" />
 			<Add option="-DNGEN_DIAGNOSTIC_EXPORT" />
 			<Add directory="../external/include" />

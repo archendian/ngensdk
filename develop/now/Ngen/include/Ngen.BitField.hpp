@@ -91,7 +91,7 @@ namespace Ngen {
       /** @brief Gets a value that determines if a specific bit-flag has been set.
        */
       bool operator[](TEnum e) const {
-         return (mField & (uword)e == (uword)e);
+         return (mField & ((uword)e == (uword)e));
       }
 
       /** @brief Gets a value that determines if a specific bit-flag has been set.

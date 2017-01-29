@@ -262,7 +262,8 @@ namespace Ngen {
    class Callback;
    class Application;
    class Delegate;
-   class DynamicObject;
+   class Dynamic;
+   class DynamicMember;
    class Structure;
 
    template<typename TEnum> class BitField;
@@ -281,6 +282,14 @@ namespace Ngen {
    template<typename TKey, typename TValue> class KeyValuePair;
    template<typename TKey, typename TValue> class Map;
    template<typename... TSet> class Table;
+
+#  define __inline_standard_containers(__TYPENAME__)\
+      typedef Map<Mirror, __TYPENAME__>      Mirror##__TYPENAME__##Map;;\
+      typedef Map<Mirror, __TYPENAME__*>     Mirror##__TYPENAME__##PtrMap;\
+      typedef Array<__TYPENAME__>            __TYPENAME__##Array;\
+      typedef Array<__TYPENAME__*>           __TYPENAME__##PtrArray;\
+      typedef List<__TYPENAME__>            __TYPENAME__##List;\
+      typedef List<__TYPENAME__*>           __TYPENAME__##PtrList
 
      /** @brief A specialization structure used to bind a C++ typename to an Ngen.Type pointer that represent the reflection type information. */
    template<typename T> struct __type { static Type* value() { return 0x0; } };

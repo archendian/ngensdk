@@ -77,7 +77,7 @@ namespace Ngen {
             mStructures.Add(typeName, Structure::Structure<T>(typeName));
             result = &mStructures[typeName];
          } else {
-            result = CreateAlias<T>(typeName);
+            result = CreateAlias(typeName, typeName);
          }
 
          return result;
@@ -159,7 +159,8 @@ namespace Ngen {
    };
 
    ngen_api Structure* structureof(const mirror& typeName);
-   template<typename T> Structure* structureof() { return structureof(typename_mirror<T>())); }
+   template<typename T> Structure* structureof() { return structureof(typename_mirror<T>()); }
+
 }
 
 #endif // __NGEN_UNKNOWNTYPE_HPP

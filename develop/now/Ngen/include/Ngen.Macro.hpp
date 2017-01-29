@@ -31,8 +31,7 @@ THE SOFTWARE.
 
 #include "Ngen.Trait.hpp"
 
-namespace Ngen {
 
-}
+
 
 #endif // __NGEN_TYPENAME_HPP

@@ -54,7 +54,7 @@ namespace Ngen {
     template<typename... TColumn>
     class ngen_api Table {
     public:
-        Table()
+        Table(){}
 
 
         uword ColumnCount() const { return sizeof...(TColumn); }

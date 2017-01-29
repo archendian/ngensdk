@@ -34,7 +34,6 @@ THE SOFTWARE.
 #include "Ngen.Field.hpp"
 #include "Ngen.Map.hpp"
 #include "Ngen.Reference.hpp"
-#include "Ngen.Structure.hpp"
 
 //TODO:  Use an internal ObjectHeader structure to track IsReadOnly, Type, and Reference of an Object
 // This is a trade-off for 5 bytes per object

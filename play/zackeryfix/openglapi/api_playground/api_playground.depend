@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1446667738 source:c:\users\zacke\desktop\works\hacking\ngen\play\zackeryfix\openglapi\api_playground\main.c
+	<windows.h>
+	<gl/gl.h>
+

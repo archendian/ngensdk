@@ -1,0 +1,232 @@
+# depslib dependency file v1.0
+1450688293 source:c:\workspaces\ngen\develop\now\unittest.ngen\_main.cpp
+	"_External.hpp"
+
+1450688293 c:\workspaces\ngen\develop\now\unittest.ngen\_external.hpp
+	<iostream>
+	"Ngen.hpp"
+	"Ngen.Diagnostic.hpp"
+
+1461982328 c:\workspaces\ngen\develop\now\ngen\include\ngen.hpp
+	"Build.Ngen.Token.hpp"
+	"Build.Ngen.Configuration.hpp"
+	"Build.Ngen.Macro.hpp"
+	"Build.Ngen.Logic.hpp"
+	"Build.Ngen.External.hpp"
+	"Ngen.Typedefs.hpp"
+	"Ngen.Trait.hpp"
+	"Ngen.Cast.hpp"
+	"Ngen.Memory.hpp"
+	"Ngen.Algorithm.hpp"
+	"Ngen.Reference.hpp"
+	"Ngen.KeyValuePair.hpp"
+	"Ngen.BitField.hpp"
+	"Ngen.Calculator.hpp"
+	"Ngen.Delegate.hpp"
+	"Ngen.StaticDelegate.hpp"
+	"Ngen.MemberDelegate.hpp"
+	"Ngen.ConstMemberDelegate.hpp"
+	"Ngen.Map.hpp"
+	"Ngen.Stack.hpp"
+	"Ngen.String.hpp"
+	"Ngen.Mirror.hpp"
+	"Ngen.Event.hpp"
+	"Ngen.Exception.hpp"
+	"Ngen.DateTime.hpp"
+	"Ngen.Stream.hpp"
+	"Ngen.Task.hpp"
+	"Ngen.Structure.hpp"
+	"Ngen.Library.hpp"
+	"Ngen.Assembly.hpp"
+	"Ngen.Attribute.hpp"
+	"Ngen.Structure.hpp"
+	"Ngen.Object.hpp"
+	"Ngen.Type.hpp"
+	"Ngen.Console.hpp"
+
+1450689950 c:\workspaces\ngen\develop\now\ngen\include\build.ngen.token.hpp
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\build.ngen.configuration.hpp
+	"Build.Ngen.Token.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\build.ngen.macro.hpp
+	"Build.Ngen.Token.hpp"
+
+1461984533 c:\workspaces\ngen\develop\now\ngen\include\build.ngen.logic.hpp
+	"Build.Ngen.Macro.hpp"
+	"Build.Ngen.Configuration.hpp"
+	<xmmintrin.h>
+
+1456706451 c:\workspaces\ngen\develop\now\ngen\include\build.ngen.external.hpp
+	"Build.Ngen.Logic.hpp"
+	<exception>
+	<new>
+	<math.h>
+	<initializer_list>
+	<limits>
+	<windows.h>
+	<dlfcn.h>
+
+1461645118 c:\workspaces\ngen\develop\now\ngen\include\ngen.typedefs.hpp
+	"Build.Ngen.External.hpp"
+
+1452504036 c:\workspaces\ngen\develop\now\ngen\include\ngen.trait.hpp
+	"Ngen.Exception.hpp"
+
+1450688207 c:\workspaces\ngen\develop\now\ngen\include\ngen.exception.hpp
+	"Ngen.Typedefs.hpp"
+
+1461644763 c:\workspaces\ngen\develop\now\ngen\include\ngen.cast.hpp
+	"Ngen.Trait.hpp"
+
+1461644481 c:\workspaces\ngen\develop\now\ngen\include\ngen.memory.hpp
+	"Ngen.Cast.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\ngen.algorithm.hpp
+	"Ngen.Memory.hpp"
+
+1461642056 c:\workspaces\ngen\develop\now\ngen\include\ngen.reference.hpp
+	"Ngen.BitField.hpp"
+
+1461559042 c:\workspaces\ngen\develop\now\ngen\include\ngen.bitfield.hpp
+	"Ngen.Typedefs.hpp"
+
+1450688207 c:\workspaces\ngen\develop\now\ngen\include\ngen.keyvaluepair.hpp
+	"Ngen.Algorithm.hpp"
+
+1452517029 c:\workspaces\ngen\develop\now\ngen\include\ngen.calculator.hpp
+	"Ngen.Exception.hpp"
+
+1461556752 c:\workspaces\ngen\develop\now\ngen\include\ngen.delegate.hpp
+	"Ngen.Memory.hpp"
+
+1456141310 c:\workspaces\ngen\develop\now\ngen\include\ngen.staticdelegate.hpp
+	"Ngen.Delegate.hpp"
+	"Ngen.Cast.hpp"
+
+1452522081 c:\workspaces\ngen\develop\now\ngen\include\ngen.memberdelegate.hpp
+	"Ngen.Delegate.hpp"
+	"Ngen.Cast.hpp"
+
+1452522081 c:\workspaces\ngen\develop\now\ngen\include\ngen.constmemberdelegate.hpp
+	"Ngen.Delegate.hpp"
+	"Ngen.Cast.hpp"
+
+1461556890 c:\workspaces\ngen\develop\now\ngen\include\ngen.map.hpp
+	"Ngen.KeyValuePair.hpp"
+	"Ngen.List.hpp"
+
+1454731360 c:\workspaces\ngen\develop\now\ngen\include\ngen.list.hpp
+	"Ngen.Array.hpp"
+
+1476963725 c:\workspaces\ngen\develop\now\ngen\include\ngen.array.hpp
+	"Ngen.StaticDelegate.hpp"
+
+1451123820 c:\workspaces\ngen\develop\now\ngen\include\ngen.stack.hpp
+	"Ngen.Array.hpp"
+
+1476963648 c:\workspaces\ngen\develop\now\ngen\include\ngen.string.hpp
+	"Ngen.Array.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\ngen.mirror.hpp
+	"Ngen.string.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\ngen.event.hpp
+	"Ngen.Callback.hpp"
+	"Ngen.Array.hpp"
+
+1454664551 c:\workspaces\ngen\develop\now\ngen\include\ngen.callback.hpp
+	"Ngen.Delegate.hpp"
+
+1450688207 c:\workspaces\ngen\develop\now\ngen\include\ngen.datetime.hpp
+	"Build.Ngen.External.hpp"
+
+1452517029 c:\workspaces\ngen\develop\now\ngen\include\ngen.stream.hpp
+	"Ngen.Exception.hpp"
+
+1452517029 c:\workspaces\ngen\develop\now\ngen\include\ngen.task.hpp
+	"Ngen.Exception.hpp"
+
+1461645364 c:\workspaces\ngen\develop\now\ngen\include\ngen.structure.hpp
+	"Ngen.Mirror.hpp"
+	"Ngen.Map.hpp"
+	"Ngen.StaticDelegate.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen\include\ngen.library.hpp
+	"Ngen.Mirror.hpp"
+
+1452517145 c:\workspaces\ngen\develop\now\ngen\include\ngen.assembly.hpp
+	"Ngen.Attribute.hpp"
+
+1452517367 c:\workspaces\ngen\develop\now\ngen\include\ngen.attribute.hpp
+	"Ngen.Object.hpp"
+
+1461983547 c:\workspaces\ngen\develop\now\ngen\include\ngen.object.hpp
+	"Ngen.Mirror.hpp"
+	"Ngen.Callback.hpp"
+	"Ngen.Field.hpp"
+	"Ngen.Map.hpp"
+	"Ngen.Reference.hpp"
+	"Ngen.Structure.hpp"
+
+1451124250 c:\workspaces\ngen\develop\now\ngen\include\ngen.field.hpp
+	"Ngen.Cast.hpp"
+
+1461982296 c:\workspaces\ngen\develop\now\ngen\include\ngen.type.hpp
+	"Ngen.Object.hpp"
+
+1450688207 c:\workspaces\ngen\develop\now\ngen\include\ngen.console.hpp
+	"Ngen.String.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\ngen.diagnostic.hpp
+	"Build.Ngen.Diagnostic.Logic.hpp"
+	"Ngen.Diagnostic.TestResult.hpp"
+	"Ngen.Diagnostic.TestGroup.hpp"
+	"Ngen.Diagnostic.Test.hpp"
+
+1461984685 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\build.ngen.diagnostic.logic.hpp
+	"Ngen.hpp"
+
+1451120714 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\ngen.diagnostic.testresult.hpp
+	"Build.Ngen.Diagnostic.Logic.hpp"
+
+1451122970 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\ngen.diagnostic.testgroup.hpp
+	"Ngen.Diagnostic.TestGroupResult.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\ngen.diagnostic.testgroupresult.hpp
+	"Ngen.Diagnostic.TestResult.hpp"
+
+1450688208 c:\workspaces\ngen\develop\now\ngen.diagnostic\include\ngen.diagnostic.test.hpp
+	"Ngen.Diagnostic.TestResult.hpp"
+	"Ngen.Diagnostic.TestGroup.hpp"
+
+1452633159 source:c:\workspaces\ngen\develop\now\unittest.ngen\group._.cpp
+	"_External.hpp"
+	"_External.hpp"
+
+1450688293 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_algorithm.cpp
+	"_External.hpp"
+
+1450688293 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_event.cpp
+	"_External.hpp"
+
+1461984992 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_library.cpp
+	"_External.hpp"
+
+1450688293 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_list.cpp
+	"_External.hpp"
+
+1450688293 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_map.cpp
+	"_External.hpp"
+
+1461984792 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_object.cpp
+	"_External.hpp"
+
+1451330622 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_text.cpp
+	"_External.hpp"
+
+1476963145 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_array.cpp
+	"_External.hpp"
+
+1476960875 source:c:\workspaces\ngen\develop\now\unittest.ngen\group.class_dynamic.cpp
+

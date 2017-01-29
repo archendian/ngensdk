@@ -1,0 +1,37 @@
+| C/C++ Token-tree file (ccpp_tokentree.ngen)
+| $ - This represents an area of source code that is unique
+| requires deeper 
+|-----------------------------------------------------------
+
+$API_CODE_LINE:
+	#PRAGMA $PRAGMA_BODY
+	#PRAGMA $MACRO(ARGUMENT_LIST) $MACRO_BODY \
+	#BRANCH(CONDITION) $API_CODE_LINE
+		#FORK(CONDITION) $API_CODE_LINE) \
+	
+	USING SCOPE $SCOPENAME;
+	
+	MODIFIER SCOPE $SCOPENAME;
+	SCOPE::$SCOPENAME SCOPE_START
+		MODIFIER TYPENAME $FUNCTION(ARGUMENT_LIST) FLAG 
+			$LOCAL_CODE_LINE
+		MODIFIER TYPENAME $FIELD;
+	SCOPE_STOP
+	
+	int main(ARGUMENT_LIST)
+		$LOCAL_CODE_LINE:
+			
+// ---------------------------------------------------
+// C++_ExpressionTree (ccpp_expressiontree.ngen)
+// This is the file where grammer can be defined through the 
+// syntax to give clear meanings to the tokens parsed 
+// for the compiler.
+// ---------------------------------------------------
+
+
+#PRAGMA= define, pragma once, undef, redef, error, warn
+#BRANCH= if, ifdef, ifndef
+#FORK= elif, else
+CONDITION= $LOCAL_CODE_LINE
+USING= import, use, using, typedef
+

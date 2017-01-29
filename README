@@ -1,0 +1,15 @@
+The Ngen Framework is a thoroughly designed monarch of component libraries combined with a variety of automated tools providing a powerful and non-intrusive API for the rapid development of native software, simulations, games, websites, and data-driven applications.  By taking advantage of the latest features added to the C++ standard (C++14 specifically), developers can take advantage of a more dynamic C++ syntax that is commonly discovered when using higher-level languages like C#.   
+
+The framework is still in heavy design and early development stages and is considered experimental until a major version is released.  Currently, the framework does offer some functionality:
+
+* Diagnostic - Functional testing (soon w/ automated fuzzing and coverage statistics)
+
+* Reflection - Type, Field, Method, Namespace, Attribute, Assembly (no RTI bindings yet)
+
+* Immutables - String<T>, Array<T>, Map<K,V>, List<T>, Table<T...>, Stack<T>
+
+* Delegation - Object, Delegate, Callback, unknown,
+
+* Type-safety - Console, Library, Memory, Exception, Task (thread)
+
+The next release will have a complete dynamic-language runtime, along with a lexer/grammar engine used to generate parsers and compilers.  This will be a pseudo-coding effort for the Ngen.Code component which will provide the API required to add CLI support for new or existing languages; CLI, or common language infrastructure.

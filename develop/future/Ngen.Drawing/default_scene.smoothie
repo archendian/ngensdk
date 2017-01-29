@@ -1,0 +1,350 @@
+LOGIC BLOCK Curve ? (|2D, |3D) {
+   2D? CURVE2D Point;
+   3D? CURVE3D Point;
+}
+
+LOGIC BLOCK Value[] ? (Single, Array, Range) {
+   Single+? MULITPLE []    Value;
+   Array?   MULTIPLE [][]  Array, UINT Length;
+   Range?   MULTIPLE []    Min, [$0]    Max;
+}
+
+LOGIC BLOCK Color ? (Value, Ramp, Gradient) {
+   Value+?   COLOR4 Color;
+   Gradient? COLOR4[] Gradient,
+             COLOR4[] GradientWeight;
+   Ramp?     COLOR4 Min, COLOR4 Max;
+}
+
+LOGIC BLOCK Resource ? (Reserved) {
+   Reserved+? UINT ByteSize;
+   UINT Count;
+
+}
+
+
+
+PACKAGE GPU; // This is the GPU PACKAGE for the GPU LOGIC.
+             // Do not confuse this with the code-behind LOGIC called GPU.
+REQUIRE CPU;
+
+MIX LIBRARY "libraries/GPU.OpenGL";  // Invokes void smoothie_on_load_library(), which:
+                                     //    a) can load a set of C functions into Smoothie
+                                     //    b) can load BLOCK or PASS code-behind for a new LOGIC
+                                     //    c) can load Smoothie code
+
+USE LOGIC CPU DATA GPU GUI ROBO QUANTA;
+
+
+// FILE: snippet/CPU.spice
+CPU.MaximumSyncRate = 1.0;
+CPU.TickPerSecond   = GLOBAL.TickPerSecond;
+CPU.UseTime         = TRUE;
+
+// FILE: snippet/GPU.spice
+GPU.MaximumSyncRate  = 0.5;
+GPU.TickPerSecond    = CPU.TickPerSecond;
+GPU.MinimumVersion   = "2.0";
+GPU.UseShading       = true;
+GPU.Use3D            = true;
+GPU.Use2D            = true;
+GPU.AntiAliasingRate = 2;
+
+// FILE: snippet/GUI.spice
+GUI.TickPerSecond = GLOBAL.TickPerSecond;
+GUI.Theme         = "Milkshake";
+GUI.FontSmoothing = true;
+GUI.Use3D         = false;
+
+// FILE: snippet/DATA.smoothie
+DATA.Database.UseCompression = false;
+DATA.Database.Location = "http://smoothie.ngenwarestudio.com"
+DATA.Database.Name = "SmoothieDb";
+
+QUANTA.MinimumQBitCount = 128;
+QUANTA.RandomSeed       = string_hashcode("Smoothie");
+
+//                  Networking & Database Engine
+// Runtime &          /+->[DATA]
+// Logic Engine [CPU]+--->[GPU]  Rendering Engine
+//                    \+-[UI]
+//                User Interface Engine
+LOGIC.EntryPoint;
+
+LOGIC MACHINE Shell {
+   FORK    CPU;
+   WHILE   !EXIT;
+   UPDATE      CPU;
+   END;
+   JOIN    CPU;
+}
+
+LOGIC MACHINE VisualEditor {
+   FORK     CPU GPU GUI DATA CPU;
+   UPDATE      CPU;
+   WHILE       GPU;
+   UPDATE         GPU;
+   SYNC           CPU > GPU;
+   END         CONTINUE;
+   SYNC        GUI > CPU;
+   SYNC        CPU > DATA;
+   UPDATE      DATA;
+   SYNC        DATA > CPU;
+   SYNC        CPU > GUI;
+   UPDATE      GUI;
+   END JOIN     DATA GUI GPU CPU;
+}
+
+LOGIC MACHINE GameEngine [CPU, GPU, DATA] {
+   FORK        GPU DATA
+   UPDATE      CPU
+   SYNC        CPU GPU
+   UPDATE      GPU
+   SYNC        CPU DATA
+   UPDATE      DATA
+   SYNC        DATA CPU
+}
+
+LOGIC START
+
+UI START {
+
+}
+
+
+// blocks/juice/Resource.juice
+MIX "blocks/fruit/Resource.fruit"
+MIX "blocks/liquid/Resource.liquid"
+
+// blocks/liquid/Resource.liquid
+CPU BLOCK Resource (File, Archive) {
+      FUNCTION BOOL New(UINT size) {
+               IF(THIS.IsLoaded) {
+                  CPU.memory_delete(Pointer);
+                  THIS.IsLoaded = false;
+               }
+
+               TRY {
+                  Pointer = CPU.memory_new(size);
+               } CATCH { RETURN FALSE; }
+               FINALLY { RETURN TRUE; }
+            }
+      FUNCTION BOOL New(ADDR bytes, UINT size) {
+               IF(THIS.IsLoaded) {
+                  CALL memory_delete(Pointer);
+                  THIS.IsLoaded = FALSE;
+               }
+
+               TRY {
+                  Pointer = CALL memory_new(size);
+                  CALL memory_copy(bytes, Pointer, size);
+                  THIS.IsLoaded = TRUE;
+               } CATCH { RETURN FALSE; }
+               FINALLY { RETURN TRUE; }
+            }
+
+CPU BLOCK !File? {
+            BOOL Lock() {
+                  IF(Pointer == NULL) {
+                     RETURN THIS Load();
+                     RETURN FALSE;
+                  }
+               }
+
+               RETURN TRUE;
+            }
+         }
+      }
+}
+
+LOGIC BLOCK File[UNORDERED] : Resource {
+     [REQUIED KEY UNIQUE FILENAME MAX(200) DEFAULT($(NAME))] STRING FileName;
+     [READONLY HIDDEN DEFAULT(FALSE)]  BOOL IsLocked;
+     [READONLY HIDDEN DEFAULT(FALSE)]  BOOL IsFile;
+
+     CPU LOGIC {
+         SET DEBUG(NAME) = $(NAME) + string_format(" FileName('%FileName)'");
+         FIRST OBJECT(INITIALIZE) {
+            IF(file_exist(FileName)) {
+               IsFile = TRUE;
+               FileName = path_shortest(FileName);
+            }
+         }
+
+         FIRST TOUCHED(Mirror) {
+            IF(!IsLocked) {
+               Mirror = file_open(FileName);
+            }
+         }
+     }
+}
+
+// blocks/fruit/Resource.fruit
+LOGIC BLOCK Resource[FORWARD] <- Program (File) {
+   [REQUIRED KEY UNIQUE MAX(50) DEFAULT($(NAME))] STRING Name;    // A unique name used to identify the RESOURCE.
+   [READONLY DEFAULT(0)] UINT Size;
+   [READONLY HIDDEN DEFAULT(FALSE)] BOOL IsVirtual;     // Determines if the RESOURCE is a mirror (or alias) for another RESOURCE.
+   [READONLY HIDDEN DEFAULT(NULL)]  ADDR Mirror;
+   [STATIC HIDDEN DEFAULT(0)] UINT DefaultNameIndex;
+
+   CPU LOGIC {
+      SET DEBUG(NAME) = $(NAME) + CPU.string_format("Name('%(Name)')");
+      FIRST OBJECT(INITIALIZE) { Name += DefaultNameIndex++; }
+      LAST  OBJECT(DESTROY) {
+         IF(IsVirtual && Shadow != NULL)
+            DELETE Shadow;
+      }
+
+      LAST CHANGED(Mirror) {
+         IF(!IsLocked) {
+            IsLocked = IsShadowed;
+         }
+      }
+
+      FIRST GET(Shadow) {
+         MESSAGE DEBUG IF(IsLocked) "SHADOW WAS DELETED WHILE LOCKED!";
+
+      }
+   }
+
+   GUI LOGIC {
+      FIRST CHANGED(Name) {
+         IF(CPU.string_end(Name, STRING(DefaultNameIndex) && CPU.string_regex_match(Name, "Resource[#*]"))) {
+            DefaultNameIndex = 0;
+         }
+      }
+   }
+}
+
+CPU BLOCK Resource+File <- Program {
+   STRING FileName;
+}
+
+CPU BLOCK Image[] : Resource (File : Resource+File) {
+   ?     UINT2 Size, READONLY ENUM PixelFormat, READONLY ADDR LockAddr NULL,
+         FUNCTION BOOL Lock();
+         FUNCTION BOOL Create(UINT, UINT, ? ENUM);
+         FUNCTION VOID Unlock();
+}
+
+BLOCK LOGIC Image {
+   ADDR LOCK(UINT& this) {
+      ADDR file = CALL.file_open_read(this.File);
+      $.this.LockAddr = CALL.stream_read(this.)
+   }
+}
+
+CPU -> GPU PASS Client ? (Console !GPU, Window) {
+   ?        STRING Title;
+   Console? UINT ConsoleSize, UINT ConsolePosition, COLOR3 ConsoleFront, COLOR3 ConsoleBack, FLOAT Opacity, UINT ConsoleState;
+   Window?  FLOAT2   WindowSize,
+            FLOAT2   WindowPosition,
+            BOOL     IsFullScreen,
+            BOOL
+
+}
+
+CPU BLOCK DeviceState (Mouse (Move, Button, Wheel), Keyboard (Key)) {
+   ? HIDDEN UINT Handle, STRING Name;
+   +Mouse? FLOAT X, FLOAT Y FLOAT ClientX, FLOAT ClientY;
+      +Mouse+Move?   FLOAT2 Velocity;
+      +Mouse+Wheel?  FLOAT WheelDelta, FLOAT2 WheelVelocity;
+      +Mouse+Button? UINT Button, UINT PressTime, UINT Flag, BOOL IsHeld;
+   +Keyboard?  BOOL[] Key, BOOL Modifier;
+      +Keyboard+Key? BOOL IsPressed, BOOL IsHeld, UINT Key, UINT Flag, UINT PressTime, CHAR Symbol;
+}
+
+// FILE: pass/Hardware.smoothie
+PACKAGE CPU;
+USE LOGIC CPU;
+
+CPU PASS Hardware <- Client+Window (Device (Mouse, Keyboard)) {
+   ?                 EVENT HardwareUpdate     STATE HardwareState   ,
+   Device?           EVENT RegisterDevice     STATE DeviceState+Device       CALL [BOOL hardware_device_register_event(UINT&)],
+                     EVENT UnregisterDevice   STATE DeviceState+Device       CALL [BOOL hardware_device_unregister_event(UINT&)];
+   Device+Mouse?     EVENT MouseUpdate        STATE
+                     EVENT MouseMove          STATE DeviceState+Mouse+Move   CALL [BOOL hardware_mouse_move_event(UINT&)],
+                     EVENT MouseButtonPress   STATE DeviceState+Mouse+Button CALL [BOOL hardware_mousebutton_press_event(UINT&)]
+                     EVENT MouseButtonRelease STATE DeviceState+Mouse+Button CALL [BOOL hardware_mousebutton_release_event(UINT&)]
+                     EVENT MouseButtonHeld    STATE DeviceState+Mouse+Button CALL [BOOL hardware_mousebutton_held_event(UINT&)]
+                     EVENT MouseWheel         STATE DeviceState+Mouse+Wheel  CALL [BOOL hardware_mouse_wheel_event(UINT&)];
+   Device+Keyboard?  EVENT KeyPress           STATE DeviceState+Keyboard+Key CALL [BOOL hardware_keyboard_keypress_event(UINT&)],
+                     EVENT KeyRelease         STATE DeviceState+Keyboard+Key CALL [BOOL hardware_keyboard_keyreleas_event(UINT&)],
+                     EVENT KeyHeld            STATE DeviceState+Keyboard+Key CALL [BOOL hardware_keyboard_keyheld_event(UINT&)];
+}
+
+CPU -> GPU PASS Scene <- Client+Scene ? (Ambient, Fog, Time) {
+   Ambient? COLOR4 AmbientColor, FLOAT AmbientIntensity;
+   Fog?  COLOR4 FogColor, COLOR4 FogEdge, FLOAT FogIntensity;
+   Time?  FLOAT CurrentTime, FLOAT PreviousTime, BOOL FrameRate; UINT TickRate;
+}
+
+CPU -> GPU PASS Entity[] <- Scene ? (Node, Drawable (Animated <- Scene+Time), CPU <- Material) {
+   ?           PRIMARY AUTO STRING Id CREATE {
+                     IF(COUNT(Entity) == 0) Id = "Entity0";
+                     ELSE Id = "Entity" + STRING(PREVIOUS.Id);
+               };
+               FLOAT3      Origin;
+               BOOL        IsActive;
+               HIDDEN BOOL HasChanged;
+   +Drawable?  MATRIX4  ModelView,
+               BOOL     IsVisible;
+               +Drawable+Animated <- Scene+Time?
+   +Material?  FLOAT    Mass,
+               FLOAT    Friction,
+               FLOAT    Elasticity;
+               FLOAT    Bounce;
+               FLOAT4[] Body;
+}
+
+CPU %Geometry3D -> GPU PASS Model[] : Entity+Drawable <- Light ? (Position, Color, Normal, UV) {
+   Position?   FLOAT4   Location;
+   Color?      MULTIPLE COLOR4  Color;
+   Normal?     MULTIPLE FLOAT4  Normal;
+   UV?         MULTIPLE FLOAT4  UV;
+}
+
+CPU -> GPU PASS Camera[] : Entity+Node <- Entity+Drawable ? (View, Debug) {
+   ?        FLOAT    AspectRatio;
+            FLOAT    FieldOfView;
+            MATRIX4  ModelViewProjection !CPU;
+   +View?   FLOAT2 ViewLocation,
+            FLOAT2 ViewSize;
+   +Debug?  BOOL ShowFrames;
+            BOOL ShowUsage;
+            BOOL ShowPolyCount;
+            BOOL ShowModelBounds;
+            BOOL ShowModelCount;
+            COLOR4 DebugFrontColor;
+            COLOR4 DebugBackColor;
+            NULL STRING LogFileName;
+}
+
+
+   VERTEX SHADER HEAD
+}
+
+CPU -> GPU PASS Light[] : Entity+Node <- Camera ? (Omni, Spot, Sun, Direction, Area, Vertex) {
+
+}
+
+CPU -> GPU PASS DiffuseMap <- Light  ? (Color, Texture, Falloff) {
+   Texture|Model+UVMap?          MULTIPLE TEXTURE2D  DiffuseTexture;
+   Color+Falloff|Model+Color?    MULTIPLE COLOR4     Diffuse;
+   Falloff|Model?                MULTIPLE COLOR4     DiffuseEdge;
+
+   PARTIAL FUNCTION void main() {
+       // Transforming The Vertex
+       $Vertex.Location = $(Camera).ModelViewProjection * $(Entity+Drawable).Origin + $(Model).Location;
+
+       // Transforming The Normal To ModelView-Space
+       normal = gl_NormalMatrix * gl_Normal;
+
+       // Transforming The Vertex Position To ModelView-Space
+       vec4 vertex_in_modelview_space = gl_ModelViewMatrx * gl_Vertex;
+
+       // Calculating The Vector From The Vertex Position To The Light Position
+       vertex_to_light_vector = vec3(gl_LightSource[0].position  vertex_in_modelview_space);
+      }
+   }
+}

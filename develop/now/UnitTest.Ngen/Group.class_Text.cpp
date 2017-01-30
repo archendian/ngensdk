@@ -203,11 +203,7 @@ t_begin_test(class_String, Split_Char) [] (TestResult& result) {
 t_end_test
 
 t_begin_test(class_String, Format_String_BufferFirst) [] (TestResult& result) {
-	string format = string::Format(const_string("This is template for an unformatted string."),
-                                 { const_string("the complete") });
-	if(format == const_string("This is the complete template for an unformatted string.")) {
-      result.Error(format);
-	}
+	result.Error(const_string("Empty Test!"));
 }
 t_end_test
 

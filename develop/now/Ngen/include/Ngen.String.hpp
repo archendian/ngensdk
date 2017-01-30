@@ -538,57 +538,6 @@ namespace Ngen {
       static TSelf Format(const TSelf& format, const Array<TSelf>& params) {
          // TODO:  This was written once, and left unoptimized; optimize it (change to native C string formatting logic)
          TSelf result;
-         TChar* begin = format.Begin();
-         TChar* end = format.End();
-         TSelf buffer[format.Length()/2];
-         uword i = 0;
-         uword buffer_i = 0;
-         bool param_first = false;
-         //buffer[0].pReallocate(format.Length()/2);
-
-         do {
-            if(*begin == E'{') {
-               if(i == 0) {
-                  param_first=true;
-               }
-               buffer_i++;
-               //buffer[buffer_i].pReallocate(format.Length()/2);
-               while(*begin != E'}') {
-                  if(begin == end) {
-                     THROW(OutOfRangeException("The given string has an invalid formatting or mismatching '{}' pair for use with string::Format!"));
-                  }
-
-                  begin++;
-                  i++;
-               }
-            }
-
-            buffer[buffer_i] += *begin;
-            begin++;
-         } while(begin != end);
-
-         uword format_i = 0;
-         uword params_i = 0;
-         if(param_first) {
-            while(format_i < buffer_i && params_i < params.Length()) {
-               result += params[params_i++];
-               result += buffer[format_i++];
-            }
-         } else {
-            while(format_i < buffer_i && params_i < params.Length()) {
-               result += buffer[format_i++];
-               result += params[params_i++];
-            }
-         }
-
-         if(params_i < params.Length()) {
-            result += params[params_i];
-         }
-
-         if(format_i < buffer_i) {
-            result += buffer[format_i];
-         }
-
          return TSelf((TSelf&&)result);
       }
 

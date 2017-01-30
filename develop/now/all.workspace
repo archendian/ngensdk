@@ -6,5 +6,6 @@
 		<Project filename="Ngen/Ngen.cbp" />
 		<Project filename="Ngen.Reflection/Ngen.Reflection.cbp" />
 		<Project filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
+		<Project filename="Ngen.Math/Ngen.Math.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

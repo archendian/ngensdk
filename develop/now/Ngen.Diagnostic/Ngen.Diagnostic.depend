@@ -14,7 +14,7 @@
 1483384166 c:\linux\work\ngensdk\develop\now\ngen.diagnostic\include\build.ngen.diagnostic.logic.hpp
 	"Ngen.hpp"
 
-1485669741 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.hpp
+1485672231 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
 	"Build.Ngen.Configuration.hpp"
 	"Build.Ngen.Macro.hpp"
@@ -29,6 +29,8 @@
 	"Ngen.KeyValuePair.hpp"
 	"Ngen.BitField.hpp"
 	"Ngen.Calculator.hpp"
+	"Ngen.Library.hpp"
+	"Ngen.Console.hpp"
 	"Ngen.Delegate.hpp"
 	"Ngen.StaticDelegate.hpp"
 	"Ngen.MemberDelegate.hpp"
@@ -44,13 +46,10 @@
 	"Ngen.Stream.hpp"
 	"Ngen.Task.hpp"
 	"Ngen.Structure.hpp"
-	"Ngen.Library.hpp"
-	"Ngen.Assembly.hpp"
-	"Ngen.Attribute.hpp"
-	"Ngen.Structure.hpp"
 	"Ngen.Object.hpp"
+	"Ngen.Attribute.hpp"
 	"Ngen.Type.hpp"
-	"Ngen.Console.hpp"
+	"Ngen.Assembly.hpp"
 
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
 
@@ -75,7 +74,7 @@
 	<windows.h>
 	<dlfcn.h>
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
+1485672150 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
 	"Build.Ngen.External.hpp"
 
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.trait.hpp
@@ -96,7 +95,7 @@
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.reference.hpp
 	"Ngen.BitField.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
+1485672391 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.keyvaluepair.hpp
@@ -157,7 +156,7 @@
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.task.hpp
 	"Ngen.Exception.hpp"
 
-1485669410 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.structure.hpp
+1485674287 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.structure.hpp
 	"Ngen.Mirror.hpp"
 	"Ngen.Map.hpp"
 	"Ngen.StaticDelegate.hpp"
@@ -168,22 +167,22 @@
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.assembly.hpp
 	"Ngen.Attribute.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.attribute.hpp
+1485672041 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.attribute.hpp
 	"Ngen.Object.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.object.hpp
+1485672699 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.object.hpp
 	"Ngen.Mirror.hpp"
 	"Ngen.Callback.hpp"
 	"Ngen.Field.hpp"
 	"Ngen.Map.hpp"
 	"Ngen.Reference.hpp"
-	"Ngen.Structure.hpp"
 
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.field.hpp
 	"Ngen.Cast.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.type.hpp
+1485672727 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.type.hpp
 	"Ngen.Attribute.hpp"
+	"Ngen.Structure.hpp"
 
 1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.console.hpp
 	"Ngen.String.hpp"

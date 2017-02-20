@@ -7,5 +7,8 @@
 		<Project filename="Ngen.Reflection/Ngen.Reflection.cbp" />
 		<Project filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
 		<Project filename="Ngen.Math/Ngen.Math.cbp" />
+		<Project filename="Ngen.Content/Ngen.Content.cbp" />
+		<Project filename="rti/core/core.cbp" />
+		<Project filename="managed/default.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

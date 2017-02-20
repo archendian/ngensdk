@@ -102,6 +102,9 @@
 		<Unit filename="include/Ngen.Math.Vector4.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.Math.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

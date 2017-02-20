@@ -1,0 +1,6 @@
+Name="Unknown"
+Description= "Missing resource file."
+File=""
+Load="error"
+Grab="default"
+Drop="default"

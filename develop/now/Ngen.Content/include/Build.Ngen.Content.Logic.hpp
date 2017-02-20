@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 FIXCOM, LLC
+COPYRIGHT (C) 2017 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,57 +26,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_HPP
-#define __NGEN_HPP
+#ifndef __NGEN_BUILD_CONTENT_LOGIC_HPP
+#define __NGEN_BUILD_CONTENT_LOGIC_HPP
 
-#include "Build.Ngen.Token.hpp"
-#include "Build.Ngen.Configuration.hpp"
-#include "Build.Ngen.Macro.hpp"
-#include "Build.Ngen.Logic.hpp"
-#include "Build.Ngen.External.hpp"
+#include "Ngen.hpp"
+#include "Ngen.Math.hpp"
 
-#include "Ngen.Typedefs.hpp"
-#include "Ngen.Trait.hpp"
-#include "Ngen.Cast.hpp"
-#include "Ngen.Memory.hpp"
-#include "Ngen.Algorithm.hpp"
-#include "Ngen.Reference.hpp"
-#include "Ngen.KeyValuePair.hpp"
-#include "Ngen.BitField.hpp"
-#include "Ngen.Calculator.hpp"
-#include "Ngen.Library.hpp"
-#include "Ngen.Console.hpp"
+/** @brief Used to export or import public symbols from the framework. */
+#if _tkn_Platform == _tknval_Platform_Windows
+#  ifdef NGEN_CONTENT_EXPORT
+#       define ngen_content_api __declspec(dllexport)
+#  elif defined(__MINGW32__)
+#     define ngen_content_api
+#  else
+#     define ngen_content_api __declspec(dllimport)
+#  endif
+#else // other supported platforms (Linux, MacOSX and iPhone)
+#	if (__GNUC__ >= 4) // && defined(NGEN_EXPORT)
+#       ifdef(NGEN_EXPORT)
+#		    define ngen_content_api __attribute__ ((visibility("default")))
+#       else
+#           define ngen_content_api
+#       endif
+      /** @brief Used to export or import private symbols from the framework. */
+#		define ngen_api_private __attribute__ ((visibility("hidden")))
+#	else
+#     define ngen_content_api
+      /** @brief Used to export or import private symbols from the framework. */
+#     define ngen_content_api_private
+#	endif
+#endif
 
-#include "Ngen.Delegate.hpp"
-#include "Ngen.StaticDelegate.hpp"
-#include "Ngen.MemberDelegate.hpp"
-#include "Ngen.ConstMemberDelegate.hpp"
-
-#include "Ngen.Map.hpp"
-#include "Ngen.Stack.hpp"
-#include "Ngen.Table.hpp"
-
-#include "Ngen.String.hpp"
-#include "Ngen.Mirror.hpp"
-#include "Ngen.Event.hpp"
-#include "Ngen.Exception.hpp"
-#include "Ngen.DateTime.hpp"
-#include "Ngen.Stream.hpp"
-#include "Ngen.Task.hpp"
-
-#include "Ngen.Structure.hpp"
-#include "Ngen.Object.hpp"
-#include "Ngen.Attribute.hpp"
-#include "Ngen.Type.hpp"
-#include "Ngen.Assembly.hpp"
-
-
-// The C-API used to register reflected APIs through a binding language
-
-extern "C" {
-    namespace Ngen {
-
-
-    }
-}
-#endif // __NGEN_HPP
+#endif

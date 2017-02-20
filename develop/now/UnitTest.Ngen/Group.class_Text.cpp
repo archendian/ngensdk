@@ -122,6 +122,9 @@ t_begin_test(class_String, HashCollision) [] (TestResult& result) {
 		check.Add(const_string("intercommunication"));
 		check.Add(const_string("interrelationships"));
 		check.Add(const_string("microarchitectures"));
+		check.Add(const_string("Perpetual-notion"));
+		check.Add(const_string("educationnation"));
+		check.Add(const_string("zombies"));
 	}
 
 	List<string>::Node* i = check.Begin();

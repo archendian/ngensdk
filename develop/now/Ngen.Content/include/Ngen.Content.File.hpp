@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 FIXCOM, LLC
+Copyright (c) 2016 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,57 +26,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_HPP
-#define __NGEN_HPP
+#ifndef __NGEN_CONTENT_FILE_HPP
+#define __NGEN_CONTENT_FILE_HPP
 
-#include "Build.Ngen.Token.hpp"
-#include "Build.Ngen.Configuration.hpp"
-#include "Build.Ngen.Macro.hpp"
-#include "Build.Ngen.Logic.hpp"
-#include "Build.Ngen.External.hpp"
+#include "Build.Ngen.Content.Logic.hpp"
 
-#include "Ngen.Typedefs.hpp"
-#include "Ngen.Trait.hpp"
-#include "Ngen.Cast.hpp"
-#include "Ngen.Memory.hpp"
-#include "Ngen.Algorithm.hpp"
-#include "Ngen.Reference.hpp"
-#include "Ngen.KeyValuePair.hpp"
-#include "Ngen.BitField.hpp"
-#include "Ngen.Calculator.hpp"
-#include "Ngen.Library.hpp"
-#include "Ngen.Console.hpp"
+namespace Ngen {
+    namespace Content {
 
-#include "Ngen.Delegate.hpp"
-#include "Ngen.StaticDelegate.hpp"
-#include "Ngen.MemberDelegate.hpp"
-#include "Ngen.ConstMemberDelegate.hpp"
+        class ResourceManager {
+        public:
+            ResourceManager(const string& library="default") {
 
-#include "Ngen.Map.hpp"
-#include "Ngen.Stack.hpp"
-#include "Ngen.Table.hpp"
+            }
+        };
+        class Resource {
+        public:
 
-#include "Ngen.String.hpp"
-#include "Ngen.Mirror.hpp"
-#include "Ngen.Event.hpp"
-#include "Ngen.Exception.hpp"
-#include "Ngen.DateTime.hpp"
-#include "Ngen.Stream.hpp"
-#include "Ngen.Task.hpp"
+            Resource(const string& filename=const_string("")) {
 
-#include "Ngen.Structure.hpp"
-#include "Ngen.Object.hpp"
-#include "Ngen.Attribute.hpp"
-#include "Ngen.Type.hpp"
-#include "Ngen.Assembly.hpp"
+            }
 
-
-// The C-API used to register reflected APIs through a binding language
-
-extern "C" {
-    namespace Ngen {
-
-
+        };
     }
 }
-#endif // __NGEN_HPP
+
+#endif // __NGEN_CONTENT_FILE_HPP

@@ -265,6 +265,8 @@ namespace Ngen {
    class Dynamic;
    class DynamicMember;
    class Structure;
+   class File;
+   class Folder;
 
    template<typename TEnum> class BitField;
    template<typename TEncoding> class Text;

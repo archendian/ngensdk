@@ -52,14 +52,17 @@ THE SOFTWARE.
 
 /** @brief The platform where the binaries for framework were compiled.  */
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(_WINDOWS_) || defined(__WIN32_WCE)
+#   define _tknval_Shared_Extension .dll
 #   define _tkn_Platform _tknval_Platform_Windows
 #elif defined(_POSIX_VERSION) || defined(__unix__) || defined(__unix)
+#     define _tknval_Shared_Extension .so
 #  if defined(_linux_)
 #     define _tkn_Platform _tknval_Platform_Linux
 #  else
 #   define _tkn_Platform _tknval_Platform_Unix
 #  endif
 #elif defined(__APPLE_CC__)
+#   define _tknval_Shared_Extension .dmg
 #   if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 30000 || __IPHONE_OS_VERSION_MIN_REQUIRED >= 30000
 #       define _tkn_Platform _tknval_Platform_iPhone
 #   else

@@ -34,5 +34,15 @@ THE SOFTWARE.
 
 
 namespace Ngen {
+    typedef mirror rti_typename;
+    typedef mirror rti_namespace;
+    typedef mirror rti_signature;
+    typedef mirror rti_fieldname;
+
+    class ngen_reflection_api Reflect {
+    public:
+
+
+    };
 }
 #endif // __NGEN_REFLECTION_HPP

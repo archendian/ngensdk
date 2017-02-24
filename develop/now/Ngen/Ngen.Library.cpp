@@ -94,14 +94,6 @@ namespace Ngen {
 		return mNativeCache.ContainsKey(this->mPath);
 	}
 
-    Library* Library::Grab(const mirror& libraryName) {
-        if(mNativeCache.ContainsKey(libraryName)) {
-            return &mNativeCache[libraryName];
-        }
-
-        return null;
-    }
-
 	unknown Library::mGet(const mirror& signature) const {
 		return __libget(this->mHandle, signature.ToLongName());
 	}

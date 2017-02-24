@@ -601,21 +601,6 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
       }
 
-      static TSelf FileName(const TSelf& path) {
-         auto begin = path.Begin();
-         uwhole index = 0;
-
-         for(uwhole i = 0; i < path.Length(); i++) {
-             if(*begin == '\\' || *begin == '/' || *begin == '|') {
-             index = i;
-             }
-
-             begin++;
-         }
-
-         return path.ReadTo(0x0, index);
-      }
-
       static const TSelf& Empty();
    protected:
       // -------------------------------------
@@ -741,9 +726,7 @@ namespace Ngen {
 
 	typedef string::TChar tchar;
 
-#   define code_string(in_code_text) string(#in_code_text, true)
-#   define rti_libname(FILENAME_CODE_STRING) string(#FILENAME_CODE_STRING##_tknval_Shared_Extension, true);
-
+	#define code_string(in_code_text) string(#in_code_text, true)
 }
 
 #endif // __NGEN_STRING_HPP

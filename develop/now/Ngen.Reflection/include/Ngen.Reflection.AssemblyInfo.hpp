@@ -85,8 +85,8 @@ namespace Ngen {
 			Map<Mirror, TypeInfo*> mTypeInfoMap;
          Array<Attribute> mCustomAttributes;          // all the custom attributes found inside the assembly
 
-         friend class TypeInfo;
-         friend class NamespaceInfo;
+            friend class TypeInfo;
+            friend class NamespaceInfo;
 			friend class AssemblyBuilder;
 		};
 

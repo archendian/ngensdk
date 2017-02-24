@@ -2,29 +2,27 @@
 // and are included only as a placeholder. Nevertheless,
 // they *will* get included in the shared library if you
 // don't remove them :)
-// 
+//
 // Obviously, you 'll have to write yourself the super-duper
 // functions to include in the resulting library...
 // Also, it's not necessary to write every function in this file.
 // Feel free to add more files in this project. They will be
 // included in the resulting library.
 
-// A function adding two integers and returning the result
-int SampleAddInt(int i1, int i2)
-{
-    return i1 + i2;
-}
+#include "default_rti.hpp"
 
-// A function doing nothing ;)
-void SampleFunction1()
-{
-    // insert code here
-}
+using namespace Ngen;
+using namespace Reflection;
 
-// A function always returning zero
-int SampleFunction2()
-{
-    // insert code here
-    
-    return 0;
-}
+Library* thislib = Library::Grab(rti_libname(default));
+
+AssemblyInfo* ngen_assembly_info = AssemblyInfo::New(thislib->Name(), const_mirror("default"), [](AssemblyBuilder assembly) {
+     auto ngen_namespace_info = assembly.AddNamespace(const_mirror("Ngen"), null, [](NamespaceBuilder space) {
+          auto memory_class = space.AddNestedType(const_mirror("Memory"), null, [](TypeBuilder type) {
+             type.SetTrait(ETypeTrait::Static, true);
+             type.SetTrait(ETypeTrait::Final, true);
+
+             type.AddStaticMethod("UnknownNew", StaticDelegate<unknown, uword>)
+          });
+     });
+});

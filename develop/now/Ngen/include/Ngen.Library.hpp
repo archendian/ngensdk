@@ -36,7 +36,7 @@ namespace Ngen {
 	class ngen_api Library final {
 	public:
 		Library() = default;
-		Library(const mirror& path, unknown handle) : mPath(path), mHandle(handle) {}
+		Library(const mirror& path, unknown handle) : mPath(path), mPathName(string::FileName(path), mHandle(handle) {}
 		Library(const Library& copy) : mPath(copy.mPath), mHandle(copy.mHandle) {}
 
 		/** @brief Attempts to load a shared library from a physical location.
@@ -56,12 +56,24 @@ namespace Ngen {
 		 * @param path A mirror created from the physical file path used to identify the library.
 		 * @return A value that indicates if the library was correctly cached.
 		 */
-		static bool Cache(const mirror& path);
+        bool Cache(const mirror& path);
+
+        /** @brief Ensures a library has been registered to the global cache.
+		 * @param path A mirror created from the physical file path used to identify the library.
+		 * @return A value that indicates if the library was correctly cached.
+		 */
+		static Library* Grab(const mirror& libraryName);
 
 		/** @brief Gets the mirror representing the physical path  of the shared object file.
 		 */
 		mirror Path() const {
 			return mPath;
+		}
+
+		/** @brief Gets the mirror representing the physical path  of the shared object file.
+		 */
+		mirror PathName() const {
+			return mPathName;
 		}
 
 		/** @brief Gets a symbol from the library cast to the given symbol signature.
@@ -80,6 +92,7 @@ namespace Ngen {
 		unknown mGet(const mirror& signature) const;
 
 		mirror mPath;
+		mirror mPathName;
 		unknown mHandle;
 	};
 }

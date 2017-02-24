@@ -136,6 +136,9 @@
 		<Unit filename="include/Ngen.Field.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.File.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.KeyValuePair.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>

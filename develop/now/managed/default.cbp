@@ -16,6 +16,9 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add directory="../bin/Debug" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="../bin/Release/libdefault" prefix_auto="1" extension_auto="1" />
@@ -29,12 +32,20 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add directory="../bin/Release" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../Ngen/include" />
+			<Add directory="../Ngen.Reflection/include" />
 		</Compiler>
+		<Linker>
+			<Add library="Ngen" />
+			<Add library="Ngen.Reflection" />
+		</Linker>
+		<Unit filename="default_rti.hpp" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

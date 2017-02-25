@@ -33,6 +33,81 @@ THE SOFTWARE.
 
 namespace Ngen {
 	struct error_incomplete {};
+
+#  define __inline_standard_containers(__TYPENAME__)\
+      typedef Map<Mirror, __TYPENAME__>      Mirror##__TYPENAME__##Map;;\
+      typedef Map<Mirror, __TYPENAME__*>     Mirror##__TYPENAME__##PtrMap;\
+      typedef Array<__TYPENAME__>            __TYPENAME__##Array;\
+      typedef Array<__TYPENAME__*>           __TYPENAME__##PtrArray;\
+      typedef List<__TYPENAME__>            __TYPENAME__##List;\
+      typedef List<__TYPENAME__*>           __TYPENAME__##PtrList
+
+
+#  define __inline_containers(__TYPENAME__)\
+      typedef Map<Mirror, __TYPENAME__>      TMirrorMap;;\
+      typedef Map<Mirror, __TYPENAME__*>     TMirrorPtrMap;\
+      typedef Array<__TYPENAME__>            T##Array;\
+      typedef Array<__TYPENAME__*>           T##PtrArray;\
+      typedef List<__TYPENAME__>             T##List;\
+      typedef List<__TYPENAME__*>            T#PtrList;\
+      typedef _TYPENAME_                     TSelf
+
+   /** @brief An RTI macro used to generate a __type construct that is used by the 'typeof' template function to get an Ngen.Type pointer tied to a given C++ typename. */
+#  define __set_type_pointer(__TYPENAME__, __TYPEPTR__) template<> struct __type<__TYPENAME__> { Type* value() { return __TYPEPTR__; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a built-in primitive. */
+#  define trait_make_primitive(__TYPENAME__) template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a built-in primitive. */
+#  define trait_make_integral(__TYPENAME__)\
+   template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
+   template<> struct __is_integral<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a built-in primitive. */
+#  define trait_make_decimal(__TYPENAME__)\
+   template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
+   template<> struct __is_decimal<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a movable type. */
+#  define trait_make_movable(__TYPENAME__) template<> struct __is_movable<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a nullable primitive pointer type. */
+#  define trait_make_nullable(__TYPENAME__) template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to set the minimum and maximum possible value for the instance of a C++ typename.
+    * @note This relies on the standard C++ std::numeric_limits template and the specialization must be defined prior using this macro.
+    */
+#  define trait_make_limited(__TYPENAME__)\
+      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a limited type with minimum and maximum value boundaries. */
+#  define trait_make_nullable(__TYPENAME__) template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a nullable primitive data type. */
+#  define trait_make_nullable_primitive(__TYPENAME__)\
+      template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a built-in primitive with the specified limits. */
+#  define trait_make_limited_primitive(__TYPENAME__)\
+      template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+   /** @brief A macro used to signify that a given C++ typename represents a built-in integral primitive with the specified limits.
+    * @note This relies on the standard C++ std::numeric_limits template and the specialization must be defined prior using this macro.
+    */
+#  define trait_make_limited_integral(__TYPENAME__)\
+      template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct __is_integral<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }
+
+
+#  define set_typename(TYPENAME, NAME)\
+        template<> struct __typename<TYPENAME> {\
+            static Ngen::string text() { return const_string(NAME); }\
+            static Ngen::mirror mirror() { return const_mirror(__typename<TYPENAME>::text()); }\
+        };
+
 }
 
 #endif // __NGEN_MACRO_HPP

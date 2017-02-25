@@ -552,7 +552,7 @@ namespace Ngen {
             uint64 temp = integer;
             while(integer != 0) {
                length++;
-               integer /= 0;
+               integer /= 10;
             }
 
             result = TSelf(length);
@@ -577,7 +577,7 @@ namespace Ngen {
             uint64 temp = integer;
             while(temp != 0) {
                length++;
-               integer /= 0;
+               integer /= 10;
             }
 
             result = TSelf(length);
@@ -617,6 +617,7 @@ namespace Ngen {
       }
 
       static const TSelf& Empty();
+
    protected:
       // -------------------------------------
       // PROTECTED MEMBER FUNCTIONS
@@ -715,10 +716,10 @@ namespace Ngen {
       // -------------------------------------
       // PROTECTED MEMBER FIELDS
       // -------------------------------------
-      bool mIsReadonly;
       TChar* mData;
       uword mLength;
       uword mCapacity;
+      bool mIsReadonly;
    };
 
    typedef String<char8> string8;

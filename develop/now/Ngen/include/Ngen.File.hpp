@@ -14,11 +14,10 @@ namespace Ngen {
        Lock,
     };
 
-    enum class EAccess {
+    enum class EFileAccess {
        Read,
        Write,
        Execute,
-       Touch,
     };
 
     enum class EAppState {
@@ -41,7 +40,6 @@ namespace Ngen {
 
    class ngen_api Application {
    public:
-
       File* OpenReadLock(const string& pathName) {
          auto file = mWorking.OpenFile(pathName);
          if(isnull(file)) {
@@ -107,43 +105,47 @@ namespace Ngen {
         const string& RelativePath() const { return mRelativePath; }
         const string& FullPath() const;
         uword SizeInBytes() const;
+        uword Touch() const;
         bool Exists() const;
         bool IsReadOnly() const;
+        FileStream* Open(EFileAccess accessModifier) {
+            mStreamMap.Add(FileStream(this, accessModifier));
+            return mStreamMap[mStreamMap.Length()-1];
+        }
 
         //User Owner() const;
         //Application Holding() const;
         //DateTime LastModified() const; // UTC
     protected:
-        string mRelativePath
-
-
+        string mRelativePath;
+        Map<uword, FileStream> mStreamMap; /* session id, stream */
+        FileStream* mLock;
     };
+
+
     class ngen_api FileStream : public Stream {
     public:
+      virtual ~FileStream();
 		virtual void Close();
 		virtual uword Length() const;
 		virtual void Resize(uword length) const;
 		virtual uword Offset() const;
-		virtual void Forward(uword offset) const;
-		virtual void Backward(uword offset) const;
+		virtual uword Forward(uword offset) const;
+		virtual uword Backward(uword offset) const;
 		virtual bool ReadByte(uint8*& buffer) const;
 		virtual bool Read(uint8*& buffer, uword start, uword count) const;
 		virtual bool WriteByte(uint8 value) const;
 		virtual bool Write(uint8* buffer, uword start, uword count) const;
-		virtual bool CanRead() const { return !mNode.IsReadOnly(); }
-		virtual bool CanWrite() const { return !mNode.IsReadOnly(); }
-		virtual bool CanTimeout() const;
-		//virtual uword ReadTimeout() const;
-		//virtual void ReadTimeout(uword ms) const;
-		//virtual uword WriteTimeout() const;
-		//virtual void WriteTimeout(uword ms) const;
-		virtual void Flush() pure;
+		virtual bool CanRead() const { return !mNode.IsReadOnly() && mModifier == EFileAccess.Read; }
+		virtual bool CanWrite() const { return !mNode.IsReadOnly() && mModifier == EFileAccess.Write; }
+		virtual void Flush();
     protected:
-        FileStream(const File* file) {
-
-        }
+        FileStream(const File* file, EFileAccess accessModifer);
 
         File* mNode;
+        EFileAccess mModifier;
+        uword mCursor;
+        ByteArray mBuffer;
 
         friend class Folder;
         friend class File;

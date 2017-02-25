@@ -99,12 +99,6 @@ namespace Ngen {
         static mirror mirror() { return const_mirror(code_string(T)); }
     };
 
-    #define rti_typename_set(TYPENAME, NAME)\
-        template<> struct __typename<TYPENAME> {\
-            static Ngen::string text() { return const_string(NAME); }\
-            static Ngen::mirror mirror() { return const_mirror(__typename<TYPENAME>::text()); }\
-        };
-
     template<typename T> string typename_text() { return __typename<T>::text(); }
     template<typename T> mirror typename_mirror() { return __typename<T>::mirror(); }
 }

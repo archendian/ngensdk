@@ -1,8 +1,8 @@
 
 // Tokenization Rules
 '...' - Denotes a list of single characters assigned to a paradigm with NAME
-A | B - Denotes a subset of A or a subset of B
-A + B - Denotes a subset of A followed by a subset of B
+A | .B - Denotes all of A or any subset (.) of B
+A + B  - Denotes a subset of A followed by a subset of B
 A - B - Denotes any subset of A excluding a subset of B
 A(#)  - Denotes any subsets of A followed by the # subset of A
 A*    - Denotes multiple subsets of A followed by a space
@@ -13,18 +13,53 @@ A[#]  - Denotes a maximum length of A subsets
 
 // latin-english tokens
 // Token-tree for latin english
-
 @token (latin-english)
-LOWER		=abcdefghijklmnopqrstuvwxyz 
-UPPER		=ABCDEFGHIJKLMNOPQRSTUVWXYZ 
-LETTER		=LOWER | UPPER
-WORD		=LETTER*
-DIGIT		=0123456789
-POSITIVE	=DIGIT*
-NEGATIVE	=-DIGIT*
-NUMBER 		=NEGATIVE | POSITIVE
-DECIMAL		=NUMBER + . + POSITIVE
-PUNCUATION	='!@#$%^&*()_-+=|\{}[]:;"<,>.?/~`
+
+#ALPHABETA {
+#	LOWER		[abcdefghijklmnopqrstuvwxyz]
+#	UPPER		[ABCDEFGHIJKLMNOPQRSTUVWXYZ] 
+
+~	LETTER		[.LOWER | .UPPER]
+~	WORD		.LETTER*
+}
+
+#MATH   {
+	NEGATE		-
+	DOT 		.
+	ADD 		+
+	DIVIDE		/
+	MULTIPLY 	*
+	EXPONENT  	^
+	SUBSET		_
+	EQUAL		=
+	BITWISEOR 	|
+	FUNCTION	f
+	BITWISEAND	&
+}
+
+#NUMERIC {
+#	DIGIT		[0123456789]
+
+
+~	POSITIVE	.DIGIT*
+~	NEGATIVE	.MATH(NEGATE).DIGIT*
+~	NUMBER 		[.NEGATIVE | .POSITIVE]
+~	DECIMAL         [.NUMBER [.] .POSITIVE*]
+
+? IS_NEGATIVE
+}
+
+#SYMBOL {
+#	PUNCUATION 	[?!.,;~:]
+#	QUOTE	    	['"`]
+#	REFERENCE 	[@#$&]
+}
+
+
+
+CLOUSRE		=()[]{}\/
+
+SYMBOL		=
 
 
 // latin-english-cpp tokens

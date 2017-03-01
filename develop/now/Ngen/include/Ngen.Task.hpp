@@ -34,18 +34,21 @@ THE SOFTWARE.
 #include "Ngen.Exception.hpp"
 
 namespace Ngen {
-	enum class ETaskState {
-		Waiting,
-		Running,
-		Faulted,
-		Paused,
-		Complete,
+
+	class ngen_api UnitOfWork {
+   public:
+      UnitOfWork(VoidStaticDelegate<void_t>::TFunction f) { }
+
+   protected:
+      T mWork;
 	};
 
    /**@brief
     */
    class ngen_api Task {
 	public:
+
+      Task(VoidStaticDelegate<bool&>::TFunction threadStart);
 
 		/** @brief Gets a unique handle used to identify the thread.
 		 */
@@ -56,7 +59,7 @@ namespace Ngen {
 		bool IsRunning() const;
 
 
-		void Wait();
+		void Wait(uword ms);
 
 
 		/** @brief Gets the task instance for the thread currently being executed.
@@ -67,15 +70,19 @@ namespace Ngen {
 		 */
 		static Array<Task*> Forks();
 	private:
-		Task(Application* parent) : mParent(parent) {
-			//parent->Exit += Callback()
+
+	   VoidStaticDelegate<UnitOfWork*> mStart;
+	   Map<uword, VoidStaticDelegate<UnitOfWork*> mStateStartMap;
+
+		Task() {
+
 		}
 
 
 
-		Application* mParent;
+		//Application* mParent;
 
-		friend class Application;
+		//friend class Application;
    };
 }
 

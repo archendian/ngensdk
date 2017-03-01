@@ -67,6 +67,7 @@
 		<Unit filename="Ngen.Structure.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Task.cpp" />
 		<Unit filename="include/Build.Ngen.Configuration.hpp">
 			<Option virtualFolder="include/Build/" />
 		</Unit>

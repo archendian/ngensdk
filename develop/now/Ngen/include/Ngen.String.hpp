@@ -308,7 +308,7 @@ namespace Ngen {
 			return null;
 		}
 
-		/** @brief Reads text from the string until the given character is discovered.
+	  /** @brief Reads text from the string until the given character is discovered.
 		 * @param c The character, if found, to stop at.
 		 * @return The text that was read.
 		 */
@@ -385,6 +385,95 @@ namespace Ngen {
 
 				result += *lhsp;
 			} while(++lhsp != End());
+
+			return TSelf((TSelf&&)result);
+		}
+	   
+		/** @brief Reads text from the string until the given character is discovered.
+		 * @param c The character, if found, to stop at.
+		 * @return The text that was read.
+		 */
+		TSelf ReverseReadTo(TChar c) const {
+			uword from = 0;
+			return ReverseReadTo(c, inref from);
+		}
+
+		/** @brief Reads text from the string until the given character is discovered.
+		 * @param from The character index within the text to begin reading from, and a place to
+		 * store the stopping location when the function terminates.
+		 * @param c The character, if found, to stop at.
+		 * @return The text that was read.
+		 */
+		TSelf ReverseReadTo(TChar c, uword& start) const {
+			if(IsNullOrEmpty()) {
+				THROW(NullReferenceException(E"Unable to read from a string that is null or empty!"));
+			} else if(from >= mLength) {
+				THROW(InvalidParameterException(E"The parameter 'from' cannot be greater than the length of the string!"));
+			}
+			
+			if(start == 0) {
+				start = mLength-1;	
+			}
+			
+			TSelf result = TSelf(mLength);
+			TChar* begin = mData + start;
+
+			do {
+				if(*begin == c) {
+					break;
+				}
+
+				result += *begin;
+				start--;
+			} while(--begin != Begin());
+
+			return TSelf((TSelf&&)result);
+		}
+
+		/** @brief Reads text from the string until the given text is discovered.
+		 * @param from The character index within the text to begin reading from, and a place to
+		 * store the stopping location when the function terminates.
+		 * @param c The character, if found, to stop at.
+		 * @return The text that was read.
+		 */
+		TSelf ReverseReadTo(TSelf str, uword& start) const {
+			if(str.IsNullOrEmpty() || IsNullOrEmpty()) {
+				THROW(NullReferenceException(E"Unable to read from a string that is null or empty!"));
+			} else if(from >= mLength) {
+				THROW(InvalidParameterException(E"The parameter 'from' cannot be greater-than the length of the string being read!"));
+			} else if(str.mLength > mLength) {
+				THROW(InvalidParameterException(E"The parameter 'str' cannot have a length that is greater-than the length of the string being read!"));
+			}
+			
+			if(start == 0) {
+				start = mLength - 1;	
+			}
+
+			TSelf result = TSelf(mLength);
+			TChar* lhsp = (mData + start);
+			TChar* rhsp = str.mData;
+			bool hit = false;
+
+			do {
+				if(*lhsp == *rhsp) {
+					TChar* tmp = lhsp;
+					hit = true;
+
+					do {
+						if(*lhsp != *rhsp) {
+							rhsp = str.mData;
+							lhsp = tmp;
+							hit = false;
+						}
+					} while(++rhsp != str.End() && --lhsp != Begin());
+				}
+
+				if(hit) {
+					break;
+				}
+
+				result += *lhsp;
+			} while(--lhsp != Begin());
 
 			return TSelf((TSelf&&)result);
 		}

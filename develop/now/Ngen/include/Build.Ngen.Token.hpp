@@ -52,6 +52,8 @@ THE SOFTWARE.
  */
 #define nequalto operator!=
 
+#define _static
+
 // Build Tokens ----------------------------------------------------------------
 
 /** @brief A token value representing an unknown value. */

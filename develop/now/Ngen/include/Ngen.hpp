@@ -60,9 +60,10 @@ THE SOFTWARE.
 #include "Ngen.Mirror.hpp"
 #include "Ngen.Event.hpp"
 #include "Ngen.Exception.hpp"
-#include "Ngen.DateTime.hpp"
+#include "Ngen.TimeStamp.hpp"
+#include "Ngen.Time.hpp"
 #include "Ngen.Stream.hpp"
-#include "Ngen.Task.hpp"
+//#include "Ngen.Task.hpp"
 
 #include "Ngen.Structure.hpp"
 #include "Ngen.Object.hpp"

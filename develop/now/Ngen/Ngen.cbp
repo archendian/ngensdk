@@ -67,7 +67,9 @@
 		<Unit filename="Ngen.Structure.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Task.cpp" />
+		<Unit filename="Ngen.Task.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="include/Build.Ngen.Configuration.hpp">
 			<Option virtualFolder="include/Build/" />
 		</Unit>
@@ -78,6 +80,7 @@
 			<Option virtualFolder="include/Build/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Macro.hpp">
+			<Option compilerVar="HPP" />
 			<Option virtualFolder="include/Build/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Token.hpp">
@@ -111,7 +114,7 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Console.hpp">
-			<Option virtualFolder="include/" />
+			<Option virtualFolder="include/Build/" />
 		</Unit>
 		<Unit filename="include/Ngen.ConstMemberDelegate.hpp">
 			<Option virtualFolder="include/" />

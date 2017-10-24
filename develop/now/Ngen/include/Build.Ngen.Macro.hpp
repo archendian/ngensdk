@@ -34,24 +34,6 @@ THE SOFTWARE.
 namespace Ngen {
 	struct error_incomplete {};
 
-#  define __inline_standard_containers(__TYPENAME__)\
-      typedef Map<Mirror, __TYPENAME__>      Mirror##__TYPENAME__##Map;;\
-      typedef Map<Mirror, __TYPENAME__*>     Mirror##__TYPENAME__##PtrMap;\
-      typedef Array<__TYPENAME__>            __TYPENAME__##Array;\
-      typedef Array<__TYPENAME__*>           __TYPENAME__##PtrArray;\
-      typedef List<__TYPENAME__>            __TYPENAME__##List;\
-      typedef List<__TYPENAME__*>           __TYPENAME__##PtrList
-
-
-#  define __inline_containers(__TYPENAME__)\
-      typedef Map<Mirror, __TYPENAME__>      TMirrorMap;;\
-      typedef Map<Mirror, __TYPENAME__*>     TMirrorPtrMap;\
-      typedef Array<__TYPENAME__>            T##Array;\
-      typedef Array<__TYPENAME__*>           T##PtrArray;\
-      typedef List<__TYPENAME__>             T##List;\
-      typedef List<__TYPENAME__*>            T#PtrList;\
-      typedef _TYPENAME_                     TSelf
-
    /** @brief An RTI macro used to generate a __type construct that is used by the 'typeof' template function to get an Ngen.Type pointer tied to a given C++ typename. */
 #  define __set_type_pointer(__TYPENAME__, __TYPEPTR__) template<> struct __type<__TYPENAME__> { Type* value() { return __TYPEPTR__; } }
 
@@ -108,6 +90,22 @@ namespace Ngen {
             static Ngen::mirror mirror() { return const_mirror(__typename<TYPENAME>::text()); }\
         };
 
+#  define __inline_containers(__TYPENAME__)\
+      typedef Map<Mirror, __TYPENAME__> TMirrorMap;\
+      typedef Map<Mirror, __TYPENAME__*> TPtrMirrorMap;\
+      typedef Array<__TYPENAME_> TArray;\
+      typedef Array<_TYPENAME__*> TPtrArray;\
+      typedef List<__TYPENAME__> TList;\
+      typedef List<__TYPENAME__*> TPtrList;\
+      typedef __TYPENAME__ TSelf
+
+#  define __inline_standard_containers(__TYPENAME__) \
+      typedef Map<Mirror, __TYPENAME__>      Mirror##__TYPENAME__##Map;\
+      typedef Map<Mirror, __TYPENAME__*>     Mirror##__TYPENAME__##PtrMap;\
+      typedef Array<__TYPENAME__>            __TYPENAME__##Array;\
+      typedef Array<__TYPENAME__*>           __TYPENAME__##PtrArray;\
+      typedef List<__TYPENAME__>            __TYPENAME__##List;\
+      typedef List<__TYPENAME__*>           __TYPENAME__##PtrList
 }
 
 #endif // __NGEN_MACRO_HPP

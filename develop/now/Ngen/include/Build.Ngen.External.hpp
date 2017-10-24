@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 FIXCOM, LLC
+COPYRIGHT (C) 2017 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,10 @@ THE SOFTWARE.
 #include <initializer_list>
 #include <limits>
 #include <fstream>
+#include <chrono>
+//#include <datetimeapi.h>
+#include <ctime>
+
 
 #if _tkn_Platform == _tknval_Platform_Windows
 #	include <windows.h>

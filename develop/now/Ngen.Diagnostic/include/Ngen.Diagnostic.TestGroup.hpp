@@ -90,10 +90,11 @@ namespace Ngen {
 			static List<TestGroupResult> ExecuteAll();
 
 		protected:
-			TestGroup() : mId(), mTests() {}
+			TestGroup() : mId(), mTests(), mStart(0) {}
 
 			string mId;
 			List<Test*> mTests;
+			TimeStamp mStart;
 			//uword mPriorityLevel; // TODO
 
 			static ngen_diagnostic_api List<TestGroup*> sGroups;

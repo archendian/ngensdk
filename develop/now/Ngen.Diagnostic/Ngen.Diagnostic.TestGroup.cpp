@@ -37,6 +37,7 @@ namespace Ngen {
 		List<TestResult> TestGroup::Execute() {
 			List<TestResult> results = List<TestResult>();
 
+         mStart = Time::Now();
 			for(uword i = 0; i < this->mTests.Length(); ++i) {
 				Test* test = mTests[i];
 				TestResult result = TestResult(test);
@@ -45,6 +46,7 @@ namespace Ngen {
 				results.Add(result);
 			}
 
+         mStop = Time::Now();
 			return results;
 		}
 

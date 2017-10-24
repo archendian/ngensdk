@@ -44,6 +44,10 @@ THE SOFTWARE.
  */
 #define abstract
 
+/** @brief A cosmetic preprocessor token that is used for identifying an interface to class abstraction.
+ */
+#define interface
+
 /** @brief A cosmetic preprocessor token that is used in place of the equal operator.
  */
 #define equalto operator==
@@ -53,6 +57,7 @@ THE SOFTWARE.
 #define nequalto operator!=
 
 #define _static
+
 
 // Build Tokens ----------------------------------------------------------------
 

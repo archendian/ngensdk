@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2014 NGENWARE
+COPYRIGHT (C) 2016 FIXCOM
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

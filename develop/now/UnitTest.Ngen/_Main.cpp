@@ -56,7 +56,7 @@ int main(int32 length, const char** args) {
 	}
 
     Console::WriteLine(E"Press any key to continue, or press 'R' to reset.");
-	auto option = std::cin.get();
+	 auto option = std::cin.get();
 
 	if(option == 'r' || option == 'R') {
 
@@ -90,9 +90,12 @@ bool ToConsole(List<TestGroupResult> results) {
 
 				pause = true;
 			} else {
-				Console::WriteLine(E"PASS! ");
+				Console::Write(E"PASS! ");
 			}
 
+         Console::Write(E" -- ");
+         Console::Write(string::From((uint64)test->ElapsedNanosecond()));
+         Console::WriteLine("ns");
 			test = test->Next();
 		}
 

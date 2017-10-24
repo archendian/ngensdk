@@ -36,7 +36,7 @@ namespace Ngen {
 	class ngen_api Library final {
 	public:
 		Library() = default;
-		Library(const mirror& path, unknown handle) : mPath(path), mPathName(string::FileName(path), mHandle(handle) {}
+		Library(const mirror& path, unknown handle) : mPath(path), mPathName(path), mHandle(handle) {}
 		Library(const Library& copy) : mPath(copy.mPath), mHandle(copy.mHandle) {}
 
 		/** @brief Attempts to load a shared library from a physical location.

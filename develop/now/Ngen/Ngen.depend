@@ -1,127 +1,132 @@
 # depslib dependency file v1.0
-1485672501 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.attribute.cpp
+1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.attribute.cpp
 
-1483384166 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.console.cpp
+1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.console.cpp
 	"Ngen.Console.hpp"
 	<iostream>
 	<iomanip>
 	<cstdlib>
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.console.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.console.hpp
 	"Ngen.String.hpp"
 
-1485683266 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.string.hpp
+1508794060 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1508778789 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
 	"Ngen.Delegate.hpp"
 	"Ngen.Cast.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.delegate.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.delegate.hpp
 	"Ngen.Memory.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.memory.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.memory.hpp
 	"Ngen.Cast.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.cast.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.cast.hpp
 	"Ngen.Trait.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.trait.hpp
+1507844207 c:\workspace\ngensdk\develop\now\ngen\include\ngen.trait.hpp
 	"Ngen.Exception.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.exception.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.exception.hpp
 	"Ngen.Typedefs.hpp"
 
-1485672150 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
+1507844207 c:\workspace\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
 	"Build.Ngen.External.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
+1508797641 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
 	"Build.Ngen.Logic.hpp"
 	<exception>
 	<new>
 	<math.h>
 	<initializer_list>
 	<limits>
+	<fstream>
+	<chrono>
+	<ctime>
 	<windows.h>
 	<dlfcn.h>
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.logic.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.logic.hpp
 	"Build.Ngen.Macro.hpp"
 	"Build.Ngen.Configuration.hpp"
 	<xmmintrin.h>
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.macro.hpp
+1508645269 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.macro.hpp
 	"Build.Ngen.Token.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
+1508778992 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\build.ngen.configuration.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.configuration.hpp
 	"Build.Ngen.Token.hpp"
 
-1483384166 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.library.cpp
+1508642483 source:c:\workspace\ngensdk\develop\now\ngen\ngen.library.cpp
 	"Ngen.Library.hpp"
 	"Ngen.Map.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.library.hpp
+1508644401 c:\workspace\ngensdk\develop\now\ngen\include\ngen.library.hpp
 	"Ngen.Mirror.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.mirror.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.mirror.hpp
 	"Ngen.string.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.map.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
 	"Ngen.KeyValuePair.hpp"
 	"Ngen.List.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.keyvaluepair.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.keyvaluepair.hpp
 	"Ngen.Algorithm.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.algorithm.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.algorithm.hpp
 	"Ngen.Memory.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.list.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
 	"Ngen.Array.hpp"
 
-1485674649 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.object.cpp
+1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.object.cpp
 	"Ngen.Type.hpp"
 
-1485672727 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.type.hpp
+1507844207 c:\workspace\ngensdk\develop\now\ngen\include\ngen.type.hpp
 	"Ngen.Attribute.hpp"
 	"Ngen.Structure.hpp"
 
-1485672041 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.attribute.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.attribute.hpp
 	"Ngen.Object.hpp"
 
-1485672699 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.object.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.object.hpp
 	"Ngen.Mirror.hpp"
 	"Ngen.Callback.hpp"
 	"Ngen.Field.hpp"
 	"Ngen.Map.hpp"
 	"Ngen.Reference.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.callback.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.callback.hpp
 	"Ngen.Delegate.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.field.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.field.hpp
 	"Ngen.Cast.hpp"
 
-1483384166 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.reference.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.reference.hpp
 	"Ngen.BitField.hpp"
 
-1485672391 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
-1485674287 c:\linux\work\ngensdk\develop\now\ngen\include\ngen.structure.hpp
+1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.structure.hpp
 	"Ngen.Mirror.hpp"
 	"Ngen.Map.hpp"
 	"Ngen.StaticDelegate.hpp"
 
-1483384166 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.string.cpp
+1508780683 source:c:\workspace\ngensdk\develop\now\ngen\ngen.string.cpp
 	"Ngen.Algorithm.hpp"
 	"Ngen.String.hpp"
 
-1485674287 source:c:\linux\work\ngensdk\develop\now\ngen\ngen.structure.cpp
+1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.structure.cpp
 	"Ngen.Structure.hpp"
+
+1508644590 source:c:\workspace\ngensdk\develop\now\ngen\ngen.task.cpp
 

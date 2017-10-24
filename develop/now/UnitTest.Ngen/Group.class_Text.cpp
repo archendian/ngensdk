@@ -124,7 +124,6 @@ t_begin_test(class_String, HashCollision) [] (TestResult& result) {
 		check.Add(const_string("microarchitectures"));
 		check.Add(const_string("Perpetual-notion"));
 		check.Add(const_string("educationnation"));
-		check.Add(const_string("zombies"));
 	}
 
 	List<string>::Node* i = check.Begin();
@@ -205,8 +204,21 @@ t_begin_test(class_String, Split_Char) [] (TestResult& result) {
 }
 t_end_test
 
-t_begin_test(class_String, Format_String_BufferFirst) [] (TestResult& result) {
-	result.Error(const_string("Empty Test!"));
+
+t_begin_test(class_String, FormatThree) [] (TestResult& result) {
+	auto unform = const_string("The ~ ~ jumped over the ~.");
+	auto params = Array<string>({
+      const_string("brown-red"),
+      const_string("fox"),
+      const_string("fence")
+   });
+
+   auto format = string::Format(unform, params);
+   if(format != const_string(E"The brown-red fox jumped over the fence.")) {
+      result.Error(format);
+   }
 }
 t_end_test
+
+
 

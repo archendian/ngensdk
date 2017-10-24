@@ -47,29 +47,29 @@ namespace Ngen {
       // -------------------------------------
       // PUBLIC CTOR
       // -------------------------------------
-      String() : mIsReadonly(true), mData(null), mLength(0), mCapacity(0) { pValidate(); }
+      String() : mData(null), mLength(0), mCapacity(0), mIsReadonly(true) { pValidate(); }
 
-      explicit String(uword capacity) : mIsReadonly(false), mData(capacity == 0 ? Memory::New<TChar>(1) : Memory::New<TChar>(capacity)), mLength(1), mCapacity(capacity == 0 ? 1 : capacity) {
+      explicit String(uword capacity) : mData(capacity == 0 ? Memory::New<TChar>(1) : Memory::New<TChar>(capacity)), mLength(1), mCapacity(capacity == 0 ? 1 : capacity), mIsReadonly(false) {
          pTerminate();
       }
 
-      String(const TChar* string, bool readOnly) : mIsReadonly(readOnly), mData((TChar*)string), mLength(0), mCapacity(0) {
-         mLength = mCapacity = TSelf::GetLength(string);
+      String(const TChar* str, bool readOnly) : mData((TChar*)str), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
+         mCapacity = mLength = TSelf::GetLength(str);
          if(!readOnly) {
-            mData = Memory::New<TChar>(mLength);
-            Memory::Copy<TChar>(string, mData, mLength);
+            mData = Memory::New<TChar>(mCapacity);
+            Memory::Copy<TChar>(str, mData, mLength);
             pTerminate();
          }
       }
 
-      String(const TChar* string) : mIsReadonly(false), mData(null), mLength(0), mCapacity(0) {
-         mLength = mCapacity = TSelf::GetLength(string);
+      String(const TChar* str) : mData(null), mLength(0), mCapacity(0), mIsReadonly(false) {
+         mLength = mCapacity = TSelf::GetLength(str);
          mData = Memory::New<TChar>(mLength);
-         Memory::Copy<TChar>(string, mData, mLength);
+         Memory::Copy<TChar>(str, mData, mLength);
          pTerminate();
       }
 
-      String(const TSelf& copy) : mIsReadonly(copy.mIsReadonly), mData(copy.mData), mLength(copy.mLength), mCapacity(copy.mCapacity) {
+      String(const TSelf& copy) : mData(copy.mData), mLength(copy.mLength), mCapacity(copy.mCapacity), mIsReadonly(copy.mIsReadonly) {
          if(!mIsReadonly) {
 				mData =	Memory::New<TChar>(copy.mCapacity);
 				Memory::Copy(copy.mData, mData, mLength);
@@ -77,7 +77,7 @@ namespace Ngen {
       	}
       }
 
-      String(const TSelf& copy, bool readOnly) : mIsReadonly(readOnly), mData(copy.mData), mLength(copy.mLength), mCapacity(copy.mCapacity) {
+      String(const TSelf& copy, bool readOnly) : mData(copy.mData), mLength(copy.mLength), mCapacity(copy.mCapacity), mIsReadonly(readOnly) {
          if(!mIsReadonly) {
 				mData =	Memory::New<TChar>(copy.mCapacity);
 				Memory::Copy(copy.mData, mData, mLength);
@@ -86,7 +86,7 @@ namespace Ngen {
       }
 
       /** @brief Constructor. Move. (TSelf&&). */
-		String(TSelf&& move) : mIsReadonly(move.mIsReadonly), mData(move.mData), mLength(move.mLength), mCapacity(move.mCapacity) {
+		String(TSelf&& move) : mData(move.mData), mLength(move.mLength), mCapacity(move.mCapacity), mIsReadonly(move.mIsReadonly) {
          if(!move.mIsReadonly) {
 				move.mData = null;
 				move.mLength = 0;
@@ -210,14 +210,23 @@ namespace Ngen {
          return *(mData + index);
       }
 
+      /** @brief operator[](uword). */
+      TChar operator[](uword index) const {
+         if(IsNullOrEmpty()) {
+            THROW(InvalidOperationException("Unable to access empty or null text!"));
+         } else if(index >= mLength) {
+            THROW(OutOfRangeException("The parameter 'index' must less than the length of the text!"));
+         }
 
+         return *(mData + index);
+      }
       // -------------------------------------
       // PUBLIC MEMBER FUNCTIONS
       // -------------------------------------
 
       /** @brief Get the total length of the string that represent actual characters that belong to the string. */
       uword Length() const {
-         return mLength;
+         return mLength-1;
       }
 
       /** @brief Gets the capacity used to determine the total number of fixed width characters allocated for the string. */
@@ -388,7 +397,7 @@ namespace Ngen {
 
 			return TSelf((TSelf&&)result);
 		}
-	   
+
 		/** @brief Reads text from the string until the given character is discovered.
 		 * @param c The character, if found, to stop at.
 		 * @return The text that was read.
@@ -407,14 +416,14 @@ namespace Ngen {
 		TSelf ReverseReadTo(TChar c, uword& start) const {
 			if(IsNullOrEmpty()) {
 				THROW(NullReferenceException(E"Unable to read from a string that is null or empty!"));
-			} else if(from >= mLength) {
-				THROW(InvalidParameterException(E"The parameter 'from' cannot be greater than the length of the string!"));
+			} else if(start >= mLength) {
+				THROW(InvalidParameterException(E"The parameter 'start' cannot be greater than the length of the string!"));
 			}
-			
+
 			if(start == 0) {
-				start = mLength-1;	
+				start = mLength-1;
 			}
-			
+
 			TSelf result = TSelf(mLength);
 			TChar* begin = mData + start;
 
@@ -439,14 +448,14 @@ namespace Ngen {
 		TSelf ReverseReadTo(TSelf str, uword& start) const {
 			if(str.IsNullOrEmpty() || IsNullOrEmpty()) {
 				THROW(NullReferenceException(E"Unable to read from a string that is null or empty!"));
-			} else if(from >= mLength) {
-				THROW(InvalidParameterException(E"The parameter 'from' cannot be greater-than the length of the string being read!"));
+			} else if(start >= mLength) {
+				THROW(InvalidParameterException(E"The parameter 'start' cannot be greater-than the length of the string being read!"));
 			} else if(str.mLength > mLength) {
 				THROW(InvalidParameterException(E"The parameter 'str' cannot have a length that is greater-than the length of the string being read!"));
 			}
-			
+
 			if(start == 0) {
-				start = mLength - 1;	
+				start = mLength - 1;
 			}
 
 			TSelf result = TSelf(mLength);
@@ -617,17 +626,11 @@ namespace Ngen {
 		   }
 
 			uword result = 0;
-         do {
+			do {
             result++;
-         } while(*(at++));
+			}while(*(at++));
 
 			return result;
-      }
-
-      static TSelf Format(const TSelf& format, const Array<TSelf>& params) {
-         // TODO:  This was written once, and left unoptimized; optimize it (change to native C string formatting logic)
-         TSelf result;
-         return TSelf((TSelf&&)result);
       }
 
       static TSelf From(uint64 integer) {
@@ -690,13 +693,56 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
       }
 
+      static TSelf Format(const TSelf& str, const Array<TSelf>& args) {
+         auto marker = TSelf("~");
+         TSelf result = TSelf::Empty();
+         bool hit = false;
+         uword next = 0;
+
+         for(uword i = 0; i < str.Length(); i++) {
+            if(str[i] == marker[0]) {
+               if(marker.mLength-1 == 1) {
+                  if(str[i+1] == marker[0]) {
+                     result.Append(marker);
+                     continue;
+                  }
+
+                  result.Append(args[next++]);
+                  continue;
+               }
+
+               // for marker with length greater than 1
+               uword ij = i+1;
+               for(uword j = 1; j < marker.Length(); j++) {
+                  if(str[ij] == marker[j]) {
+                     ij++;
+                     hit=true;
+                  } else {
+                     ij = i;
+                     hit=false;
+                     break;
+                  }
+               }
+
+               if(hit) {
+                  result.Append(args[next++]);
+                  i+=marker.Length();
+               }
+            } else {
+               result+=str[i];
+            }
+         }
+
+         return result;
+      }
+
       static TSelf FileName(const TSelf& path) {
          auto begin = path.Begin();
-         uwhole index = 0;
+         uword index = 0;
 
-         for(uwhole i = 0; i < path.Length(); i++) {
+         for(uword i = 0; i < path.Length(); i++) {
              if(*begin == '\\' || *begin == '/' || *begin == '|') {
-             index = i;
+                index = i;
              }
 
              begin++;

@@ -53,116 +53,6 @@ namespace Ngen {
 	class Scene {
 	};
 
-	#include <chrono>
-	#include <datetimeapi.h>
-	#include <ctime>
-
-    typedef duration<int, ratio_multiply<hours::period, ratio<24> >::type> days;
-
-    class TimeStamp {
-    public:
-
-        void Reset() const {
-            mTickTime = Time::CurrentTick();
-        }
-
-        ulong Microsecond() const { return (ulong)duration_cast<chrono::microseconds>(mTime).count(); }
-        ulong Nanosecond() const { return (ulong)duration_cast<chrono::nanoseconds>(mTime).count(); }
-        ulong Millisecond() const { return (ulong)duration_cast<chrono::milliseconds>(mTime).count(); }
-        ulong Second() const { return (ulong)duration_cast<chrono::seconds>(mTime).count(); }
-        ulong Minute() const { return (ulong)duration_cast<chrono::minutes>(mTime).count(); }
-        ulong Hour() const { return (ulong)duration_cast<chrono::hours>(mTime).count(); }
-        ulong Day() const { return (ulong)duration_cast<chrono::days>(mTime).count(); }
-        ulong Month() const { return (ulong)duration_cast<chrono::days>(mTime).count(); }
-        ulong Year() const { return LocalTime().tm_year; }
-        ulong Period() const;
-        time_t LocalTime() const { return time_point::to_time_t(mTime); }
-        time_t GmTime() const { return gmtime(&LocalTime()); }
-
-        string ToString(string format="M(w):d($D):Y(b) h:m:S:n:T a (c)") const {
-            auto result = string(format.Length());
-            bool stringify = false;
-
-            for(uword i = 0; i < format.Length(); ++i) {
-                switch(format[i])) {
-                    case '$': stringify = true; break;
-                    case 'Y': result += string(Year()); break;
-                    case 'M': result += stringify ? Time::MonthName(Month()) : string(Month()); if(stringify) { stringify=false; } break;
-                    case 'd': result += string((Week()+1)*7 + (Day()+1)); break;
-                    case 'D': result += stringify ? Time::DayName(Day()) : string(Day()); if(stringify) { stringify=false; }  break;
-                    case 'w': result += string(Week()); break;
-                    case 'h': result += string(HourOfDay()); break;
-                    case 'H': result += string(HourOfPeriod()); break;
-                    case 'm': result += string(Minute()); break;
-                    case 'S': result += string(Second()); break;
-                    case 's': result += string(Millisecond()); break;
-                    case 'N': result += string(Microsecond()); break;
-                    case 'n': result += string(Nanosecond()); break;
-                    case 'T': result += string(Tick()); break;
-                    case 'a': result += string(Period() == 0 ? "AM" : "PM"); break;
-                    default: result += format[i]; break;
-                }
-            }
-
-            return result;
-        }
-
-    protected:
-        TimeStamp(bool utc=false) : mTime(system_clock::now()) {}
-        time_point mTime;
-    };
-
-    #include <chrono>
-    using namespace std;
-    using namespace chrono;
-
-	class Time {
-	public:
-	    static TimeSpan Now(bool utc=false, uword cpuid=0) { return TimeStamp(utc, cpuid); }
-	    static TimeSpan UtcNow(uword cpuid=0) { return Now(true, cpuid); }
-	    static ulong TickPerMicrosecond(uword cpuid=0) { return TickPerMillisecond() / 1000 < 1 ? 0 : TickPerMillisecond() / 1000; }
-	    static ulong TickPerMillisecond(uword cpuid=0) { return TickPerSecond() / 1000; }
-	    static ulong TickPerSecond(uword cpuid=0) { return system_clock::period()::den; }
-
-        static string DayName(ulong day=0) {
-            if(day > 6) {
-                THROW(OutOfRangeException());
-            }
-
-            return mDayName[day];
-        }
-
-        static ulong DayNumber(string day=const_string("Sunday")) {
-            ulong result = mDayName.Length();
-            if(!mDayName.Contains(day, inref result)) {
-                THROW(InvalidArgumentException());
-            }
-
-            return result;
-        }
-
-        static string MonthName(ulong month=0){
-            if(month >= mMonthName.Length()) {
-                THROW(OutOfRangeException());
-            }
-
-            return mMonthName[day];
-        }
-
-        static ulong MonthNumber(string month=const_string("January")) {
-            ulong result = mDayName.Length();
-
-            if(!mDayName.Contains(day, inref result)) {
-                THROW(InvalidArgumentException());
-            }
-
-            return result;
-        }
-    protected:
-
-        static array<string> mDayName;
-        static array<string> mMonthName;
-	};
 
 
 	class MemoryStream : Stream {};
@@ -174,7 +64,7 @@ namespace Ngen {
         READ = 0x1,
         WRITE = 0x2,
         LOAD = 0x4,
-	    NEW = 0x8,
+	     NEW = 0x8,
 
         RW = READ | WRITE,
         EDIT = RW | LOAD,
@@ -196,7 +86,7 @@ namespace Ngen {
             return Access(filePath, EAccessFlag::EDIT_NEW);
         }
 
-        static DateTime Touch(string filePath) {
+        static TimeSpan Touch(string filePath) {
             if(!Check(filePath)) {
                 New(filePath);
                 return true;

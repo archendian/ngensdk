@@ -34,17 +34,6 @@ using namespace Ngen::Diagnostic;
 t_testgroup(class_Assembly);
 
 t_begin_test(class_AssemblyInfo, AssemblyReferenceGetType) [] (TestResult& result) {
-   Assembly* assembly = Assembly::Reference(const_mirror(E"ngencore"), const_mirror(E"Ngen"));
 
-   auto object_type = assembly->GetType(const_mirror(E"Ngen.Object"));
-   object o = object_type->CreateInstance();
-
-   object ou = o.Invoke(const_mirror(E"Ngen:unknown%UnknownThis()%const"));
-
-   // when you are finished with the assembly reference, you need to dereference it
-   // since we only reference the assembly one time, dereferencing will release the System.rti library from memory
-   Assembly::Dereference(const_mirror(E"Ngen"));
 }
 t_end_test
-
-#endif

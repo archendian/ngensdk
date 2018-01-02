@@ -40,6 +40,8 @@ THE SOFTWARE.
 #include <chrono>
 //#include <datetimeapi.h>
 #include <ctime>
+#include <chrono>
+#include <time.h>
 
 
 #if _tkn_Platform == _tknval_Platform_Windows

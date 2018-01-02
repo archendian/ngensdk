@@ -38,19 +38,12 @@ namespace Ngen {
 
       class Time {
       public:
-          static TimeStamp Now(bool utc=false, uword cpuid=0) { return TimeStamp(utc, cpuid); }
-          static TimeStamp UtcNow(uword cpuid=0) { return Now(true, cpuid); }
-          static uint64 TickPerMicrosecond(uword cpuid=0) { return TickPerMillisecond() / 1000 < 1 ? 0 : TickPerMillisecond() / 1000; }
-          static uint64 TickPerMillisecond(uword cpuid=0) { return TickPerSecond() / 1000; }
-          static uint64 TickPerSecond(uword cpuid=0) { return system_clock::period()::den; }
+          static TimeStamp Now(bool utc=false) { return TimeStamp(utc); }
+          static TimeStamp UtcNow() { return Now(true); }
+          static uint64 TickPerMicrosecond() { return TickPerMillisecond() / 1000 < 1 ? 0 : TickPerMillisecond() / 1000; }
+          static uint64 TickPerMillisecond() { return TickPerSecond() / 1000; }
+          static uint64 TickPerSecond() { return (uint64)system_clock::period()::den; }
 
-           static string DayName(uword day=0) {
-               if(day > 6) {
-                   THROW(OutOfRangeException());
-               }
-
-               return mDayName[day];
-           }
 
            static uword DayNumber(string day=const_string("Sunday")) {
                uword result = mDayName.Length();
@@ -61,12 +54,13 @@ namespace Ngen {
                return result;
            }
 
-           static string MonthName(uint64 month=0){
-               if(month >= mMonthName.Length()) {
-                   THROW(OutOfRangeException());
+           static string DayByNumber(uword day=1) {
+               uword result = mDayName.Length();
+               if(day > 12) {
+                  THROW(Exception());
                }
 
-               return mMonthName[month];
+               return day == 0 ? const_string("Sunday") : mMonthName[day];
            }
 
            static uint64 DayNumber(string day=const_string("Monday")) {
@@ -79,8 +73,17 @@ namespace Ngen {
                return result;
            }
 
-           static uint64 MonthNumber(string month=const_string("January")) {
-               uint64 result = mDayName.Length();
+           static string MonthByNumber(uword month=1) {
+               uword result = mDayName.Length();
+               if(month > 12) {
+                  THROW(Exception());
+               }
+
+               return month == 0 ? const_string("January") : mMonthName[month];
+           }
+
+           static uword MonthNumber(string month=const_string("January")) {
+               uword result = mDayName.Length();
 
                if(!mMonthName.Contains(month, inref result)) {
                    THROW(InvalidArgumentException());
@@ -112,12 +115,12 @@ namespace Ngen {
          "May",
          "June",
          "July",
-         "August"
+         "August",
          "September",
          "October",
          "November",
          "December",
-   });
+      });
 }
 
 

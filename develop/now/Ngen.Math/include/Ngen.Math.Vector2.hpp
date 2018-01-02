@@ -180,8 +180,10 @@ namespace Ngen {
 
     class Config {
     public:
-        Config(string id);
+        Config(string id) : mId(id), mVar() }{}
+
     protected:
+        Map<string, string> mVar;
         string mId;
 
     };
@@ -243,7 +245,9 @@ namespace Ngen {
         map<mirror, SceneNodeFactory*> mFactory;
     };
 
-	class Stage : SceneNode {};
+	class Stage : SceneNode {
+
+	};
 
 	class Interface : SceneNode {};
 

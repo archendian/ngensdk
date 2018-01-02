@@ -107,12 +107,13 @@ namespace Ngen {
 			TestGroup* Parent() const {
 				return mGroup;
 			}
+
 		protected:
 			string mId;
 			VoidStaticDelegate<TestResult&> mFunc;
 			TestGroup* mGroup;
-			TimeStamp mStart;
-			TimeStamp mStop;
+			//TimeStamp mStart;
+			//TimeStamp mStop;
 
 			//uword mPriorityLevel; // TODO
 		};

@@ -94,7 +94,7 @@ namespace Ngen {
 
 			string mId;
 			List<Test*> mTests;
-			TimeStamp mStart;
+			//TimeStamp mStart;
 			//uword mPriorityLevel; // TODO
 
 			static ngen_diagnostic_api List<TestGroup*> sGroups;

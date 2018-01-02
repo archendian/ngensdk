@@ -6,23 +6,23 @@
 
 namespace Ngen {
 	namespace Math {
-	
+
 		class ColorBox2D {
 		public:
-			
+
 			ColorBox2D() : mWidth(0), mHeight(0), mXY(0) {}
 			ColorBox2D(uwhole width, uwhole height, Color fill=Color(255)) : mWidth(width), mHeight(height), mXY(width*height) {
 				for(int i = 0; i < mXY.Length(); ++i) {
 					mXY[i] = fill;
 				}
 			}
-			
+
 			ColorBox2D(const ColorBox2D& copy, bool isReadOnly) : mWidth(copy.mWidth), mHeight(copy.mHeight),  mXY(copy.mXY, isReadOnly) {}
-			
+
 			ColorBox2D(const ColorBox2D& copy) : mWidth(copy.mWidth), mHeight(copy.mHeight),  mXY(copy.mXY, mXY.IsReadOnly()) {}
-			
+
 			ColorBox2D(ColorBox2D&& copy) : mWidth(copy.mWidth), mHeight(copy.mHeight),  mXY((Array<Color>&&)copy.mXY) {}
-			
+
 			Color& operator[](uwhole x, uwhole y) const {
 				if(mXY.Length() == 0) {
 					THROW(InvalidOperationException("The color box has not been initialized."));
@@ -33,13 +33,25 @@ namespace Ngen {
 				}
 				return mXY[x * y];
 			}
-			
+
 		protected:
 			real mWidth;
 			real mHeight;
 			Array<Color> mXY;
 		};
-		
+
+		class ngen_api ColorBox3D {
+      public:
+
+
+      protected:
+         real mWidth;
+         real mHeight;
+         real mDepth;
+         Array<Color> mZ;
+		};
+
+
 		typedef ColorBox2D colorbox2d;
 	}
 }

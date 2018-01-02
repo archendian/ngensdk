@@ -35,6 +35,7 @@ THE SOFTWARE.
 // length support for native C/C++ char arrays
 
 namespace Ngen {
+
    /** @brief A fixed-width string of characters. */
    template<typename T> class ngen_api String {
    public:
@@ -254,6 +255,7 @@ namespace Ngen {
       TChar* End() const {
 			return (TChar*)(mData + (mLength - 1));
       }
+
 
       /** @brief Gets the pointer location to the first occurrence of the given character.
 		 * @param c The character, if found, to stop seeking at.
@@ -879,6 +881,28 @@ namespace Ngen {
 
 #   define code_string(in_code_text) string(#in_code_text, true)
 #   define rti_libname(FILENAME_CODE_STRING) string(#FILENAME_CODE_STRING##_tknval_Shared_Extension, true);
+
+   //class Encoding {
+   //};
+
+   //class AsciiEncoding : public virtual Encoding {} _Ascii;
+   //class UtfEncoding : public virtual Encoding {} _Utf;
+
+   //const Encoding* Ascii = &_Ascii;
+   //const Encoding* Utf16 = &_Utf16;
+
+   //template<const Encoding* TEncoding>
+   //class Text : public string {
+
+   //};
+
+
+/** @brief The encoded text type used by the framework. Determined at compile-time. */
+#  if _tkn_UseUnicodeEncoding == _tknval_False
+     // typedef Text<Ascii> text;
+#  else
+     // typedef Text<Utf16> text;
+#  endif
 
 }
 

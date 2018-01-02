@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.attribute.cpp
+1508797587 source:c:\workspace\ngensdk\develop\now\ngen\ngen.attribute.cpp
 
 1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.console.cpp
 	"Ngen.Console.hpp"
@@ -10,7 +10,7 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.console.hpp
 	"Ngen.String.hpp"
 
-1508794060 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
+1509323110 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
 1508778789 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp

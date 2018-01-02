@@ -75,9 +75,152 @@ THE SOFTWARE.
 // The C-API used to register reflected APIs through a binding language
 
 extern "C" {
-    namespace Ngen {
-
-
-    }
+   namespace Ngen {
+//      ngen_api abstract class Encoding {
+//
+//      }
+//
+//      ngen_api class Compression {
+//
+//      }
+//
+//      ngen_api class Cryptography {
+//
+//      }
+//
+//      namespace Web {
+//
+//         struct HtmlTagProfile {
+//            string Name;
+//            uword MinVersion;
+//            uword MaxVersion;
+//            bool RequiredClose;
+//
+//            bool IsSupported(uword version) {
+//               return version <= MinVersion && (version >= MaxVersion || MaxVersion == 0);
+//            }
+//         };
+//
+//         struct SHtmlTagProfiles {
+//            static Array<HtmlTagProfile> Collection;
+//            static const HtmlTagProfile* Get(const string name);
+//            static const HtmlTagProfile* Get(uword hashcode);
+//
+//            Array<HtmlTagProfile> SHtmlTagProfiles::Collection(
+//               { "head",       1, 0, true },
+//               { "body",       1, 0, true },
+//               { "header",     1, 0, true },
+//               { "footer",     1, 0, true },
+//               { "meta",       1, 0, true },
+//               { "img",        1, 0, true },
+//               { "div",        1, 0, true },
+//               { "dl",         1, 0, true },
+//               { "dt",         1, 0, true },
+//               { "datalist",   5, 0, true },
+//               { "canvas",     5, 0, true },
+//               { "embed",      5, 0, true },
+//               { "frame",      1, 4, true },
+//               { "frameset",   1, 4, true },
+//            });
+//
+//            Map<uword, HtmlTagProfile*> mCachedHtmlTag;
+//         } EHtmlTagProfile;
+//
+//
+//
+//         const HtmlTagProfile* SHtmlTagProfiles::Get(const string name) {
+//            return SHtmlTagProfiles::Get(name.ToHashcode());
+//         }
+//
+//         const HtmlTagProfile* SHtmlTagProfiles::Get(uword hashcode) {
+//            HtmlTagProfile* result = mCachedHtmlTag[hashcode];
+//
+//            if(!isnull(result)) {
+//               for(uword i = 0; i < Collection.Length(); ++i) {
+//                  if(Collection[i].Name.ToHashcode() == hashcode) {
+//                     result = &Collection[i];
+//                     mCachedHtmlTag.Add(hashcode, result);
+//                     break;
+//                  }
+//               }
+//            }
+//
+//            return result;
+//         }
+//
+//         template<typename TTag, typename TAttribute>
+//         class ngen_web_api MarkupTag {
+//         public:
+//
+//            MarkupTag(const string& name);
+//
+//            MarkupTag& Add(const string& name, const string& value) {
+//               if(mAttributes.Keys().Contains(name)) {
+//                  THROW(InvalidOperationException());
+//               }
+//
+//               mAttributes.Add(name, value);
+//            }
+//
+//         protected:
+//            string mName;
+//            Map<string, string> mAttributes;
+//         };
+//
+//         template<typename TTagProfile, typename TAttributeProfile>
+//         ngen_web_api class MarkupSource {
+//         public:
+//            typedef MarkupTag<TTagProfile, TAttributeProfile> TTag;
+//            MarkupSource() {}
+//
+//
+//         protected:
+//            File mFile;
+//         }
+//
+//         using HtmlSource = MarkupSource<EHtmlTagName, EHtmlAttributeName>;
+//         typedef HtmlSource::TTag HtmlTag;
+//
+//         using XmlSource = MarkupSource<EXmlTagName, EXmlkAttributeName>;
+//         typedef XmlTag::TTag XmlTag;
+//
+//         ngen_api class HtmlTag : public File {
+//
+//         }
+//
+//         ngen_api class CssSource : public File {
+//
+//         }
+//
+//         ngen_api class JavascriptSource : public File {
+//
+//         }
+//      }
+//   }
+//
+//   namespace ngen {
+//
+//      ngen_api class Password {
+//
+//      };
+//
+//      ngen_api class User {
+//
+//      protected:
+//         string mName;
+//
+//      }
+//
+//      ngen_api Environment {
+//         ngen_api static string FrameworkId();
+//         ngen_api static string SystemId();
+//         ngen_api static string SystemPath();
+//         ngen_api static string CurrentUserName();
+//         ngen_api static string CurrentUserPath();
+//
+//
+//         ngen_api static string EncodingId();
+//      };
+//   }
 }
 #endif // __NGEN_HPP

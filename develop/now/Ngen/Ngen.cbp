@@ -119,9 +119,6 @@
 		<Unit filename="include/Ngen.ConstMemberDelegate.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.DateTime.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
 		<Unit filename="include/Ngen.Delegate.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -194,6 +191,12 @@
 		<Unit filename="include/Ngen.Task.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.Time.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.TimeStamp.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.Trait.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -207,6 +210,9 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.UnknownReference.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen._.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.hpp">

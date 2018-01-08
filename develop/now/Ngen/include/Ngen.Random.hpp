@@ -26,33 +26,34 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_BUILD_EXTERNAL_HPP
-#define __NGEN_BUILD_EXTERNAL_HPP
+#ifndef __NGEN_RANDOM_HPP
+#define __NGEN_RANDOM_HPP
 
-#include "Build.Ngen.Logic.hpp"
 
-#include <exception>
-#include <new>
-#include <math.h>
-#include <initializer_list>
-#include <limits>
-#include <fstream>
-#include <chrono>
-//#include <datetimeapi.h>
-#include <ctime>
-#include <chrono>
-#include <time.h>
-#include <cmath>>
-#include <cstdlib>
+namespace Ngen {
+   template<typename TNumerical>
+   struct Random {
+      Random(inref TNumerical& var, uword seed, uword min, uword max) {
+         std::rand(seed == 0 ? 1 : seed);
+         var = srand() % max + min;
+      }
 
-#if _tkn_Platform == _tknval_Platform_Windows
-#	include <windows.h>
-#else
-#	include <dlfcn.h>   // NOTE: Make sure this header is still required
-#endif
+      Random(inref TNumerical& var, uword min, uword max) {
+         std::rand(1);
+         var = srand() % max + min;
+      }
 
-#if _tkn_Platform == _tknval_Platform_Linux
-#elif _tkn_Platform == _tknval_Platform_Mac
-#endif
+      Random(inref TNumerical& var, uword max) {
+         std::rand(seed == 0 ? 1 : seed);
+         var = srand() % max + min;
+      }
 
-#endif // __NGEN_BUILD_EXTERNAL_HPP
+      Random(inref TNumerical& var) {
+         std::rand(1);
+         var = srand();
+      }
+   };
+
+
+}
+#endif // __NGEN_RANDOM_HPP

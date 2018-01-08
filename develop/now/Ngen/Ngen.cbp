@@ -164,6 +164,9 @@
 		<Unit filename="include/Ngen.Object.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.Random.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.Reference.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>

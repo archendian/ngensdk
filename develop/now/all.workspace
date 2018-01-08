@@ -2,12 +2,12 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="all">
 		<Project filename="UnitTest.Ngen/UnitTest.Ngen.cbp" />
+		<Project filename="Ngen/Ngen.cbp" />
 		<Project filename="UnitTest.Ngen.Reflection/UnitTest.Ngen.Reflection.cbp">
 			<Depends filename="Ngen/Ngen.cbp" />
 			<Depends filename="Ngen.Reflection/Ngen.Reflection.cbp" />
 			<Depends filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
 		</Project>
-		<Project filename="Ngen/Ngen.cbp" />
 		<Project filename="Ngen.Reflection/Ngen.Reflection.cbp">
 			<Depends filename="Ngen/Ngen.cbp" />
 		</Project>

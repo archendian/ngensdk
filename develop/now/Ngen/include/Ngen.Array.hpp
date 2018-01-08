@@ -413,6 +413,8 @@ namespace Ngen {
 			return Array<TCast>((Array<TCast>&&)result);
 		}
 
+      //auto converted = array.AsType([] (T& b) { return  (TCast)b; });
+
 		template<typename TCast> Array<TCast> AsType(typename StaticDelegate<TCast, T&>::TFunction caster) const {
 			Array<TCast> result = Array<TCast>();
 			for(uword i = 0; i < this->mLength; ++i) {

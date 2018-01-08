@@ -753,6 +753,8 @@ namespace Ngen {
          return path.ReadTo(0x0, index);
       }
 
+      template<typename TEncodeTo> TEncodeTo Encode() { THROW(Exception e); }
+
       static const TSelf& Empty();
 
    protected:
@@ -859,9 +861,15 @@ namespace Ngen {
       bool mIsReadonly;
    };
 
+
    typedef String<char8> string8;
    typedef String<char16> string16;
    typedef String<char32> string32;
+   typedef String<wchar_t> wide_string;
+   typedef string8 ucs_string;
+   typedef string16 utf16_string;
+   typedef string32 utf32_string;
+   typedef string8 ascii_string;
 
 /** @brief The encoded text type used by the framework. Determined at compile-time. */
 #  if _tkn_UseUnicodeEncoding == _tknval_False
@@ -870,40 +878,39 @@ namespace Ngen {
       typedef string16 string;
 #  endif
 
+	typedef string::TChar tchar;
+
 	/** @brief A macro used to create a constant text instance at compile-time. */
 #  if _tkn_UseUnicodeEncoding == _tknval_False
 #     define const_string(str) string(str, true)
 #  else
-#     define const_string(str) string(u##str, true)
+#     define const_string(str) string32(u##str, true)
 #  endif
 
-	typedef string::TChar tchar;
+#  define const_string_usc(str) string(u8##str, true)
+#  define const_string_utf16(str) string(u##str, true)
+#  define const_string_utf32(str) string(U##str, true)
+#  define const_string_ascii(str) string(##str, true)
+#  define const_wstring(str) string(L##str, true)
+
+	template<> utf16_string utf32_string::Encode<utf16_string>();
+	template<> ascii_string utf32_string::Encode<ascii_string>();
+	template<> ucs_string   utf32_string::Encode<ucs_string>();
+
+	template<> utf32_string utf16_string::Encode<utf32_string>();
+	template<> ascii_string utf16_string::Encode<ascii_string>();
+	template<> ucs_string   utf16_string::Encode<ucs_string>();
+
+	template<> ascii_string ucs_string::Encode<ascii_string>();
+	template<> utf32_string ucs_string::Encode<utf32_string>();
+	template<> utf16_string ucs_string::Encode<ascii_string>();
+
+	template<> utf32_string ascii_string::Encode<utf32_string>();
+	template<> utf16_string ascii_string::Encode<utf16_string>();
+	template<> ucs_string   ascii_string::Encode<ucs_string>();
 
 #   define code_string(in_code_text) string(#in_code_text, true)
 #   define rti_libname(FILENAME_CODE_STRING) string(#FILENAME_CODE_STRING##_tknval_Shared_Extension, true);
-
-   //class Encoding {
-   //};
-
-   //class AsciiEncoding : public virtual Encoding {} _Ascii;
-   //class UtfEncoding : public virtual Encoding {} _Utf;
-
-   //const Encoding* Ascii = &_Ascii;
-   //const Encoding* Utf16 = &_Utf16;
-
-   //template<const Encoding* TEncoding>
-   //class Text : public string {
-
-   //};
-
-
-/** @brief The encoded text type used by the framework. Determined at compile-time. */
-#  if _tkn_UseUnicodeEncoding == _tknval_False
-     // typedef Text<Ascii> text;
-#  else
-     // typedef Text<Utf16> text;
-#  endif
-
 }
 
 #endif // __NGEN_STRING_HPP

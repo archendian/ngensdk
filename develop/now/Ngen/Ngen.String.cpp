@@ -37,5 +37,7 @@ namespace Ngen {
 	template<> const string8& string8::Empty() { return _empty8; }
 	template<> const string16& string16::Empty() { return _empty16; }
 	template<> const string32& string32::Empty() { return _empty32; }
+
+
 }
 

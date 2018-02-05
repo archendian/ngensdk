@@ -597,6 +597,9 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
 		}
 
+      uint64 SizeInBytes() const { return mCapacity * sizeof(TChar); }
+      uint64 LengthInBytes() const { return mLength * sizeof(TChar); }
+
 		uint64 ToHashcode() const {
 			if(IsNullOrEmpty()) {
 				return 0;
@@ -865,7 +868,7 @@ namespace Ngen {
    typedef String<char8> string8;
    typedef String<char16> string16;
    typedef String<char32> string32;
-   typedef String<wchar_t> wide_string;
+   typedef String<wchar_t> stringw;
    typedef string8 ucs_string;
    typedef string16 utf16_string;
    typedef string32 utf32_string;
@@ -910,7 +913,6 @@ namespace Ngen {
 	template<> ucs_string   ascii_string::Encode<ucs_string>();
 
 #   define code_string(in_code_text) string(#in_code_text, true)
-#   define rti_libname(FILENAME_CODE_STRING) string(#FILENAME_CODE_STRING##_tknval_Shared_Extension, true);
 }
 
 #endif // __NGEN_STRING_HPP

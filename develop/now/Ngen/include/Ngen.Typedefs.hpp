@@ -32,6 +32,13 @@ THE SOFTWARE.
 #include "Build.Ngen.External.hpp"
 
 namespace Ngen {
+
+   template<typename T> struct Limit {
+      static T Min() { return numeric_limits<T>::Min(); }
+      static T Max() { return numeric_limits<T>::Max(); }
+   };
+
+
    /** @brief An 8-bit wide character value. */
    typedef char char8;
 
@@ -165,13 +172,7 @@ namespace Ngen {
 	template<typename TLhs, typename TRhs> struct __is_equal { static constexpr bool result() { return false; } };
 	template<typename TLhs> struct __is_equal<TLhs, TLhs> { static constexpr bool result() { return true; } };
 
-   /** @brief A macro used to signify that a given C++ typename represents a built-in integral primitive with the specified limits. '
-    * @note This relies on the standard C++ std::numeric_limits template and the specialization must be defined prior using this macro.
-    */
-   #define trait_make_limited_decimal(__TYPENAME__)\
-      template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct __is_decimal<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }
+	// SEE: Build.Ngen.Macros.hpp
 
    trait_make_limited_integral(int8);
    trait_make_limited_integral(int16);

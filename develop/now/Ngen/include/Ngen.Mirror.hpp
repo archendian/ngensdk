@@ -95,8 +95,8 @@ namespace Ngen {
 #	define const_mirror(s) mirror(string(s, true))
 
     template<typename T> struct __typename {
-        static string text() { return const_string(code_string(T)); }
-        static mirror mirror() { return const_mirror(code_string(T)); }
+        static string text() { return const_string(incode_string(T)); }
+        static mirror mirror() { return const_mirror(incode_string(T)); }
     };
 
     template<typename T> string typename_text() { return __typename<T>::text(); }

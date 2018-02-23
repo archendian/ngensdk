@@ -71,6 +71,9 @@ THE SOFTWARE.
  */
 #define _tkn_UseUnicodeEncoding _tknval_False
 
+/** @brief Define the bit-encoding for all strings natively used by the Ngen Framework.
+ */
+#define _tkn_UnicodeEncoding _tknval_UnicodeEncoding_Utf32
 
 #define _tkn_RTIMaxNamespaceDepth 12
 

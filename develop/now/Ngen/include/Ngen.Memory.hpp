@@ -100,7 +100,7 @@ namespace Ngen {
        * @param length The number of int8s that should be cleared.
        * @param with The value used to clear the memory.  Default: 0x0
        */
-      template<typename T = int8> static void Clear(inref T* at, uword length, int8 with=0x0) {
+      template<typename T = int8> static void Clear(inref T*& at, uword length, int8 with=0x0) {
          length = length * sizeof(T);
          uword wordlen = length / sizeof(uword);
          uword* l = (uword*)at;

@@ -617,6 +617,8 @@ namespace Ngen {
 			return hash;
 		}
 
+      virtual const TChar* GetEncodingId() const { return 0; }
+
       // -------------------------------------
       // STATIC FUNCTIONS
       // -------------------------------------
@@ -756,8 +758,6 @@ namespace Ngen {
          return path.ReadTo(0x0, index);
       }
 
-      template<typename TEncodeTo> TEncodeTo Encode() { THROW(Exception e); }
-
       static const TSelf& Empty();
 
    protected:
@@ -864,15 +864,10 @@ namespace Ngen {
       bool mIsReadonly;
    };
 
-
    typedef String<char8> string8;
    typedef String<char16> string16;
    typedef String<char32> string32;
    typedef String<wchar_t> stringw;
-   typedef string8 ucs_string;
-   typedef string16 utf16_string;
-   typedef string32 utf32_string;
-   typedef string8 ascii_string;
 
 /** @brief The encoded text type used by the framework. Determined at compile-time. */
 #  if _tkn_UseUnicodeEncoding == _tknval_False
@@ -887,32 +882,32 @@ namespace Ngen {
 #  if _tkn_UseUnicodeEncoding == _tknval_False
 #     define const_string(str) string(str, true)
 #  else
-#     define const_string(str) string32(u##str, true)
+#  if _tkn_UnicodeEncoding == __tknval_UnicodeEncoding_Utf32
+#     define const_string(str) string32(U##str, true)
+#  elif _tkn_UnicodeEncoding == __tknval_UnicodeEncoding_Utf16
+#     define const_string(str) string16(u##str, true)
+#  elif _tkn_UnicodeEncoding == __tknval_UnicodeEncoding_Utf8
+#     define const_string(str) string8(u8##str, true)
+#  endif
 #  endif
 
-#  define const_string_usc(str) string(u8##str, true)
-#  define const_string_utf16(str) string(u##str, true)
-#  define const_string_utf32(str) string(U##str, true)
-#  define const_string_ascii(str) string(##str, true)
-#  define const_wstring(str) string(L##str, true)
+#  define const_ustring32(str) string32(U##str, true)
+#  define const_ustring8(str) string8(u8##str, true)
+#  define const_ustring16(str) string16(u##str, true)
+#  define const_nstring8(str) string8(str, true)
 
-	template<> utf16_string utf32_string::Encode<utf16_string>();
-	template<> ascii_string utf32_string::Encode<ascii_string>();
-	template<> ucs_string   utf32_string::Encode<ucs_string>();
+#  define ustring(ngen_string) string32(U(ngen_string->Begin(), ngen_string.Length()), false)
+#  define ustring(ngen_string) string8(u8(ngen_string->Begin(), ngen_string.Length()), false)
+#  define ustring(ngen_string) string16(u(ngen_string->Begin(), ngen_string.Length()), false)
+#  define ustring(ngen_string) string8(ngen_string->Begin(), ngen_string.IsReadonly())
 
-	template<> utf32_string utf16_string::Encode<utf32_string>();
-	template<> ascii_string utf16_string::Encode<ascii_string>();
-	template<> ucs_string   utf16_string::Encode<ucs_string>();
+#  define ustring32(str) string32(U(str, string32::GetLength(str)), flase)
+#  define ustring8(str) string8(u8(str, string8::GetLength(str)), false)
+#  define ustring16(str) string16(u(str, string16::GetLength(str)), false)
+#  define nstring8(str) string8(str, false)
 
-	template<> ascii_string ucs_string::Encode<ascii_string>();
-	template<> utf32_string ucs_string::Encode<utf32_string>();
-	template<> utf16_string ucs_string::Encode<ascii_string>();
+#  define incode_string(in_code_text) string(#in_code_text, true)
 
-	template<> utf32_string ascii_string::Encode<utf32_string>();
-	template<> utf16_string ascii_string::Encode<utf16_string>();
-	template<> ucs_string   ascii_string::Encode<ucs_string>();
-
-#   define code_string(in_code_text) string(#in_code_text, true)
 }
 
 #endif // __NGEN_STRING_HPP

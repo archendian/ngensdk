@@ -5,6 +5,165 @@ LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
 
+class ngen_io IOManager {
+public:
+   IOManager();
+
+
+protected:
+
+};
+
+class ngen_io Device {
+public:
+  Device(const mirror& name, const string& desc) : mName(name), mDescription(desc) {}
+  virtual ~Device();
+
+  const mirror Name() const { return mName; }
+  const string Description() const { return mDescription; }
+  bool Poll(unknown systemEvent)
+protected:
+   mirror mName;
+   string mDescription;
+};
+
+class ngen_io DeviceDriver {
+
+};
+
+class ngen_io DisplayAdapterDriver : public virtual DisplayAdapterDriver {
+public:
+   DisplayAdapterDriver(uword id) : public DeviceDriver {
+
+   }
+
+   virtual Device* GetDevice(uword index) {
+      return (Device*)mAdapter[index];
+   }
+
+   virtual Display* GetDisplayDevice(uword adapter, uword display) {
+      return )mAdapter[index].GetDisplay(display);
+   }
+
+protected:
+   uword mId;
+   Array<DisplayAdapter> mAdapter;
+
+};
+
+class ngen_io DisplayMode {
+public:
+   DisplayMode() : mWidth(0), mHeight(0), mHz(0) {}
+   DisplayMode(uword height, uword hz) : mWidth(width), mHeight(height), mHz(hz) {}
+   DisplayMode(const DisplayMode& copy) : mWidth(copy.Width), mHeight(copy.Height), mHz(copy.Hz) {}
+
+   bool operator== (const DisplayMode& rhs) const {
+      return mWidth == rhs.mWidth && mHeight == rhs.mHeight && mHz == rhs.mHz;
+   }
+
+   bool operator!= (const DisplayMode& rhs) const {
+      return mWidth != rhs.mWidth && mHeight != rhs.mHeight && mHz != rhs.mHz;
+   }
+
+   string ToString() const {
+      return string::Format("~ x ~, ~hz"{ string::From(mWidth), string::From(mHeight), string::From(mHz)});
+   }
+
+   uword Width() const { return mWidth; }
+   uword Height() const { return mHeight; }
+   uword Hz() const { return mHz; }
+
+protected:
+   uword mWidth;
+   uword mHeight;
+   uword mHz;
+};
+
+/** @brief A device driver for hardware accelerated display drivers and graphic cards.
+ */
+class ngen_io DisplayAdapter : public virtual Device {
+public:
+   DisplayAdapter(const string& name, const string& desc) :  this->Name(name), this->Description(desc), mDisplay(0) {}
+
+   virtual ~DisplayAdapter();
+
+   const Display* GetDisplay(uword index) const {
+      return mDisplay.Begin(index);
+   }
+
+   const Display* operator[](uword index) {
+      return mDisplay.Begin(index);
+   }
+
+protected:
+   Array<Display> mDisplay;
+
+   friend class DeviceManager;
+};
+
+class ngen_io Display : public virtual Device {
+public:
+   Display(const string& name, const string& desc, const DisplayAdapter* parent, array<DisplayMode> modes) :
+      this->Name(name), this->Description(desc), this->mAdapater(parent), mDisplayMode(modes),
+         mIndex(parent->mDisplay.Length()) {
+   }
+
+
+protected:
+   DisplayAdapter* mAdapater;
+   Array<DisplayMode> mDisplayMode;
+};
+
+class ngen_draw_gui Gui {
+public:
+};
+
+class ngen_draw_gui Control {
+public:
+   Control(const string& title) :
+   vec2<int32> LocationToParent() const {
+      return mRelativeLocation;
+   }
+
+   vec2<int32> LocationToDisplay() const {
+      return mParent == null ? mRelativeLocation :
+         mRelativeLocation + mParent.LocationToDisplay();
+   }
+
+   vec2<int32> Size() const { return mSize; }
+   Display* ParentDisplay() { return mDisplay; }
+   DisplayAdapter* ParentDisplayAdapter() { return mDisplay->Adapter(); }
+
+   bool Update(Message* systemMessage) const pure;
+   bool Draw(Message* systemMessage) const pure;
+
+   Control* Parent() const { return mParent; }
+   Control* Highest() const {
+      auto result = mParent;
+      bool top = false;
+
+      do {
+         if(result != null) {
+            if(result->mParent != null) {
+              result = result->mParent;
+            } else {
+               top = true;
+            }
+         } else {
+            top = true;
+         }
+      }while(top==false)
+
+      return result == null ? this : result;
+   }
+
+protected:
+   Control* mParent;
+   Display* mDisplay;
+   vec2<int32> mSize;
+   vec2<int32> mRelativeLocation;   // location relative to parent location (top-left)
+   array<Control> mChildren;
+};
 
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,

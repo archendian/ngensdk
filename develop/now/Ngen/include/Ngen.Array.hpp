@@ -416,7 +416,7 @@ namespace Ngen {
       //auto converted = array.AsType([] (T& b) { return  (TCast)b; });
 
 		template<typename TCast> Array<TCast> AsType(typename StaticDelegate<TCast, T&>::TFunction caster) const {
-			Array<TCast> result = Array<TCast>();
+			auto result = Array<TCast>();
 			for(uword i = 0; i < this->mLength; ++i) {
 				result.Add(caster(*this->Begin(i)));
 			}
@@ -432,6 +432,13 @@ namespace Ngen {
 
          return Array<T*>((Array<T*>&&)result);
       }
+
+      void ForEach(VoidStaticDelegate<T*>::TFunction function) {
+         for(uword i = 0; i < this->mLength; ++i) {
+            function(*(this.Begin(i));
+         }
+      }
+
 	protected:
 		/** @brief Clears the items from the array, with an option to ignore read-only errors.
 		* @param ignoreReadOnlyError Determines if the read-only flag should be checked before clearing the items.

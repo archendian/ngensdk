@@ -29,6 +29,9 @@ THE SOFTWARE.
 #include "Ngen.Algorithm.hpp"
 #include "Ngen.String.hpp"
 
+#include <clocale>
+#include <cwchar>
+
 namespace Ngen {
    const string8 _empty8 = string8();
 	const string16 _empty16 = string16();
@@ -37,7 +40,5 @@ namespace Ngen {
 	template<> const string8& string8::Empty() { return _empty8; }
 	template<> const string16& string16::Empty() { return _empty16; }
 	template<> const string32& string32::Empty() { return _empty32; }
-
-
 }
 

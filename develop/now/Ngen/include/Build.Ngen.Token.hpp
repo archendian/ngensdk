@@ -115,6 +115,7 @@ THE SOFTWARE.
 /** @brief An PowerPC branded central processing unit. */
 #define _tknval_Cpu_PowerPC 4
 
+
 /** @brief An SSE instruction set for parallel computing techniques. */
 #define _tknval_ParallelCpu_SSE 1
 
@@ -124,16 +125,25 @@ THE SOFTWARE.
 /** @brief A VFP instruction set for parallel computing techniques. */
 #define _tknval_ParallelCpu_VFP 3
 
+
 /** @brief The big-endian bit-order. */
 #define _tknval_Endian_Big 1
 
 /** @brief The little-endian bit-order. */
 #define _tknval_Endian_Little 2
 
+
 /** @brief The X11 window/display manager used by most Linux/Unix distributions. */
 #define _tknval_UnixLinux_DisplayManager_X11 1
 
 /** @brief The Wayland window/display manager used in some Linux/Unix distributions. */
 #define _tknval_UnixLinux_DisplayManager_Wayland 2
+
+
+#define _tknval_UnicodeEncoding_Utf32 1
+
+#define _tknval_UnicodeEncoding_Utf16 2
+
+#define _tknval_UnicodeEncoding_Utf8 3
 
 #endif // __NGEN_BUILD_TOKEN_HPP

@@ -114,7 +114,7 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Console.hpp">
-			<Option virtualFolder="include/Build/" />
+			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.ConstMemberDelegate.hpp">
 			<Option virtualFolder="include/" />

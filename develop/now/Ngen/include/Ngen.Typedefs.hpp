@@ -34,8 +34,8 @@ THE SOFTWARE.
 namespace Ngen {
 
    template<typename T> struct Limit {
-      static T Min() { return numeric_limits<T>::Min(); }
-      static T Max() { return numeric_limits<T>::Max(); }
+      static T Min() { return 0; }
+      static T Max() { return 0; }
    };
 
 
@@ -174,18 +174,18 @@ namespace Ngen {
 
 	// SEE: Build.Ngen.Macros.hpp
 
-   trait_make_limited_integral(int8);
-   trait_make_limited_integral(int16);
-   trait_make_limited_integral(int32);
-   trait_make_limited_integral(int64);
-   trait_make_limited_integral(uint8);
-   trait_make_limited_integral(uint16);
-   trait_make_limited_integral(uint32);
-   trait_make_limited_integral(uint64);
-   trait_make_limited_integral(char16);
-   trait_make_limited_integral(char32);
-   trait_make_limited_decimal(float32);
-   trait_make_limited_decimal(float64);
+   trait_make_limited_integral(int8, -127, 128);
+   trait_make_limited_integral(int16, -32768 , 32767);
+   trait_make_limited_integral(int32, -2147483648, 2147483647);
+   trait_make_limited_integral(int64, -9223372036854775808, 9223372036854775807);
+   trait_make_limited_integral(uint8, 0, 256);
+   trait_make_limited_integral(uint16, 0, 65536);
+   trait_make_limited_integral(uint32, 0, 4294967294);
+   trait_make_limited_integral(uint64, 0, 18446744073709551614);
+   trait_make_limited_integral(char16, -32768 , 32767);
+   trait_make_limited_integral(char32, -2147483648, -2147483647);
+   trait_make_limited_decimal(float32, -3.4028*(10^-38), 3.4028*(10^38));
+   trait_make_limited_decimal(float64, -1.7977 *(10^-308), 1.7977 *(10^308));
    trait_make_nullable_primitive(unknown);
    trait_make_primitive(void_t);
 
@@ -251,6 +251,12 @@ namespace Ngen {
 
    /** @brief A specialization of Ngen.typeof template function that gets the Ngen.Type pointer for an Ngen.Object reference. */
    Type* typeof(const Object& variable);
+
+   /*
+      uint64 uint32 uint16 uint8 int64 int32 int16 int8 float32 float64 float16 byte ubyte unknown object typeof
+      const_string string mirror const_mirror char8 char16 char32 isnull void_t string8 string16 string32 u32string
+      utf8string utf16string wstring dynamic dynamic_member inref
+   */
 }
 
 #endif // __NGEN_TYPEDEFS_HPP

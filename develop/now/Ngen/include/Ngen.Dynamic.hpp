@@ -35,31 +35,20 @@ namespace Ngen {
    class Dynamic : public class Object {
    public:
       Dynamic(const Array<DynamicMember>& members) : Object() {
-        members.ForEach([] (DynamicMember& member) {
+        members.ForEach([] (DynamicMember& member, uword currentIndex) {
             mMember.Add(member->Name(), member);
+            mMember[currentIndex].mParent = this;
         });
-
-        pInitialize();
       }
 
-      Dynamic(const Type* inherit, const Array<DynamicMember>& members) : Object() {
-         members.ForEach([] (DynamicMember& member) {
-            mMember.Add(member->Name(), member);
-        });
-
-        pInitialize(inherit);
-      }
 
       virtual ~Dynamic() {
-
       }
 
       DynamicMember& operator[](const mirror& name);
       const DynamicMember& operator[](const mirror& name) const;
 
    protected:
-      void pInitialize(const Type* inherit=null);
-
       Map<mirror, DynamicMember> mMember;
    };
 
@@ -72,24 +61,24 @@ t_begin_test(DynamicLanguageRuntime, DynamicObjectExpansion) [] (TestResult& res
         dynamic_member(FieldA, typeof(int32), 44),
         dynamic_member(FieldB, typeof(int32), 43),
         dynamic_member(MethodA, (int32)(dynamic self, int32 x, int32 y)) {
-            return x * y + self[code_string(FieldA)];
+            return x * y + self[incode_string(FieldA)];
         }
     });
 
-    int32 x = d[code_string(FieldA)].Get());
+    int32 x = d[incode_string(FieldA)].Get());
     int32 y = 3;
-    int32 z = d[code_string(MethodA)](x, y);
+    int32 z = d[incode_string(MethodA)](x, y);
 
     d[code_string(FieldA)].Set((int32)(dynamic self, int32& x) {
         x = self[code_string(FieldB)].Get();
         return x++;
     });
 
-    d[code_string(FieldA)].Name(code_string(MethodB));
-    y = d[code_string(MethodB)](z);
+    d[incode_string(FieldA)].Name(incode_string(MethodB));
+    y = d[incode_string(MethodB)](z);
 
     result.Out.WriteLine(const_string("y = ") + string::From(y));
-    result.Out.WriteLine(d.GetType().ToString("profile")); // print type information for typeof(d)
+    result.Out.WriteLine(d.GetType().ToString(true)); // print type information for typeof(d)
 }
 
 #endif // __NGEN_DYNAMIC_HPP

@@ -57,7 +57,7 @@ namespace Ngen {
           this(member, isnull(member) ? 0 : (Object*)&member->mParent, value) {
       }
 
-      dynamic_member_set(DynamicMember* member, Object* owner, DynamicMethodDelegate::TFunction value) {
+    void dynamic_member_set(DynamicMember* member, Object* owner, DynamicMethodDelegate::TFunction value) {
          if(isnull(member)) {
              THROW(NullReferenceException(const_string("member")));
          } else if(member->IsField()) {

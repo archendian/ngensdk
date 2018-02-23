@@ -69,6 +69,10 @@ namespace Ngen {
 		 */
 		virtual Array<Delegate*> GetMemberMethods() const pure;
 
+		/**
+		 */
+      virtual string ToString(bool longNamw=false) const pure;
+
       /** @brief Gets an array of all the method members of this Type.
 		 * @return An array containing all the method information bound to this type.
 		 */

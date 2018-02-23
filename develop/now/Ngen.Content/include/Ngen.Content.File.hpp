@@ -40,6 +40,33 @@ namespace Ngen {
 
             }
         };
+
+        class ResourceHandler {
+         public:
+            ResourceHandler()
+
+            virtual bool IsSupportedFile(const string& fileName) const pure;
+            virtual bool IsSupportedExtension(const string& fileNameExtension) const pure;
+
+            template<typename TResource>
+            TResource* Load(const string& fileName, const mirror& id) const {
+               Resource* result = null;
+               if(!mResource.TryGetValue(id, inref result)) {
+                  result = (TResource*)pLoadResource(fileName, id);
+               }
+
+               return (TResource*)result;
+            }
+
+         protected:
+            virtual Resource* pLoadResource(const string& fileName, const mirror& id) pure;
+            virtual Resource* pUnloadResource(const string& fileName, const mirror& id) pure;
+            virtual Resource* pLoadResource(const string& fileName, uword id) pure;
+            virtual Resource* pUnloadResource(const string& fileName, uword id) pure;
+
+            Map<mirror, Resource*> mResource;
+        };
+
         class Resource {
         public:
 

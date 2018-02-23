@@ -66,16 +66,15 @@ namespace Ngen {
 #  define trait_make_nullable(__TYPENAME__) template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }
 
    /** @brief A macro used to signify that a given C++ typename represents a nullable primitive data type. */
-#  define trait_make_nullable_primitive(__TYPENAME__, MIN, MAX)\
+#  define trait_make_nullable_primitive(__TYPENAME__)\
       template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }\
-      template<> struct Limit { static T Min() { return MIN; } static T Max() { return MAX; } }
+      template<> struct __is_nullable<__TYPENAME__> { static constexpr bool result() { return true; } }
 
    /** @brief A macro used to signify that a given C++ typename represents a built-in primitive with the specified limits. */
 #  define trait_make_limited_primitive(__TYPENAME__, MIN, MAX)\
       template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }\
-      template<> struct Limit { static T Min() { return MIN; } static T Max() { return MAX; } }
+      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct Limit<__TYPENAME__> { static T Min() { return MIN; } static T Max() { return MAX; } }
 
    /** @brief A macro used to signify that a given C++ typename represents a built-in integral primitive with the specified limits.
     * @note This relies on the standard C++ std::numeric_limits template and the specialization must be defined prior using this macro.
@@ -83,8 +82,11 @@ namespace Ngen {
 #  define trait_make_limited_integral(__TYPENAME__, MIN, MAX)\
       template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
       template<> struct __is_integral<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } }\
-      template<> struct Limit { static T Min() { return MIN; } static T Max() { return MAX; } }
+      template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } };\
+      template<> struct Limit<__TYPENAME__> {\
+         static __TYPENAME__ Min() { return MIN; } \
+         static __TYPENAME__ Max() { return MAX; } \
+      }
 
  /** @brief A macro used to signify that a given C++ typename represents a built-in integral primitive with the specified limits. '
     * @note This relies on the standard C++ std::numeric_limits template and the specialization must be defined prior using this macro.
@@ -93,7 +95,7 @@ namespace Ngen {
       template<> struct __is_primitive<__TYPENAME__> { static constexpr bool result() { return true; } };\
       template<> struct __is_decimal<__TYPENAME__> { static constexpr bool result() { return true; } };\
       template<> struct __is_limited<__TYPENAME__> { static constexpr bool result() { return true; } };\
-      template<> struct Limit { static T Min() { return MIN; } static T Max() { return MAX; } }
+      template<> struct Limit<__TYPENAME__> { static __TYPENAME__ Min() { return MIN; } static __TYPENAME__ Max() { return MAX; } }
 
 #  define set_typename(TYPENAME, NAME)\
         template<> struct __typename<TYPENAME> {\

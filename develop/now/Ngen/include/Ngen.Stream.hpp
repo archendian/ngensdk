@@ -34,101 +34,33 @@ THE SOFTWARE.
 namespace Ngen {
 
 	class ngen_api Stream {
-	public:
-		virtual ~Stream() {};
+   public:
+      Stream();
+      virtual ~Stream();
 
-		/** @brief Gets the length (in bytes) of the data stream.
-		 */
-		virtual void Close() pure;
+      /** @brief Reads from the current position of the cursor to the end of the stream.
+       */
+      virtual string8 ReadToEnd() const pure;
 
-		/** @brief Gets the length (in bytes) of the data stream.
-		 */
-		virtual uword Length() const pure;
+      /** @brief Reads from the current position of the cursor until a given length or EOF is reached.
+       */
+      virtual string8 Read(uint64 count) const pure;
 
-		/** @brief Sets the length (in bytes) of the stream.
-		 * @remarks The buffer will be truncated if the new length is smaller than the current length.
-		 */
-		virtual void Resize(uword length) const;
+      /** @brief Closes the stream.
+       */
+      virtual void Close() const pure;
 
-		/** @brief Gets the current cursor location (in offset bytes) of the data stream.
-		 */
-		virtual uword Offset() const pure;
+      /** @brief Opens the stream.
+       */
+      virtual void Open() const pure;
 
-		/** @brief Offsets a new cursor location (in bytes) forwards from its current location.
-		 * @param offset The number of bytes to move the cursor forwards.
-		 */
-		virtual void Forward(uword offset) const pure;
+      /** @brief Gets the current cursor position.
+       */
+      virtual uint64 Cursor() const pure;
 
-		/** @brief Offsets a new cursor location (in bytes) backwards from its current location.
-		 * @param offset The number of bytes to move the cursor backwards.
-		 */
-		virtual void Backward(uword offset) const pure;
-
-		/** @brief Reads a single byte from the data stream.
-		 * @param buffer The place where the bytes being read will be written to.
-		 * @return Will return false if the end of the stream was reached before the read operation.
-		 */
-		virtual bool ReadByte(uint8*& buffer) const pure;
-
-		/** @brief Reads a string of bytes from the data stream.
-		 * @param buffer The place where the bytes being read will be written to.
-		 * @param start The offset (in bytes) within the stream to begin reading.
-		 * @param count The number bytes to read.
-		 * @remarks The new cursor offset of the stream will replace the start parameter.
-		 * @return Will return false if the end of the stream was reached before the read operation.
-		 */
-		virtual bool Read(uint8*& buffer, uword start, uword count) const pure;
-
-		/** @brief Writes a single byte to the data stream.
-		 * @param value The single byte being written to the stream.
-		 * @return Will return false if the end of the stream was reached before the write.
-		 */
-		virtual bool WriteByte(uint8 value) const pure;
-
-		/** @brief Writes a string of bytes to the data stream.
-		 * @param buffer The place where the bytes being written will be read from.
-		 * @param start The offset (in bytes) within the stream to begin writing.
-		 * @param count The number bytes to write.
-		 * @remarks The new cursor offset of the stream will replace the start parameter.
-		 * @return Will return false if the end of the stream was reached before the write operation.
-		 */
-		virtual bool Write(uint8* buffer, uword start, uword count) const pure;
-
-		/** @brief Determines if data can be read from the stream.
-		 */
-		virtual bool CanRead() const pure;
-
-		/** @brief Determines if data can be written to the stream.
-		 */
-		virtual bool CanWrite() const pure;
-
-		/** @brief Determines if IO operations on the stream can time-out.
-		 */
-		virtual bool CanTimeout() const pure;
-
-		/** @brief Gets the number of milliseconds required for a read operation to time-out.
-		 */
-		virtual uword ReadTimeout() const pure;
-
-		/** @brief Sets the number of milliseconds required for a read operation to time-out.
-		 * @param ms The number of milliseconds to wait before a read operation will time-out.
-		 */
-		virtual void ReadTimeout(uword ms) const pure;
-
-		/** @brief Gets the number of milliseconds required for a write operation to time-out.
-		 */
-		virtual uword WriteTimeout() const pure;
-
-		/** @brief Sets the number of milliseconds required for a write operation to time-out.
-		 * @param ms The number of milliseconds to wait before a write operation will time-out.
-		 */
-		virtual void WriteTimeout(uword ms) const pure;
-
-		/** @brief Forces the write buffer to be written to the source of the stream.
-		 */
-		virtual void Flush() pure;
-	protected:
-
+      /** @brief Sets the current cursor position.
+       */
+      virtual void Cursor(uint64 set) const pure;
 	};
 }
 

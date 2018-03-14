@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2017 FIXCOM, LLC
+COPYRIGHT (C) 2018 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,30 +26,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_MATH_HPP
-#define __NGEN_MATH_HPP
+#ifndef __NGEN_BUILD_DRAWING_LOGIC_HPP
+#define __NGEN_BUILD_DRAWING_LOGIC_HPP
 
-#include "Ngen.Typedefs.hpp"
-#include "Ngen.Math.Vector2.hpp"
-#include "Ngen.Math.Vector3.hpp"
-#include "Ngen.Math.Vector4.hpp"
-#include "Ngen.Math.Line2D.hpp"
-#include "Ngen.Math.Line3D.hpp"
-#include "Ngen.Math.Ray2D.hpp"
-#include "Ngen.Math.Ray3D.hpp"
-#include "Ngen.Math.AAbox2D.hpp"
-#include "Ngen.Math.AAbox3D.hpp"
-#include "Ngen.Math.Sphere3D.hpp"
-#include "Ngen.Math.Color4.hpp"
-#include "Ngen.Math.Matrix3.hpp"
-#include "Ngen.Math.Matrix4.hpp"
+#include "Ngen.hpp"
+#include "Ngen.Math.hpp"
 
-namespace Ngen {
-    namespace Math {
+/** @brief Used to export or import public symbols from the framework. */
+#if _tkn_Platform == _tknval_Platform_Windows
+#  ifdef NGEN_MATH_EXPORT
+#       define ngen_drawing_api __declspec(dllexport)
+#  elif defined(__MINGW32__)
+#     define ngen_drawing_api
+#  else
+#     define ngen_math_api __declspec(dllimport)
+#  endif
+#else // other supported platforms (Linux, MacOSX and iPhone)
+#	if (__GNUC__ >= 4) // && defined(NGEN_EXPORT)
+#       ifdef(NGEN_EXPORT)
+#		    define ngen_drawing_api __attribute__ ((visibility("default")))
+#       else
+#           define ngen_drawing_api
+#       endif
+      /** @brief Used to export or import private symbols from the framework. */
+#		define ngen_drawing_api_private __attribute__ ((visibility("hidden")))
+#	else
+#     define ngen_math_api
+      /** @brief Used to export or import private symbols from the framework. */
+#     define ngen_drawing_api_private
+#	endif
+#endif
 
-
-
-    }
-}
-
-#endif // __NGEN_MATH_HPP_INCLUDED
+#endif // __BUILD_NGEN_DRAWING_LOGIC_HPP

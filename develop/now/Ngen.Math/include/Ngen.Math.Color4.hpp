@@ -26,30 +26,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_MATH_HPP
-#define __NGEN_MATH_HPP
+#ifndef __NGEN_MATH_COLOR4_HPP
+#define __NGEN_MATH_COLOR4_HPP
 
-#include "Ngen.Typedefs.hpp"
-#include "Ngen.Math.Vector2.hpp"
-#include "Ngen.Math.Vector3.hpp"
-#include "Ngen.Math.Vector4.hpp"
-#include "Ngen.Math.Line2D.hpp"
-#include "Ngen.Math.Line3D.hpp"
-#include "Ngen.Math.Ray2D.hpp"
-#include "Ngen.Math.Ray3D.hpp"
-#include "Ngen.Math.AAbox2D.hpp"
-#include "Ngen.Math.AAbox3D.hpp"
-#include "Ngen.Math.Sphere3D.hpp"
-#include "Ngen.Math.Color4.hpp"
-#include "Ngen.Math.Matrix3.hpp"
-#include "Ngen.Math.Matrix4.hpp"
+#include "Ngen.Math.Typedefs.hpp"
 
 namespace Ngen {
-    namespace Math {
+	namespace Math {
+		class Color4 {
+		public:
+			real R;
+			real G;
+			real B;
+			real A;
 
+			Color4() : R(0), G(0), B(0), A(0) {}
+			Color4(real rgba) : R(rgba), G(rgba), B(rgba), A(rgba) {}
+			Color4(real r, real g, real b, real a) : R(r), G(g), B(b), A(a) {}
+			Color4(const Color4& copy) : R(copy.R), G(copy.G), B(copy.B), A(copy.A) {}
 
-
-    }
+			static Color4 Blue() { return Color4(0.f,0.f,1.f,1.f); }
+		};
+	}
 }
-
-#endif // __NGEN_MATH_HPP_INCLUDED
+#endif

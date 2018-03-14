@@ -44,6 +44,7 @@ THE SOFTWARE.
 #include <time.h>
 #include <cmath>
 #include <cstdlib>
+#include <GL/gl.h>
 
 #if _tkn_Platform == _tknval_Platform_Windows
 #	include <windows.h>

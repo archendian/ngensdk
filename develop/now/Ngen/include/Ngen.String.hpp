@@ -700,6 +700,10 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
       }
 
+      static TSelf Format(const TSelf& str, std::initializer_list<TSelf>& args) {
+         return Format(str, Array<T>(args, 0, true));
+      }
+
       static TSelf Format(const TSelf& str, const Array<TSelf>& args) {
          auto marker = TSelf("~");
          TSelf result = TSelf::Empty();
@@ -741,6 +745,10 @@ namespace Ngen {
          }
 
          return result;
+      }
+
+      static TSelf Format(const TSelf& str, std::initializer_list<TSelf> args) {
+         return Format(str, Array<TSelf>(args));
       }
 
       static TSelf FileName(const TSelf& path) {
@@ -895,11 +903,6 @@ namespace Ngen {
 #  define const_ustring8(str) string8(u8##str, true)
 #  define const_ustring16(str) string16(u##str, true)
 #  define const_nstring8(str) string8(str, true)
-
-#  define ustring(ngen_string) string32(U(ngen_string->Begin(), ngen_string.Length()), false)
-#  define ustring(ngen_string) string8(u8(ngen_string->Begin(), ngen_string.Length()), false)
-#  define ustring(ngen_string) string16(u(ngen_string->Begin(), ngen_string.Length()), false)
-#  define ustring(ngen_string) string8(ngen_string->Begin(), ngen_string.IsReadonly())
 
 #  define ustring32(str) string32(U(str, string32::GetLength(str)), flase)
 #  define ustring8(str) string8(u8(str, string8::GetLength(str)), false)

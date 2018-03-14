@@ -42,7 +42,7 @@ namespace Ngen {
 		public:
 			/** @brief Constructor. Default. Invalid.
 			*/
-			Test() : mId(), mFunc(), mStart(0), mStop(0) {}
+			Test() : mId(), mFunc() {}//, mStart(0), mStop(0) {}
 
 			/** @brief Constructor. (const string&, StaticDelegate<TestResult&>)
 			 * @param id The string used to identify the test.
@@ -59,7 +59,7 @@ namespace Ngen {
 
 			/** @brief Copy constructor. (const Test&)
 			 */
-			Test(const Test& copy) : mId(copy.mId), mFunc(copy.mFunc), mGroup(copy.mGroup), mStart(0), mStop(0) {}
+			Test(const Test& copy) : mId(copy.mId), mFunc(copy.mFunc), mGroup(copy.mGroup) {} //, mStart(0), mStop(0) {}
 
 			/** @brief operator=(const Test&) */
 			Test& operator=(const Test& rhs) {
@@ -87,18 +87,18 @@ namespace Ngen {
 			 */
 			void Execute(TestResult& result) {
 				try {
-				   mStart = Time::Now();
+				  // mStart = Time::Now();
 					mFunc.Call(result);
 				} catch(Exception& e) {
 					result.Error(&e);
 				}
 
-				mStop = Time::Now();
+				//mStop = Time::Now();
 			}
 
-         uint64 ElapsedMilliseconds() const { mStop.Millisecond() - mStart.Millisecond(); }
-         uint64 ElapsedMicroseconds() const { mStop.Microsecond() - mStart.Microsecond(); }
-         uint64 ElapsedNanoseconds() const { mStop.Nanosecond() - mStart.Nanosecond(); }
+         //uint64 ElapsedMilliseconds() const { mStop.Millisecond() - mStart.Millisecond(); }
+         //uint64 ElapsedMicroseconds() const { mStop.Microsecond() - mStart.Microsecond(); }
+         //uint64 ElapsedNanoseconds() const { mStop.Nanosecond() - mStart.Nanosecond(); }
 
 			string& Name() {
 				return mId;

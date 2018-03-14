@@ -32,5 +32,7 @@ THE SOFTWARE.
 #include <iostream>
 #include "Ngen.hpp"
 #include "Ngen.Diagnostic.hpp"
+#include "Ngen.Math.hpp"
+#include "Ngen.Drawing.hpp"
 
 #endif // __UNITTEST_NGEN__EXTERNAL_HPP

@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2017 FIXCOM, LLC
+COPYRIGHT (C) 2016 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,30 +26,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_MATH_HPP
-#define __NGEN_MATH_HPP
 
-#include "Ngen.Typedefs.hpp"
-#include "Ngen.Math.Vector2.hpp"
-#include "Ngen.Math.Vector3.hpp"
-#include "Ngen.Math.Vector4.hpp"
-#include "Ngen.Math.Line2D.hpp"
-#include "Ngen.Math.Line3D.hpp"
-#include "Ngen.Math.Ray2D.hpp"
-#include "Ngen.Math.Ray3D.hpp"
-#include "Ngen.Math.AAbox2D.hpp"
-#include "Ngen.Math.AAbox3D.hpp"
-#include "Ngen.Math.Sphere3D.hpp"
-#include "Ngen.Math.Color4.hpp"
-#include "Ngen.Math.Matrix3.hpp"
-#include "Ngen.Math.Matrix4.hpp"
-
-namespace Ngen {
-    namespace Math {
-
-
-
-    }
-}
-
-#endif // __NGEN_MATH_HPP_INCLUDED
+#include "Ngen.Math.hpp"

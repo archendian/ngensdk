@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 FIXCOM, LLC
+COPYRIGHT (C) 2018 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,8 +35,12 @@ namespace Ngen {
    /** @brief A static instance that provides advanced mathematical functions and constants. */
    class Calculator final {
    public:
-      /** @brief A constant value representing the Pi ratio. */
-      static constexpr float64 Pi = 3.1415926535897932384626433832795028841971693993751;
+	#if tknval_RegisterWidth == 64
+		static constexpr real Pi = 3.1415926535897932384626433832795028841971693993751;
+	#else
+		static constexpr real Pi = 3.141592653589793238;
+	#endif
+
 
       inline static float32 Floor(float32 value) {
          return (float32)floor(value);
@@ -78,13 +82,63 @@ namespace Ngen {
          return atan(value);
       }
 
-       inline static float32 Atan2(float32 value, float32 s) {
+      inline static float32 Atan2(float32 value, float32 s) {
          return (float32)atan2(value, s);
       }
 
-       inline static float64 Atan2(float64 value, float64 s) {
+      inline static float64 Atan2(float64 value, float64 s) {
          return atan2(value, s);
       }
+
+		template<typename T> inline static T Min(const T& a, const T& b, const T& c) {
+			return a < b ? (a < c ? a : c) : (b < c ? b : c);
+		}
+
+		template<typename T> inline static T Min(const T& a, const T& b) {
+			return a < b ? a : b;
+		}
+
+		template<typename T> inline static T Min(const T* a, uword count) {
+			T result = *a;
+			for(uword i = 0; i < count; i++) {
+				if((*result) > *(a+i)) {
+					result = a+i;
+				}
+			}
+
+			return *result;
+		}
+
+		template<typename T> inline static T Max(const T& a, const T& b, const T& c) {
+			return a > b ? (a > c ? a : c) : (b > c ? b : c);
+		}
+
+		template<typename T> inline static T Max(const T& a, const T& b) {
+			return a > b ? a : b;
+		}
+
+		template<typename T> inline static T Max(const T* a, uword count) {
+			T result = *a;
+			for(uword i = 0; i < count; i++) {
+				if((*result) < *(a+i)) {
+					result = a+i;
+				}
+			}
+
+			return *result;
+		}
+
+		template<typename T> inline static T Cos(const T& a) {
+			return (T)std::cos((float64)a);
+		}
+
+		template<typename T> inline static Sin(const T& a) {
+			return (T)std::sin((float64)a);
+		}
+
+		template<typename T> inline static Tan(const T& a) {
+			return (T)std::tan((float64)a);
+		}
    };
 
    /** @brief A type definition for the  calculator class. */

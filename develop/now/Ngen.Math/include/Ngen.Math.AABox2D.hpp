@@ -26,16 +26,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef _NGEN_MATH_AABOX2D
-#define _NGEN_MATH_AABOX2D
+#ifndef __NGEN_MATH_AABOX2D_HPP
+#define __NGEN_MATH_AABOX2D_HPP
 
 #include "Ngen.Math.Vector2.hpp"
 #include "Ngen.Math.Line2D.hpp"
 
 namespace Ngen {
 	namespace Math {
-
-
       enum class ECollisionKind {
          // Simple Collision Kind
          /// @brief No collision.
@@ -78,7 +76,7 @@ namespace Ngen {
       };
 
 		class AxisAlignedBox2D {
-      private:
+      protected:
          // Fields
 			Vector2 mTopLeft;
 			Vector2 mBottomRight;
@@ -114,62 +112,61 @@ namespace Ngen {
          }
          AxisAlignedBox2D& operator+=(const AxisAlignedBox2D& rhs) {
             mTopLeft.X = mTopLeft.X > rhs.mTopLeft.X ? rhs.mTopLeft.X : mTopLeft.X;
-            mTopLeft.Y = mTopLeft.Y > rhs.mTopLeft.Y ? mTopLeft.Y : rhd.mTopLeft.Y;
+            mTopLeft.Y = mTopLeft.Y > rhs.mTopLeft.Y ? mTopLeft.Y : rhs.mTopLeft.Y;
             mBottomRight.X = mBottomRight.X > rhs.mBottomRight.X ? mBottomRight.X : rhs.mBottomRight.X;
             mBottomRight.Y = mBottomRight.Y < rhs.mBottomRight.Y ? mBottomRight.Y : rhs.mBottomRight.Y;
          }
-          AxisAlignedBox2D operator+(const AxisAlignedBox2D& rhs) const {
-             auto result = AxisAlignedBox2D(rhs);
+         AxisAlignedBox2D operator+(const AxisAlignedBox2D& rhs) const {
+             auto result = AxisAlignedBox2D(*this);
              result += rhs;
-             return result)
+             return result;
          }
          AxisAlignedBox2D& operator-=(const AxisAlignedBox2D& rhs) {
             mTopLeft.X = mTopLeft.X < rhs.mTopLeft.X ? rhs.mTopLeft.X : mTopLeft.X;
-            mTopLeft.Y = mTopLeft.Y < rhs.mTopLeft.Y ? mTopLeft.Y : rhd.mTopLeft.Y;
+            mTopLeft.Y = mTopLeft.Y < rhs.mTopLeft.Y ? mTopLeft.Y : rhs.mTopLeft.Y;
             mBottomRight.X = mBottomRight.X < rhs.mBottomRight.X ? mBottomRight.X : rhs.mBottomRight.X;
             mBottomRight.Y = mBottomRight.Y > rhs.mBottomRight.Y ? mBottomRight.Y : rhs.mBottomRight.Y;
          }
-          AxisAlignedBox2D operator-(const AxisAlignedBox2D& rhs) const {
-             auto result = AxisAlignedBox2D(rhs);
+         AxisAlignedBox2D operator-(const AxisAlignedBox2D& rhs) const {
+             auto result = AxisAlignedBox2D(*this);
              result -= rhs;
-             return result)
+             return result;
          }
 
          // Methods
-         CollisionResult2D CheckCollision(const Vector2& point) const {
-            CollisionResult2D result;
-            result.Lhs = result.Rhs = ECollisionKind::NONE;
+      CollisionResult2D CheckCollision(const Vector2& point) const {
+         CollisionResult2D result;
+         result.Lhs = result.Rhs = ECollisionKind::NONE;
 
-            bool isHolding = (point.X > mTopLeft.X && point.Y < mTopLeft.Y && point.Y > mBottomRight.Y && point.Y < mBottomRight.X);
-            bool isTouching = (point.X == mTopLeft.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
-                               (point.X == mBottomRight.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
-                               (point.Y == mTopLeft.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X) ||
-                               (point.Y == mBottomRight.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X);
+         bool isHolding = (point.X > mTopLeft.X && point.Y < mTopLeft.Y && point.Y > mBottomRight.Y && point.Y < mBottomRight.X);
+         bool isTouching = (point.X == mTopLeft.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
+                            (point.X == mBottomRight.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
+                            (point.Y == mTopLeft.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X) ||
+                            (point.Y == mBottomRight.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X);
 
-            if(isHolding) {
-               result.Lhs = ECollisionKind::HOLDING;
-               result.Rhs = ECollisionKind::INSIDE;
-            } else if(isTouching) {
-               result.Lhs = result.Rhs = ECollisionKind::TOUCHING;
-            }
-
-            return result;
+         if(isHolding) {
+            result.Lhs = ECollisionKind::HOLDING;
+            result.Rhs = ECollisionKind::INSIDE;
+         } else if(isTouching) {
+            result.Lhs = result.Rhs = ECollisionKind::TOUCHING;
          }
-		};
+
+         return result;
+      }
 
 		CollisionResult2D CheckCollision(const AxisAlignedBox2D& box) const {
             CollisionResult2D result;
             result.Lhs = result.Rhs = ECollisionKind::NONE;
             result.CollisonSpace = Line2D();
 
-            auto bottom = CheckCollision(box.mBottomRight);
-            auto top = CheckCollision(box.mTopLeft);
+            CollisionResult2D bottom = CheckCollision(box.BottomRight());
+            CollisionResult2D top = CheckCollision(box.TopLeft());
 
             bool isHolding = (top.Lhs == ECollisionKind::HOLDING || top.Lhs == ECollisionKind::TOUCHING) &&
                              (bottom.Lhs == ECollisionKind::HOLDING || bottom.Lhs == ECollisionKind::TOUCHING);
 
-            bool isTouching = (box.mTopLeft - mTopLeft) == Vector2::Zero &&
-                              (box.mBottomRight - mBottomRight) == Vector2::Zero;
+            bool isTouching = (box.TopLeft() - this->mTopLeft) == Vector2::Zero() &&
+                              (box.BottomRight() - this->mBottomRight) == Vector2::Zero();
 
             bool isCrossing =(top.Lhs == ECollisionKind::HOLDING || top.Lhs == ECollisionKind::TOUCHING) ||
                              (bottom.Lhs == ECollisionKind::HOLDING || bottom.Lhs == ECollisionKind::TOUCHING);
@@ -192,3 +189,4 @@ namespace Ngen {
 
 		typedef AxisAlignedBox2D aabox2d;
 }
+#endif

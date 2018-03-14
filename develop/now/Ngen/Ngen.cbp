@@ -70,6 +70,9 @@
 		<Unit filename="Ngen.Task.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Window.WINDOWS.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="include/Build.Ngen.Configuration.hpp">
 			<Option virtualFolder="include/Build/" />
 		</Unit>
@@ -213,6 +216,9 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.UnknownReference.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Window.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen._.hpp">

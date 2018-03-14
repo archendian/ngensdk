@@ -52,7 +52,7 @@ namespace Ngen {
 		* @param length The number of structures being copied.
 		* @param readOnly Determines if the array will copy the data structures or only reference them.
 		*/
-		Array(std::initializer_list<T> copy, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
+		explicit Array(std::initializer_list<T> copy, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
             Set((T*)copy.begin(), copy.size(), readOnly);
 		}
 
@@ -61,7 +61,7 @@ namespace Ngen {
 		* @param length The number of structures being copied.
 		* @param readOnly Determines if the array will copy the data structures or only reference them.
 		*/
-		Array(std::initializer_list<T> copy, uword start, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
+		explicit Array(std::initializer_list<T> copy, uword start, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
             Set(((T*)copy.begin())+start, copy.size(), readOnly);
 		}
 
@@ -109,7 +109,7 @@ namespace Ngen {
       const T& operator[](uword index) const {
 			if(IsNullOrEmpty()) {
 				THROW(InvalidOperationException("Cannot index an array that is null or empty!"));
-			} else if(index >= mLength) {
+			} else if(index >= this->mLength) {
 				THROW(OutOfRangeException("The parameter 'index' must be less than the length of the array!"));
 			}
 
@@ -433,11 +433,13 @@ namespace Ngen {
          return Array<T*>((Array<T*>&&)result);
       }
 
-      void ForEach(VoidStaticDelegate<T*>::TFunction function) {
-         for(uword i = 0; i < this->mLength; ++i) {
-            function(*(this.Begin(i));
-         }
-      }
+//      TSelf& ForEach(VoidStaticDelegate<T*>::TFunction f) {
+//         for(uword i = 0; i < this->mLength; ++i) {
+//            f(this.Begin(i));
+//         }
+//
+//         return *this;
+//      }
 
 	protected:
 		/** @brief Clears the items from the array, with an option to ignore read-only errors.

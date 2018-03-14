@@ -29,79 +29,30 @@ THE SOFTWARE.
 #include "_External.hpp"
 
 using namespace Ngen;
+using namespace Ngen::Math;
+using namespace Ngen::Drawing;
 using namespace Ngen::Diagnostic;
 
-bool ToConsole(List<TestGroupResult> results);
-
-bool hasArgument(const char** args, uword length, const string& arg) {
-	if(length >= 1) {
-		for(uword i = 0; i < length; ++i) {
-			if(const_string(args[i]) == arg) {
-				return true;
-			}
-		}
-	}
-
-	return false;
-}
 
 int main(int32 length, const char** args) {
-	Console::WriteLine(E"Ngen Framework (0.1a)");
-	Console::WriteLine(E"Diagnostic & Testing");
-	Console::WriteLine(E"TEST RESULT(S):");
+   auto ngen_Window = Window(0, 0, 800, 640, const_string("Ngen Framework"));
 
-	List<TestGroupResult> results = TestGroup::ExecuteAll();
-	if(!ToConsole(results) && hasArgument(args, length, const_string("-P"))) {
-		Console::WriteLine(E"Please review the results, some test have failed.");
-	}
+   auto ngen_CCParams = CanvasCreationParams();
+   ngen_CCParams.Width = ngen_Window.Width();
+   ngen_CCParams.Height = ngen_Window.Height();
+   ngen_CCParams.ColorDepth = 32;
+   ngen_CCParams.Stero = false;
+   ngen_CCParams.ZFar = 100.0f;
+   ngen_CCParams.ZNear = 0.01f;
+   ngen_CCParams.Background = Color4::Blue();
+   auto ngen_Canvas = Canvas(ngen_Window, ngen_CCParams)
 
-    Console::WriteLine(E"Press any key to continue, or press 'R' to reset.");
-	 auto option = std::cin.get();
+   ngen_Window.Show();
+   while(ngen_Window.HandleMessage()) {
+      // do stuff
+      ngen_Canvas.Clear();
+      ngen_Canvas.Update();
+   }
 
-	if(option == 'r' || option == 'R') {
-
-	}
-    return 0;
+   return 0;
 }
-
-
-bool ToConsole(List<TestGroupResult> results) {
-	List<TestGroupResult>::Node* group = results.Begin();
-	bool pause = false;
-
-	while(!isnull(group)) {
-		Console::AlignLeft();
-		Console::WriteLine(E"");
-		Console::Write(E"[TestGroup] >>> ");
-		Console::WriteLabel(30, group->Data().Group()->Name());
-		Console::WriteLine(E"");
-
-		List<TestResult> alltests = group->Data().Results();
-		List<TestResult>::Node* test = alltests.Begin();
-
-		while(!isnull(test)) {
-			Console::Write(E"|-[Test] >>> ");
-			Console::WriteLabel(25, test->Data().Parent()->Name());
-
-			if(test->Data().HasFailed()) {
-				Console::Write(E"FAILED!\n  |-'");
-				Console::Write(test->Data().Error());
-				Console::WriteLine(E"'");
-
-				pause = true;
-			} else {
-				Console::Write(E"PASS! ");
-			}
-
-         Console::Write(E" -- ");
-         Console::Write(string::From((uint64)test->ElapsedNanosecond()));
-         Console::WriteLine("ns");
-			test = test->Next();
-		}
-
-		group = group->Next();
-	}
-
-	return pause;
-}
-

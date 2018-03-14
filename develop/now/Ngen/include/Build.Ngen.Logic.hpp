@@ -51,7 +51,7 @@ THE SOFTWARE.
 #endif
 
 /** @brief The platform where the binaries for framework were compiled.  */
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(_WINDOWS_) || defined(__WIN32_WCE)
+#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(_WINDOWS_)
 #   define _tknval_Shared_Extension .dll
 #   define _tkn_Platform _tknval_Platform_Windows
 #elif defined(_POSIX_VERSION) || defined(__unix__) || defined(__unix)

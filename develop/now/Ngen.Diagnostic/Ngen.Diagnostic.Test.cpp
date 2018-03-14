@@ -30,11 +30,11 @@ THE SOFTWARE.
 
 namespace Ngen {
 	namespace Diagnostic {
-		Test::Test(const string& id, VoidStaticDelegate<TestResult&> func) : mId(id), mFunc(func), mStart(0), mStop(0) {
+		Test::Test(const string& id, VoidStaticDelegate<TestResult&> func) : mId(id), mFunc(func) {
 			TestGroup::Default()->Add(this);
 		}
 
-		Test::Test(TestGroup* group, const string& id, VoidStaticDelegate<TestResult&> func) : mId(id), mFunc(func), mGroup(group), mStart(0), mStop(0) {
+		Test::Test(TestGroup* group, const string& id, VoidStaticDelegate<TestResult&> func) : mId(id), mFunc(func), mGroup(group) { //, mStart(0), mStop(0) {
 			group->Add(this);
 		}
 	}

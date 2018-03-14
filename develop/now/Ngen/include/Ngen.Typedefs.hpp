@@ -173,21 +173,21 @@ namespace Ngen {
 	template<typename TLhs> struct __is_equal<TLhs, TLhs> { static constexpr bool result() { return true; } };
 
 	// SEE: Build.Ngen.Macros.hpp
-
-   trait_make_limited_integral(int8, -127, 128);
-   trait_make_limited_integral(int16, -32768 , 32767);
-   trait_make_limited_integral(int32, -2147483648, 2147483647);
-   trait_make_limited_integral(int64, -9223372036854775808, 9223372036854775807);
-   trait_make_limited_integral(uint8, 0, 256);
-   trait_make_limited_integral(uint16, 0, 65536);
-   trait_make_limited_integral(uint32, 0, 4294967294);
-   trait_make_limited_integral(uint64, 0, 18446744073709551614);
-   trait_make_limited_integral(char16, -32768 , 32767);
-   trait_make_limited_integral(char32, -2147483648, -2147483647);
-   trait_make_limited_decimal(float32, -3.4028*(10^-38), 3.4028*(10^38));
-   trait_make_limited_decimal(float64, -1.7977 *(10^-308), 1.7977 *(10^308));
-   trait_make_nullable_primitive(unknown);
-   trait_make_primitive(void_t);
+////
+//   trait_make_limited_integral(int8, -127, 128);
+//   trait_make_limited_integral(int16, -32768 , 32767);
+//   trait_make_limited_integral(int32, -2147483648, 2147483647);
+//   trait_make_limited_integral(int64, -9223372036854775808, 9223372036854775807);
+//   trait_make_limited_integral(uint8, 0, 256);
+//   trait_make_limited_integral(uint16, 0, 65536);
+//   trait_make_limited_integral(uint32, 0, 4294967294);
+//   trait_make_limited_integral(uint64, 0, 18446744073709551614);
+//   trait_make_limited_integral(char16, -32768 , 32767);
+//   trait_make_limited_integral(char32, -2147483648, -2147483647);
+//   trait_make_limited_decimal(float32, -3.4028*(10^-38), 3.4028*(10^38));
+//   trait_make_limited_decimal(float64, -1.7977 *(10^-308), 1.7977 *(10^308));
+//   trait_make_nullable_primitive(unknown);
+//   trait_make_primitive(void_t);
 
 	/** @brief Recursive structure used to represent the index required for accessing the typename in a template parameter pack. */
 	template<uword... Indices> struct index_pack_t { template<uword N> using append = index_pack_t<Indices..., N>; };
@@ -222,6 +222,7 @@ namespace Ngen {
    class Structure;
    class File;
    class Folder;
+   class Window;
 
    template<typename TEnum> class BitField;
    template<typename TEncoding> class Text;

@@ -86,11 +86,12 @@ namespace Ngen {
 				return mId;
 			}
 
+         uword TestCount() const { return mTests.Length(); }
 			List<TestResult> Execute();
 			static List<TestGroupResult> ExecuteAll();
 
 		protected:
-			TestGroup() : mId(), mTests(), mStart(0) {}
+			TestGroup() : mId(), mTests() {}//, mStart(0) {}
 
 			string mId;
 			List<Test*> mTests;

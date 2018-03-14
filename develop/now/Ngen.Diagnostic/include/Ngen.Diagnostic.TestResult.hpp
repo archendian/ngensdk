@@ -67,6 +67,11 @@ namespace Ngen {
 
 			Test* Parent() const { return mParent; }
 
+         string ToString() const {
+
+            auto result = string::Empty();
+            return result;
+         }
 		protected:
 			Test* mParent;
 			bool mFailed;

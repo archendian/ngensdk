@@ -35,4 +35,21 @@ THE SOFTWARE.
 #include "Ngen.Diagnostic.TestGroup.hpp"
 #include "Ngen.Diagnostic.Test.hpp"
 
+
+namespace Ngen {
+   namespace Diagnostic {
+
+      class ngen_diagnostic_api TestSuite {
+      public:
+         static void PrintStandardIntroduction() {
+            Console::WriteLine(const_string("NGEN FRAMEWORK\nDIAGNOSTICS & TESTING SUITE\nCopyright (c) FIXCON, LCC 2018"));
+            Console::WriteLine(string::Empty());
+         }
+
+         static void Run(bool batchPrinting=false) {
+
+         }
+      };
+   }
+}
 #endif // __NGEN_DIAGNOSTICS_HPP

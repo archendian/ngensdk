@@ -4,6 +4,7 @@
 
 #include "Build.Ngen.Drawing.Logic.hpp"
 
+using namespace Ngen;
 using namespace Ngen::Math;
 
 namespace Ngen {
@@ -22,18 +23,24 @@ namespace Ngen {
 			CanvasCreationParams(uword width=800, uword height=640, Color4 background, uword depth=32, real zfar=-1.0, real znear=1.0, bool stero=false) :
 				Width(width), Height(height), Background(background), ColorDepth(depth), ZFar(zfar), ZNear(znear), Stero(stero) {
 			}
+
+			CanvasCreationParams(const CanvasCreationParams& copy) :
+				Width(copy.Width), Height(copy.Height), Background(copy.Background), ColorDepth(copy.ColorDepth),
+               ZFar(copy.ZFar), ZNear(copy.ZNear), Stero(copy.Stero) {
+			}
 		};
 
       class ngen_drawing_api Canvas {
       public:
          Canvas(Window* window, const CanvasCreationParams& params);
+         virtual ~Canvas();
 
          Color4 Background() const {
             return mParam.Background;
          }
 
-         Vector2 Size() const {
-            return Vector2(mParam.Width, mParam.Height);
+         Ngen::Math::Vector2 Size() const {
+            return Ngen::Math::Vector2(mParam.Width, mParam.Height);
          }
 
          void Clear() const {

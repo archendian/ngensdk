@@ -34,14 +34,14 @@ namespace Ngen {
       HDC win32_HDC;
       HGLRC win32_HRC;
 
-      Canvas::Canvas(Window* window, CanvasCreationParams params) : mWindow(window), mParams(params) {
-         params.Width = mWindow->Width();
-         params.Height = mWindow->Height();
+      Canvas::Canvas(Window* window, const CanvasCreationParams& params) : mWindow(window), mParam(params) {
+         mParam.Width = mWindow->Width();
+         mParam.Height = mWindow->Height();
 
          PIXELFORMATDESCRIPTOR pfd;
          int iFormat;
 
-         *win32_HDC = GetDC ((HWND)window->Handle());
+         win32_HDC = GetDC ((HWND)window->Handle());
          ZeroMemory (&pfd, sizeof (pfd));
          pfd.nSize = sizeof (pfd);
          pfd.nVersion = 1;
@@ -51,11 +51,11 @@ namespace Ngen {
          pfd.cColorBits = 24;
          pfd.cDepthBits = 16;
          pfd.iLayerType = PFD_MAIN_PLANE;
-         iFormat = ChoosePixelFormat (*win32_HDC, &pfd);
-         SetPixelFormat (*win32_HDC, iFormat, &pfd);
+         iFormat = ChoosePixelFormat (win32_HDC, &pfd);
+         SetPixelFormat (win32_HDC, iFormat, &pfd);
 
-         *win32_HRC = wglCreateContext(*win32_HDC);
-         wglMakeCurrent(*win32_HDC, *win32_HRC);
+         win32_HRC = wglCreateContext(win32_HDC);
+         wglMakeCurrent(win32_HDC, win32_HRC);
       }
 
       Canvas::~Canvas() {

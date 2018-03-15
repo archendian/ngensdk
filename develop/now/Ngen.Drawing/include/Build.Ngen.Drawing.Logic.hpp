@@ -51,7 +51,7 @@ THE SOFTWARE.
       /** @brief Used to export or import private symbols from the framework. */
 #		define ngen_drawing_api_private __attribute__ ((visibility("hidden")))
 #	else
-#     define ngen_math_api
+#     define ngen_drawing_api
       /** @brief Used to export or import private symbols from the framework. */
 #     define ngen_drawing_api_private
 #	endif

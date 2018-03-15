@@ -47,7 +47,10 @@ namespace Ngen {
 			Vector4(const Vector4& copy) : X(copy.X), Y(copy.Y), Z(copy.Z), W(copy.W) {}
 
 			bool operator==(const Vector4 rhs) const {
-
+            return X == rhs.X && Y == rhs.Y && Z == rhs.Z && W == rhs.W;
+			}
+			bool operator!=(const Vector4 rhs) const {
+            return X != rhs.X || Y != rhs.Y || Z != rhs.Z || W != rhs.W;
 			}
 		};
 

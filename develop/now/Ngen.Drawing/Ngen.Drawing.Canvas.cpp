@@ -64,7 +64,7 @@ namespace Ngen {
          ReleaseDC ((HWND)mWindow->Handle(), win32_HDC);
       }
 
-      void Canvas::Update() {
+      void Canvas::Update() const {
          SwapBuffers(win32_HDC);
       }
       #endif

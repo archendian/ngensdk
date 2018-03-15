@@ -33,7 +33,8 @@ THE SOFTWARE.
 #include "Ngen.Math.Line3D.hpp"
 
 namespace Ngen {
-	namespace Math {
+   namespace Math {
+
 
 		class Sphere3D {
 		public:
@@ -45,6 +46,6 @@ namespace Ngen {
 
 
 		typedef Sphere3D sphere3d;
-	}
+   }
 }
 #endif

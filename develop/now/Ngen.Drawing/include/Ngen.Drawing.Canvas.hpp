@@ -4,6 +4,8 @@
 
 #include "Build.Ngen.Drawing.Logic.hpp"
 
+using namespace Ngen::Math;
+
 namespace Ngen {
    namespace Drawing {
 

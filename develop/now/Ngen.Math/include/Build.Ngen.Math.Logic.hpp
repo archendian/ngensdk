@@ -42,7 +42,7 @@ THE SOFTWARE.
 #  endif
 #else // other supported platforms (Linux, MacOSX and iPhone)
 #	if (__GNUC__ >= 4) // && defined(NGEN_EXPORT)
-#       ifdef(NGEN_EXPORT)
+#       ifdef(NGEN_MATH_EXPORT)
 #		    define ngen_math_api __attribute__ ((visibility("default")))
 #       else
 #           define ngen_math_api

@@ -29,21 +29,21 @@ THE SOFTWARE.
 #ifndef __NGEN_BUILD_DRAWING_LOGIC_HPP
 #define __NGEN_BUILD_DRAWING_LOGIC_HPP
 
-#include "Ngen.hpp"
-#include "Ngen.Math.hpp"
+#include <Ngen.hpp>
+#include <Ngen.Math.hpp>
 
 /** @brief Used to export or import public symbols from the framework. */
 #if _tkn_Platform == _tknval_Platform_Windows
-#  ifdef NGEN_MATH_EXPORT
+#  ifdef NGEN_DRAWING_EXPORT
 #       define ngen_drawing_api __declspec(dllexport)
 #  elif defined(__MINGW32__)
 #     define ngen_drawing_api
 #  else
-#     define ngen_math_api __declspec(dllimport)
+#     define ngen_drawing_api __declspec(dllimport)
 #  endif
 #else // other supported platforms (Linux, MacOSX and iPhone)
 #	if (__GNUC__ >= 4) // && defined(NGEN_EXPORT)
-#       ifdef(NGEN_EXPORT)
+#       ifdef(NGEN_DRAWING_EXPORT)
 #		    define ngen_drawing_api __attribute__ ((visibility("default")))
 #       else
 #           define ngen_drawing_api

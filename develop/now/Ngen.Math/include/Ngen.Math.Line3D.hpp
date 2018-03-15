@@ -32,6 +32,7 @@ THE SOFTWARE.
 #include "Ngen.Math.Vector3.hpp"
 
 namespace Ngen {
+
 	namespace Math {
 
 		class Line3D {

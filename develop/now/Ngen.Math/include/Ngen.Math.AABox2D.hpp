@@ -115,6 +115,7 @@ namespace Ngen {
             mTopLeft.Y = mTopLeft.Y > rhs.mTopLeft.Y ? mTopLeft.Y : rhs.mTopLeft.Y;
             mBottomRight.X = mBottomRight.X > rhs.mBottomRight.X ? mBottomRight.X : rhs.mBottomRight.X;
             mBottomRight.Y = mBottomRight.Y < rhs.mBottomRight.Y ? mBottomRight.Y : rhs.mBottomRight.Y;
+            return *this;
          }
          AxisAlignedBox2D operator+(const AxisAlignedBox2D& rhs) const {
              auto result = AxisAlignedBox2D(*this);
@@ -126,7 +127,9 @@ namespace Ngen {
             mTopLeft.Y = mTopLeft.Y < rhs.mTopLeft.Y ? mTopLeft.Y : rhs.mTopLeft.Y;
             mBottomRight.X = mBottomRight.X < rhs.mBottomRight.X ? mBottomRight.X : rhs.mBottomRight.X;
             mBottomRight.Y = mBottomRight.Y > rhs.mBottomRight.Y ? mBottomRight.Y : rhs.mBottomRight.Y;
+            return *this;
          }
+
          AxisAlignedBox2D operator-(const AxisAlignedBox2D& rhs) const {
              auto result = AxisAlignedBox2D(*this);
              result -= rhs;

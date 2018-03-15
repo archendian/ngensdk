@@ -36,10 +36,10 @@ namespace Ngen {
 
 		class AxisAlignedBox3D {
 		public:
-			Vector3 Min;
-			Vector3 Max;
+			//Vector3 Min;
+			//Vector3 Max;
 
-         AxisAlignedBox3D () : Min(0), Max(0) {}
+         //AxisAlignedBox3D () : Min(0), Max(0) {}
 		};
 
 

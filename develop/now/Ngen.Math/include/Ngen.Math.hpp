@@ -46,9 +46,6 @@ THE SOFTWARE.
 
 namespace Ngen {
     namespace Math {
-
-
-
     }
 }
 

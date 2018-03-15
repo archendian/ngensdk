@@ -44,10 +44,10 @@ THE SOFTWARE.
 #include <time.h>
 #include <cmath>
 #include <cstdlib>
-#include <GL/gl.h>
 
 #if _tkn_Platform == _tknval_Platform_Windows
 #	include <windows.h>
+#  include <wingdi.h>
 #else
 #	include <dlfcn.h>   // NOTE: Make sure this header is still required
 #endif

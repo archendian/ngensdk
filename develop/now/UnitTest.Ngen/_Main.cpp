@@ -29,31 +29,32 @@ THE SOFTWARE.
 #include "_External.hpp"
 
 using namespace Ngen;
-using namespace Ngen::Math;
+//using namespace Ngen::Math;
 using namespace Ngen::Drawing;
 using namespace Ngen::Diagnostic;
 
-Window*              NGEN_WINDOW;
 CanvasCreationParams NGEN_CCPARAM;
-Canvas*              NGEN_CANVAS;
 
 int main(int32 length, const char** args) {
-   NGEN_WINDOW = Window(0, 0, 800, 640, const_string("Ngen Framework"));
-   NGEN_WINDOW.Show();
+   auto window = Window(0, 0, 800, 640, const_string("Ngen Framework"));
+   window.Show();
 
-   NGEN_CCPARAM.Width = NGEN_WINDOW.Width();
-   NGEN_CCPARAM.Height = NGEN_WINDOW.Height();
-   NGEN_CCPARAM.ColorDepth = 32;
-   NGEN_CCPARAM.Stero = false;
-   NGEN_CCPARAM.ZFar = 100.0f;
-   NGEN_CCPARAM.ZNear = 0.01f;
-   NGEN_CCPARAM.Background = Color4::Blue();
-   NGEN_CANVAS = Canvas(NGEN_WINDOW, NGEN_CCPARAM);
+   auto ccparam = CanvasCreationParams();
+   ccparam.Width = window.Width();
+   ccparam.Height = window.Height();
+   ccparam.ColorDepth = 32;
+   ccparam.Stero = false;
+   ccparam.ZFar = 100.0f;
+   ccparam.ZNear = 0.01f;
+   //ccparam.Background = Color4::Blue();
 
-   do {
-      NGEN_CANVAS.Clear();
-      NGEN_CANVAS.Update();
-   } while(NGEN_WINDOW.HandleMessage());
+   auto canvas = Canvas(&window, ccparam);
+
+   while(window.HandleMessage()) {
+      canvas.Clear();
+
+      canvas.Update();
+   }
 
    return 0;
 }

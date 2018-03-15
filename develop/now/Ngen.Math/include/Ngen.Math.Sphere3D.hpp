@@ -29,16 +29,13 @@ THE SOFTWARE.
 #ifndef __NGEN_MATH_SPHERE3D_HPP
 #define __NGEN_MATH_SPHERE3D_HPP
 
-#include "Ngen.Math.Vector3.hpp"
 #include "Ngen.Math.Line3D.hpp"
 
 namespace Ngen {
    namespace Math {
-
-
 		class Sphere3D {
 		public:
-			Math::Vector3 Location;
+		   Vector3 Location;
 			real Radius;
 
 			Sphere3D() : Location(0), Radius(0) {}

@@ -70,7 +70,10 @@
 		<Unit filename="Ngen.Task.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Window.WINDOWS.cpp">
+		<Unit filename="Ngen.Win32.Window.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
+		<Unit filename="Ngen.Win32.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Configuration.hpp">

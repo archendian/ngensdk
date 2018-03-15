@@ -41,9 +41,6 @@ namespace Ngen {
 
    Window::Window(uword x, uword y, uword width, uword height, const string& title) :
       OnMoved(), OnResized(), OnClosed(), mHandle(0), mX(x), mY(y), mWidth(width), mHeight(height) {
-      WNDCLASSEX wcex;
-      HWND hwnd;
-
       if(win32_ClassEx.hInstance==0) {
          win32_ClassEx.cbSize = sizeof(WNDCLASSEX);
          win32_ClassEx.style = CS_OWNDC;

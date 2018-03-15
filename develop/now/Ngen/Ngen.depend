@@ -35,10 +35,10 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.exception.hpp
 	"Ngen.Typedefs.hpp"
 
-1520270940 c:\workspace\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
+1521064336 c:\workspace\ngensdk\develop\now\ngen\include\ngen.typedefs.hpp
 	"Build.Ngen.External.hpp"
 
-1517948462 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
+1521074073 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
 	"Build.Ngen.Logic.hpp"
 	<exception>
 	<new>
@@ -52,6 +52,7 @@
 	<time.h>
 	<cmath>
 	<cstdlib>
+	<GL/gl.h>
 	<windows.h>
 	<dlfcn.h>
 
@@ -120,7 +121,7 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.structure.hpp
+1521070139 c:\workspace\ngensdk\develop\now\ngen\include\ngen.structure.hpp
 	"Ngen.Mirror.hpp"
 	"Ngen.Map.hpp"
 	"Ngen.StaticDelegate.hpp"
@@ -136,7 +137,7 @@
 
 1508644590 source:c:\workspace\ngensdk\develop\now\ngen\ngen.task.cpp
 
-1521059818 source:c:\workspace\ngensdk\develop\now\ngen\ngen.win32.cpp
+1521064223 source:c:\workspace\ngensdk\develop\now\ngen\ngen.win32.cpp
 
 1521063576 source:c:\workspace\ngensdk\develop\now\ngen\ngen.window.win32.cpp
 	"Ngen.Window.hpp"

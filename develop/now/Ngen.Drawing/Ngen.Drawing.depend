@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1521135860 source:c:\workspace\ngensdk\develop\now\unittest.ngen\_main.cpp
-	"_External.hpp"
+1521135353 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.canvas.cpp
+	"Ngen.Drawing.Canvas.hpp"
 
-1521134177 c:\workspace\ngensdk\develop\now\unittest.ngen\_external.hpp
-	<iostream>
-	"Ngen.hpp"
-	"Ngen.Diagnostic.hpp"
-	"Ngen.Drawing.hpp"
+1521134352 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+
+1521135144 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
+	<Ngen.hpp>
+	<GL/gl.h>
 
 1521064211 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
@@ -154,9 +155,6 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.callback.hpp
 	"Ngen.Delegate.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.datetime.hpp
-	"Build.Ngen.External.hpp"
-
 1521052991 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
 	"Ngen.Exception.hpp"
 
@@ -185,133 +183,8 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.assembly.hpp
 	"Ngen.Attribute.hpp"
 
-1519400194 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\ngen.diagnostic.hpp
-	"Build.Ngen.Diagnostic.Logic.hpp"
-	"Ngen.Diagnostic.TestResult.hpp"
-	"Ngen.Diagnostic.TestGroup.hpp"
-	"Ngen.Diagnostic.Test.hpp"
-
-1507844204 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\build.ngen.diagnostic.logic.hpp
-	"Ngen.hpp"
-
-1521063785 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\ngen.diagnostic.testresult.hpp
-	"Build.Ngen.Diagnostic.Logic.hpp"
-
-1519420814 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\ngen.diagnostic.testgroup.hpp
-	"Ngen.Diagnostic.TestGroupResult.hpp"
-
-1521063820 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\ngen.diagnostic.testgroupresult.hpp
-	"Ngen.Diagnostic.TestResult.hpp"
-
-1519407883 c:\workspace\ngensdk\develop\now\ngen.diagnostic\include\ngen.diagnostic.test.hpp
-	"Ngen.Diagnostic.TestResult.hpp"
-	"Ngen.Diagnostic.TestGroup.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group._.cpp
-	"_External.hpp"
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_algorithm.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_array.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_dynamic.cpp
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_event.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_library.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_list.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_map.cpp
-	"_External.hpp"
-
-1507844207 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_object.cpp
-	"_External.hpp"
-
-1508794005 source:c:\workspace\ngensdk\develop\now\unittest.ngen\group.class_text.cpp
-	"_External.hpp"
-
 1521070154 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
 	"Ngen.Map.hpp"
 	"Ngen.Event.hpp"
 	"Ngen.String.hpp"
-
-1521070466 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
-	"Ngen.Typedefs.hpp"
-	"Ngen.Math.Vector2.hpp"
-	"Ngen.Math.Vector3.hpp"
-	"Ngen.Math.Vector4.hpp"
-	"Ngen.Math.Line2D.hpp"
-	"Ngen.Math.Line3D.hpp"
-	"Ngen.Math.Ray2D.hpp"
-	"Ngen.Math.Ray3D.hpp"
-	"Ngen.Math.AAbox2D.hpp"
-	"Ngen.Math.AAbox3D.hpp"
-	"Ngen.Math.Sphere3D.hpp"
-	"Ngen.Math.Color4.hpp"
-	"Ngen.Math.Matrix3.hpp"
-	"Ngen.Math.Matrix4.hpp"
-
-1521073632 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1521073632 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1521073632 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1521071424 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line2d.hpp
-	"Ngen.Math.Vector2.hpp"
-
-1521071271 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line3d.hpp
-	"Ngen.Math.Vector3.hpp"
-
-1521070970 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
-	"Ngen.Math.Vector2.hpp"
-
-1521071271 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray3d.hpp
-	"Ngen.Math.Vector3.hpp"
-
-1521073733 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
-	"Ngen.Math.Vector2.hpp"
-	"Ngen.Math.Line2D.hpp"
-
-1521072630 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox3d.hpp
-	"Ngen.Math.Vector3.hpp"
-
-1521073632 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.sphere3d.hpp
-	"Ngen.Math.Vector3.hpp"
-	"Ngen.Math.Line3D.hpp"
-
-1521073980 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.color4.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1521073698 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix3.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1507844204 c:\workspace\ngensdk\develop\now\ngen.math\include\build.ngen.math.logic.hpp
-	"Ngen.hpp"
-
-1521073652 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
-	"Ngen.Math.Typedefs.hpp"
-
-1521073465 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.hpp
-	"Ngen.Drawing.Canvas.hpp"
-
-1521135632 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
-	"Build.Ngen.Drawing.Logic.hpp"
-
-1521135144 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
-	<Ngen.hpp>
-	<GL/gl.h>
-
-1507844205 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.typedefs.hpp
-	"Build.Ngen.Math.Logic.hpp"
 

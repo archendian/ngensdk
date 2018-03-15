@@ -14,7 +14,6 @@
 		<Project filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
 		<Project filename="Ngen.Math/Ngen.Math.cbp" />
 		<Project filename="Ngen.Content/Ngen.Content.cbp" />
-		<Project filename="managed/default.cbp" />
 		<Project filename="Ngen.Drawing/Ngen.Drawing.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

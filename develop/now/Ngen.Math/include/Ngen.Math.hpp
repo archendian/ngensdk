@@ -44,9 +44,4 @@ THE SOFTWARE.
 #include "Ngen.Math.Matrix3.hpp"
 #include "Ngen.Math.Matrix4.hpp"
 
-namespace Ngen {
-    namespace Math {
-    }
-}
-
 #endif // __NGEN_MATH_HPP_INCLUDED

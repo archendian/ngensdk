@@ -33,8 +33,6 @@ using namespace Ngen;
 using namespace Ngen::Drawing;
 using namespace Ngen::Diagnostic;
 
-CanvasCreationParams NGEN_CCPARAM;
-
 int main(int32 length, const char** args) {
    auto window = Window(0, 0, 800, 640, const_string("Ngen Framework"));
    window.Show();
@@ -52,7 +50,6 @@ int main(int32 length, const char** args) {
 
    while(window.HandleMessage()) {
       canvas.Clear();
-
       canvas.Update();
    }
 

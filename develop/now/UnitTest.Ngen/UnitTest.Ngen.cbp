@@ -50,6 +50,7 @@
 			<Add library="Ngen" />
 			<Add library="Ngen.Diagnostic" />
 			<Add library="Ngen.Drawing" />
+			<Add library="opengl32" />
 			<Add directory="../external/lib" />
 		</Linker>
 		<Unit filename="Group._.cpp">

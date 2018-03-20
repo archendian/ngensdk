@@ -9,7 +9,7 @@ namespace Ngen {
       class ngen_drawing_api VertexElement {
 		public:
 			VertexElement(const mirror& usage, uword usageIndex, EVertexElementType type, uword length) :
-				mUsage(usage), mUsageIndex(usageIndex), mType(type), mLength(length) {
+				mUsage(usage), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(0) {
 			}
 
 			uword Size() { return sizeof(mType, mLength); }

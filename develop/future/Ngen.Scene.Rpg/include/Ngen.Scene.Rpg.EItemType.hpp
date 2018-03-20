@@ -35,7 +35,7 @@ THE SOFTWARE.
 namespace Ngen {
 	namespace Scene {
 		namespace Rpg {
-						
+			
 			class enum EItemType {
 				Consumable,			// Meats, potions, furs, parts, pieces
 				Equipment,			// Weapons, armor, accessories

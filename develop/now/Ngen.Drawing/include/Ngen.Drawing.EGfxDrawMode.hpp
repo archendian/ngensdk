@@ -6,7 +6,7 @@
 namespace Ngen {
    namespace Drawing {
 
-      enum class EGfxDrawMode {
+      enum class EGraphicDrawMode {
 			POINT,
 			QUAD,
 			QUAD_STRIP,
@@ -20,18 +20,18 @@ namespace Ngen {
 
 		};
 
-		GLenum typeof(EGfxDrawMode mode) {
+		GLenum typeof(EGraphicDrawMode mode) {
 			switch(mode) {
-			case EGfxDrawMode::POINT: return GL_POINTS;
-			case EGfxDrawMode::QUAD: return GL_QUADS;
-			case EGfxDrawMode::POLYGON: return GL_POLYGON;
-			case EGfxDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
-			case EGfxDrawMode::TRIANGLE: return GL_TRIANGLES;
-			case EGfxDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
-			case EGfxDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
-			case EGfxDrawMode::LINE: return GL_LINES;
-			case EGfxDrawMode::LINE_STRIP: return GL_LINE_STRIP;
-			case EGfxDrawMode::LINE_LOOP: return GL_LINE_LOOP;
+			case EGraphicDrawMode::POINT: return GL_POINTS;
+			case EGraphicDrawMode::QUAD: return GL_QUADS;
+			case EGraphicDrawMode::POLYGON: return GL_POLYGON;
+			case EGraphicDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
+			case EGraphicDrawMode::TRIANGLE: return GL_TRIANGLES;
+			case EGraphicDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
+			case EGraphicDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
+			case EGraphicDrawMode::LINE: return GL_LINES;
+			case EGraphicDrawMode::LINE_STRIP: return GL_LINE_STRIP;
+			case EGraphicDrawMode::LINE_LOOP: return GL_LINE_LOOP;
 			default: return 0;
 			}
 		}

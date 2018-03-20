@@ -305,8 +305,8 @@
 1521073465 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.hpp
 	"Ngen.Drawing.Canvas.hpp"
 
-1521135632 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
-	"Build.Ngen.Drawing.Logic.hpp"
+1521138150 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
+	"Ngen.Drawing.CanvasCreationParams.hpp"
 
 1521135144 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
 	<Ngen.hpp>
@@ -314,4 +314,27 @@
 
 1507844205 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.typedefs.hpp
 	"Build.Ngen.Math.Logic.hpp"
+
+1521141374 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvascreationparams.hpp
+	"Ngen.Drawing.VertexBuffer.hpp"
+
+1521141614 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexbuffer.hpp
+	"Ngen.Drawing.EGfxDrawMode.hpp"
+	"Ngen.Drawing.EGfxBufferUsage.hpp"
+	"Ngen.Drawing.VertexSemantic.hpp"
+
+1521141493 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egfxdrawmode.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1521138635 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+
+1521142297 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egfxbufferusage.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1521139429 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexsemantic.hpp
+	"Ngen.Drawing.VertexElement.hpp"
+
+1521138338 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexelement.hpp
+	"Ngen.Drawing.Typedefs.hpp"
 

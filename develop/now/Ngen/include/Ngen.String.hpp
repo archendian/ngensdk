@@ -597,6 +597,10 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
 		}
 
+		template<typename T> T* BeginAs(uword at=0) {
+         return (T*)this->Begin(at);
+		}
+
       uint64 SizeInBytes() const { return mCapacity * sizeof(TChar); }
       uint64 LengthInBytes() const { return mLength * sizeof(TChar); }
 

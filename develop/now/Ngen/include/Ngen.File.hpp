@@ -111,5 +111,21 @@ namespace Ngen {
       string mFileName;
       ifstream mFile;
    };
+
+   class ngen_api File {
+   public:
+      static string8 ReadAll(const string& fileName) {
+         string8 result = string8::Empty();
+         ifstream file;
+         file.open(fileName.Begin(), ios::in);
+         result = string8(this->Length());
+         while (file.good() && !file.eof()) {
+            result += file.get();
+          }
+
+          file.close();
+          return result;
+      }
+   };
 }
 #endif // __NGEN_FILE_HPP

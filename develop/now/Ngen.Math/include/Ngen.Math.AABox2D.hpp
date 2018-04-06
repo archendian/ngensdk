@@ -75,7 +75,9 @@ namespace Ngen {
          Line3D CollisonSpace;
       };
 
+      template<typename T>
 		class AxisAlignedBox2D {
+
       protected:
          // Fields
 			Vector2 mTopLeft;

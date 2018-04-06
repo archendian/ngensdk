@@ -76,19 +76,26 @@
 		<Unit filename="include/Ngen.Drawing.CanvasCreationParams.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EGfxBufferUsage.hpp">
+		<Unit filename="include/Ngen.Drawing.EGraphicBufferUsage.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EGfxDrawMode.hpp">
+		<Unit filename="include/Ngen.Drawing.EGraphicDrawMode.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.Drawing.EShaderType.hpp" />
 		<Unit filename="include/Ngen.Drawing.EVertexElementType.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.GraphicBuffer.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.Drawing.Material.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.Drawing.MeshBuffer.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.Shader.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.Typedefs.hpp">
@@ -100,7 +107,7 @@
 		<Unit filename="include/Ngen.Drawing.VertexElement.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.VertexSemantic.hpp">
+		<Unit filename="include/Ngen.Drawing.VertexScheme.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.hpp">

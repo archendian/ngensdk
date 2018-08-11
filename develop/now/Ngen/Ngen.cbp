@@ -49,6 +49,9 @@
 		<Unit filename="LICENSE">
 			<Option virtualFolder="doc/" />
 		</Unit>
+		<Unit filename="Ngen.Alarm.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="Ngen.Attribute.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
@@ -65,9 +68,6 @@
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="Ngen.Structure.cpp">
-			<Option virtualFolder="source/" />
-		</Unit>
-		<Unit filename="Ngen.Task.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="Ngen.Time.cpp">
@@ -94,6 +94,9 @@
 		</Unit>
 		<Unit filename="include/Build.Ngen.Token.hpp">
 			<Option virtualFolder="include/Build/" />
+		</Unit>
+		<Unit filename="include/Ngen.Alarm.hpp">
+			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Algorithm.hpp">
 			<Option virtualFolder="include/" />

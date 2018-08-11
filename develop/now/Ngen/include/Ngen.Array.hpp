@@ -329,7 +329,7 @@ namespace Ngen {
 			return result;
 		}
 
-		bool Contains(const T& item) {
+		bool Contains(const T& item) const {
 			T* begin = mData;
 			do {
 				if(*begin == item) {
@@ -340,7 +340,7 @@ namespace Ngen {
 		}
 
 
-		bool Contains(const T& item, uword& index) {
+		bool Contains(const T& item, uword& index) const {
 			T* begin = mData;
 			index = 0;
 

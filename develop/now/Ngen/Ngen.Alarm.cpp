@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 FIXCOM, LLC
+COPYRIGHT (C) 2017 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,42 +26,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_STREAM_HPP
-#define __NGEN_STREAM_HPP
-
-#include "Ngen.Exception.hpp"
+#include "Ngen.Alarm.hpp"
 
 namespace Ngen {
-
-	class ngen_api Stream {
-   public:
-      Stream();
-      virtual ~Stream();
-
-      /** @brief Reads from the current position of the cursor to the end of the stream.
-       */
-      virtual string8 ReadToEnd() const pure;
-
-      /** @brief Reads from the current position of the cursor until a given length or EOF is reached.
-       */
-      virtual string8 Read(uint64 count) const pure;
-
-      /** @brief Closes the stream.
-       */
-      virtual void Close() const pure;
-
-      /** @brief Opens the stream.
-       */
-      virtual bool Open() const pure;
-
-      /** @brief Gets the current cursor position.
-       */
-      virtual uint64 Cursor() const pure;
-
-      /** @brief Sets the current cursor position.
-       */
-      virtual void Cursor(uint64 set) const pure;
-	};
+   Array<Alarm*> Alarm::mCache = Array<Alarm*>();
 }
-
-#endif // __NGEN_STREAM_HPP

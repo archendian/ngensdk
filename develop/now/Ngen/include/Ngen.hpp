@@ -55,6 +55,7 @@ THE SOFTWARE.
 #include "Ngen.Map.hpp"
 #include "Ngen.Stack.hpp"
 #include "Ngen.Table.hpp"
+#include "Ngen.Array.hpp"
 
 #include "Ngen.String.hpp"
 #include "Ngen.Mirror.hpp"
@@ -63,14 +64,19 @@ THE SOFTWARE.
 #include "Ngen.TimeSpan.hpp"
 #include "Ngen.Time.hpp"
 #include "Ngen.Stream.hpp"
-//#include "Ngen.Task.hpp"
+#include "Ngen.Task.hpp"
+#include "Ngen.Alarm.hpp"
 
 #include "Ngen.Structure.hpp"
 #include "Ngen.Object.hpp"
 #include "Ngen.Attribute.hpp"
 #include "Ngen.Type.hpp"
 #include "Ngen.Assembly.hpp"
+//#include "Ngen.Dynamic.hpp"
+//#include "Ngen.DynamicMember.hpp"
+
 #include "Ngen.Window.hpp"
+#include "Ngen.File.hpp"
 
 
 // The C-API used to register reflected APIs through a binding language

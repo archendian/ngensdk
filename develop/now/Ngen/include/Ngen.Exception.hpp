@@ -53,7 +53,7 @@ namespace Ngen {
       /** @brief Constructor.
        * @param message The text that will be displayed describing the cause of the exception.
        */
-      Exception(estring message) : mMessage(message) {}
+      Exception(const estring message) : mMessage(message) {}
 
       /** @brief Gets the message that describes to potential problem that caused
        * the exception.

@@ -120,6 +120,8 @@ namespace Ngen {
 	protected:
 		Array<Callback> mEvent;
 	};
+
+	typedef Event event;
 }
 #endif
 

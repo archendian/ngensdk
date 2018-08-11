@@ -35,54 +35,32 @@ THE SOFTWARE.
 
 namespace Ngen {
 
-	class ngen_api UnitOfWork {
-   public:
-      UnitOfWork(VoidStaticDelegate<void_t>::TFunction f) { }
-
-   protected:
-      T mWork;
-	};
-
    /**@brief
     */
    class ngen_api Task {
 	public:
+      Task(VoidStaticDelegate<>::TFunction threadStart) : mThread(threadStart) {
 
-      Task(VoidStaticDelegate<bool&>::TFunction threadStart);
+      }
 
-		/** @brief Gets a unique handle used to identify the thread.
-		 */
-		int64 ThreadId() const;
+      ~Task() {
+         Join();
+      }
 
-		/** @brief Determines if the task is still running.
-		 */
-		bool IsRunning() const;
-
-
-		void Wait(uword ms);
-
-
-		/** @brief Gets the task instance for the thread currently being executed.
-		 */
-		static Task* Current();
-
-		/** @brief Gets all the tasks that were forked as children off the thread currently being executed.
-		 */
-		static Array<Task*> Forks();
-	private:
-
-	   VoidStaticDelegate<UnitOfWork*> mStart;
-	   Map<uword, VoidStaticDelegate<UnitOfWork*> mStateStartMap;
-
-		Task() {
-
+		void Join() {
+         mThread.join();
 		}
 
+		void Detach() {
+         mThread.detach();
+		}
 
+		static void Sleep(uword ms) {
+         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+		}
 
-		//Application* mParent;
-
-		//friend class Application;
+   protected:
+      std::thread mThread;
    };
 }
 

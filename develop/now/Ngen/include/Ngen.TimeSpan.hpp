@@ -36,54 +36,53 @@ using namespace std;
 using namespace chrono;
 
 namespace Ngen {
+   class TimeSpan {
+   public:
+      TimeSpan(bool utc=false) : mPoint(system_clock::now()), mTime(system_clock::to_time_t(mPoint)), mIsUtc(utc) {}
+      TimeSpan(system_clock::time_point time, bool utc=false) : mPoint(time), mTime(system_clock::to_time_t(time)), mIsUtc(utc) {}
 
+      uint64 Nanosecond() { return (uint64)duration_cast<chrono::nanoseconds>(mPoint.time_since_epoch()).count(); }
+      uint64 Microsecond() { return (uint64)duration_cast<chrono::microseconds>(mPoint.time_since_epoch()).count(); }
+      uint64 Millisecond() { return (uint64)duration_cast<chrono::milliseconds>(mPoint.time_since_epoch()).count(); }
+      uint64 Second() { return (uint64)duration_cast<chrono::seconds>(mPoint.time_since_epoch()).count(); }
+      uint64 Minute() { return (uint64)duration_cast<chrono::minutes>(mPoint.time_since_epoch()).count(); }
+      uint64 Hour() { return (uint64)duration_cast<chrono::hours>(mPoint.time_since_epoch()).count(); }
+      uint64 Day() { return (uint64)(Hour()/24); }
 
+      TimeSpan& operator-=(const TimeSpan& rhs) {
+          mPoint = system_clock::time_point(mPoint - rhs.mPoint);
+          return *this;
+      }
 
-    class TimeSpan {
-    public:
-        uint64 Microsecond() { return (uint64)duration_cast<chrono::microseconds>(mPoint.time_since_epoch()).count(); }
-        uint64 Nanosecond() { return (uint64)duration_cast<chrono::nanoseconds>(mPoint.time_since_epoch()).count(); }
-        uint64 Millisecond() { return (uint64)duration_cast<chrono::milliseconds>(mPoint.time_since_epoch()).count(); }
-        uint64 Second() { return (uint64)duration_cast<chrono::seconds>(mPoint.time_since_epoch()).count(); }
-        uint64 Minute() { return (uint64)duration_cast<chrono::minutes>(mPoint.time_since_epoch()).count(); }
-        uint64 Hour() { return (uint64)duration_cast<chrono::hours>(mPoint.time_since_epoch()).count(); }
-        uint64 Day() { return (uint64)(Hour()/24); }
+      TimeSpan operator-(const TimeSpan& rhs) const {
+          return TimeSpan(system_clock::time_point(mPoint - rhs.mPoint));
+      }
 
-        TimeSpan& operator-=(const TimeSpan& rhs) {
-            mPoint = system_clock::time_point(mPoint - rhs.mPoint);
-            return *this;
-        }
+      bool operator==(const TimeSpan& rhs) const {
+         return mIsUtc == rhs.mIsUtc && mPoint == rhs.mPoint;
+      }
 
-        TimeSpan operator-(const TimeSpan& rhs) const {
-            return TimeSpan(system_clock::time_point(mPoint - rhs.mPoint));
-        }
+      bool operator!=(const TimeSpan& rhs) const {
+         return mIsUtc != rhs.mIsUtc || mPoint != rhs.mPoint;
+      }
 
-        bool operator==(const TimeSpan& rhs) const {
-           return mIsUtc == rhs.mIsUtc && mPoint == rhs.mPoint;
-        }
+      TimeSpan& operator=(const TimeSpan& rhs) {
+         this->mPoint = rhs.mPoint;
+         this->mIsUtc = rhs.mIsUtc;
+         return *this;
+      }
 
-        bool operator!=(const TimeSpan& rhs) const {
-           return mIsUtc != rhs.mIsUtc || mPoint != rhs.mPoint;
-        }
+      bool IsUtcTime() const { return mIsUtc; }
 
-        TimeSpan& operator=(const TimeSpan& rhs) {
-           this->mPoint = rhs.mPoint;
-           this->mIsUtc = rhs.mIsUtc;
-           return *this;
-        }
+   protected:
+      system_clock::time_point mPoint;
+      time_t mTime;
+      bool mIsUtc;
 
-        bool IsUtcTime() const { return mIsUtc; }
+      friend class Time;
+   };
 
-    protected:
-        TimeSpan(bool utc=false) : mPoint(system_clock::now()), mTime(system_clock::to_time_t(mPoint)), mIsUtc(utc) {}
-        TimeSpan(system_clock::time_point time, bool utc=false) : mPoint(time), mTime(system_clock::to_time_t(time)), mIsUtc(utc) {}
-
-        system_clock::time_point mPoint;
-        time_t mTime;
-        bool mIsUtc;
-
-        friend class Time;
-    };
+   typedef TimeSpan timespan;
 }
 
 #endif // __NGEN_TIMESPAN_HPP

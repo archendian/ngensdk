@@ -29,7 +29,23 @@ THE SOFTWARE.
 #ifndef __BUILD_NGEN_DRAWING_EXTERN_HPP
 #define __BUILD_NGEN_DRAWING_EXTERN_HPP
 
+#include "Build.Ngen.Drawing.Logic.hpp"
 
+#include "Ngen.Drawing.Typedefs.hpp"
+#include "Ngen.Drawing.EGraphicBufferUsage.hpp"
+#include "Ngen.Drawing.EGraphicDrawMode.hpp"
+#include "Ngen.Drawing.EShaderType.hpp"
+#include "Ngen.Drawing.EVertexElementType.hpp"
+
+#include "Ngen.Drawing.VertexElement.hpp"
+#include "Ngen.Drawing.VertexScheme.hpp"
+#include "Ngen.Drawing.VertexBuffer.hpp"
+#include "Ngen.Drawing.MeshBuffer.hpp"
+
+#include "Ngen.Drawing.CanvasCreationParams.hpp"
 #include "Ngen.Drawing.Canvas.hpp"
 
+namespace Ngen {
+
+}
 #endif // __BUILD_NGEN_DRAWING_EXTERN_HPP

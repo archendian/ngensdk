@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1533950693 source:c:\workspace\ngensdk\develop\now\ngen.app\main.cpp
+1534020513 source:c:\workspace\ngensdk\develop\now\ngen.app\main.cpp
 	"Ngen.hpp"
 	"Ngen.Drawing.hpp"
 
-1533935641 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
+1534016880 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
 	"Build.Ngen.Configuration.hpp"
 	"Build.Ngen.Macro.hpp"
@@ -27,6 +27,7 @@
 	"Ngen.Map.hpp"
 	"Ngen.Stack.hpp"
 	"Ngen.Table.hpp"
+	"Ngen.Array.hpp"
 	"Ngen.String.hpp"
 	"Ngen.Mirror.hpp"
 	"Ngen.Event.hpp"
@@ -34,12 +35,15 @@
 	"Ngen.TimeSpan.hpp"
 	"Ngen.Time.hpp"
 	"Ngen.Stream.hpp"
+	"Ngen.Task.hpp"
+	"Ngen.Alarm.hpp"
 	"Ngen.Structure.hpp"
 	"Ngen.Object.hpp"
 	"Ngen.Attribute.hpp"
 	"Ngen.Type.hpp"
 	"Ngen.Assembly.hpp"
 	"Ngen.Window.hpp"
+	"Ngen.File.hpp"
 
 1517942904 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
 
@@ -54,7 +58,7 @@
 	"Build.Ngen.Configuration.hpp"
 	<xmmintrin.h>
 
-1533935778 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
+1534005064 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.external.hpp
 	"Build.Ngen.Logic.hpp"
 	<exception>
 	<new>
@@ -67,6 +71,7 @@
 	<time.h>
 	<cmath>
 	<cstdlib>
+	<thread>
 	<windows.h>
 	<wingdi.h>
 	<dlfcn.h>
@@ -77,7 +82,7 @@
 1507844207 c:\workspace\ngensdk\develop\now\ngen\include\ngen.trait.hpp
 	"Ngen.Exception.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.exception.hpp
+1534017750 c:\workspace\ngensdk\develop\now\ngen\include\ngen.exception.hpp
 	"Ngen.Typedefs.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.cast.hpp
@@ -110,7 +115,7 @@
 1533950816 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1533940169 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1534017998 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
@@ -143,14 +148,14 @@
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.table.hpp
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.event.hpp
+1534016811 c:\workspace\ngensdk\develop\now\ngen\include\ngen.event.hpp
 	"Ngen.Callback.hpp"
 	"Ngen.Array.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.callback.hpp
+1534011239 c:\workspace\ngensdk\develop\now\ngen\include\ngen.callback.hpp
 	"Ngen.Delegate.hpp"
 
-1533935904 c:\workspace\ngensdk\develop\now\ngen\include\ngen.timespan.hpp
+1534010993 c:\workspace\ngensdk\develop\now\ngen\include\ngen.timespan.hpp
 	"Ngen.Typedefs.hpp"
 	"Ngen.String.hpp"
 
@@ -158,7 +163,7 @@
 	"Ngen.TimeSpan.hpp"
 	"Ngen.Exception.hpp"
 
-1521052991 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
+1534016948 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
 	"Ngen.Exception.hpp"
 
 1533863360 c:\workspace\ngensdk\develop\now\ngen\include\ngen.structure.hpp
@@ -191,7 +196,18 @@
 	"Ngen.Event.hpp"
 	"Ngen.String.hpp"
 
-1522425971 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.hpp
+1534019030 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+	"Ngen.Drawing.Typedefs.hpp"
+	"Ngen.Drawing.EGraphicBufferUsage.hpp"
+	"Ngen.Drawing.EGraphicDrawMode.hpp"
+	"Ngen.Drawing.EShaderType.hpp"
+	"Ngen.Drawing.EVertexElementType.hpp"
+	"Ngen.Drawing.VertexElement.hpp"
+	"Ngen.Drawing.VertexScheme.hpp"
+	"Ngen.Drawing.VertexBuffer.hpp"
+	"Ngen.Drawing.MeshBuffer.hpp"
+	"Ngen.Drawing.CanvasCreationParams.hpp"
 	"Ngen.Drawing.Canvas.hpp"
 
 1522425938 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
@@ -233,4 +249,22 @@
 
 1533950132 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.evertexelementtype.hpp
 	"Ngen.Drawing.Typedefs.hpp"
+
+1534007226 c:\workspace\ngensdk\develop\now\ngen\include\ngen.task.hpp
+	"Ngen.Exception.hpp"
+
+1534012741 c:\workspace\ngensdk\develop\now\ngen\include\ngen.alarm.hpp
+	"Ngen.Alarm.hpp"
+	"Ngen.String.hpp"
+	"Ngen.Event.hpp"
+	"Ngen.Time.hpp"
+
+1534018577 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
+	"Ngen.Stream.hpp"
+	"Ngen.Exception.hpp"
+
+1534018823 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.eshadertype.hpp
+
+1533940339 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.meshbuffer.hpp
+	"Ngen.Drawing.VertexBuffer.hpp"
 

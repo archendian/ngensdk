@@ -1,218 +1,107 @@
+/*  _______    ________
+    \      \  /  _____/  ____   ___
+    /   |   \/   \  ____/ __ \ /   \
+   /    |    \    \_\  \  ___/|   | \
+   \____|__  /\______  /\___  >___| /
+           \/        \/     \/    \/
+The MIT License (MIT)
 
+COPYRIGHT (C) 2017 FIXCOM, LLC
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sub-license, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-#include "Ngen.hpp"
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+#ifndef __NGEN_ALARM_HPP
+#define __NGEN_ALARM_HPP
 
+#include "Ngen.Alarm.hpp"
+#include "Ngen.String.hpp"
+#include "Ngen.Event.hpp"
+#include "Ngen.Time.hpp"
 
+namespace Ngen {
 
-class Alarm {
-public:
-	typedef VoidStaticDelegate<Alarm*>::TFunction TTick;
-	
-	Alarm(uword rateInSeconds, TTick onTick) : Activated(), Deactivated(), Ticked(), 
-				mIsActive(false), mRate(rateInSeconds), mRemaing(rateInSeconds) {
-		Ticked += onTick;
-		mCache.Add(this);
-	}
-	
-	~Alarm() {
-		mCache.Remove(this);
-	}
-	
-	void Activate() {
-		mIsActive = true;
-		AlarmActivated.Fire(this);
-	}
-	
-	void Deactivate() {
-		mIsActive = false;
-		AlarmDeactivated.Fire(this);
-	}
-	
-	void Tick() {
-		if(mIsActive) {
-			auto now = Time::Now();
-			uword span = now.Seconds() - mLastTick.Seconds();
-			mRemaing -= span;
-			
-			if(mRemaing <= 0 || mRate == 0) {
-				Ticked.Fire(this);
-				mRemaing = mRate;
-			}
-		}
-	}
+   class Alarm {
+   public:
+      typedef VoidStaticDelegate<Alarm*> TTick;
 
-	static uword Count() {
-		return mCache.Count();
-	}
-	
-	event Activated;
-	event Deactivated;
-	event Ticked;
-	
-	static void TickAll() {
-		for(uword i = 0; i < mCache.Count(); ++i) {
-			mCache.Begin(i)->Tick();
-		}
-	}
-	
-	static void ClearAll() {
-		mCache.Clear();
-	}
-	
-protected:
-	bool mIsActive;
-	uword mRate;
-	uword mRemaing;
-	timespan mLastTick;
-	
-	static Array<Alarm*> mCache;
-};
+      Alarm(uword rateInSeconds, TTick onTick) : Activated(), Deactivated(), Ticked(),
+               mOnTick(onTick), mIsActive(false), mRate(rateInSeconds), mRemaing(rateInSeconds) {
+         Ticked += Callback(0, (Delegate*)&mOnTick);
+         mCache.Add(this);
+      }
 
-Array<Alarm*> Alarm::mCache = Array<Alarm*>();
+      ~Alarm() {
+         Ticked -= Callback(0, (Delegate*)&mOnTick);
+         mCache.Remove(this);
+      }
 
+      void Activate() {
+         mIsActive = true;
+         Activated.Fire(this);
+      }
 
-class Application {
-public:
-	Application(const string& identity) : mId(identity), mIsRunning(false), mIsPaused(false) {
-	}
-	
-	void Initialize() {
-		Initialized.Fire(this);
-	}
-	
-	void Run(uword fps=0) {
-		Initialize();
-		
-		mIsRunning = true;
-		Started.Fire(this);
+      void Deactivate() {
+         mIsActive = false;
+         Deactivated.Fire(this);
+      }
 
-		while(mIsRunning) {
-			if(!mIsPaused) {
-				this->Update();
-			}
-		}
-		
-		Close();
-	}
-	
-	virtual void Update() {
-		Updated.Fire(this);
-	}
-	
-	virtual void Close() {
-		if(mIsRunning) {
-			mIsRunning = false;
-			Closed.Fire(this);
-		}
-	}
-	
-	event Started;
-	event Closed;
-	event Paused;
-	event Updated;
-	event Initialized;
-	
-protected:
-	static Application* mCurrent;
-	
-	mirror mId;
-	bool mIsRunning;
-	bool mIsPaused;
-};
+      void Tick() {
+         if(mIsActive) {
+            auto now = Time::Now();
+            uword span = now.Millisecond() - mLastTick.Millisecond();
+            mRemaing -= span;
 
-class GraphicalApplication : public virtual Application {
-public:
-	GraphicalApplication(const string& name, CanvasCreationParams params) : Application(name), mWindow(), mCanvas(), mCCparams(params) {
-		this->Initialized += &OnAppInitialized;
-		this->Updated += &OnAppUpdated;
-		this->Started += &OnAppStarted;
-		this->Stopped += &OnAppStopped;
-	}
-	
-	Window* Window() { return &mWindow; }
-	Canvas* Canvas() { return &mCanvas; }
-	const Window* Window() const { return &mWindow; }
-	const Canvas* Canvas() const { return &mCanvas; }
-	
-protected:
-	virtual void OnAppInitialized(Application* app) {
-		mWindow = Window(0, 0, mCCparams.Width(), mCCparams.Height(), this->mName.ToString());
-		mCanvas = Canvas(&window, mCCparams);
-	}
-	
-	virtual void OnAppUpdated(Application* app) {		
-		if(window.HandleMessage()) {
-			canvas.Clear(mCCparams.BackgroundColor());
-			canvas.Update();
-		}
-	}
-	
-	virtual void OnAppStarted(Application* app) {
-		window.Show();
-	}
-	
-	virtual void OnAppStopped(Application* app) {
-		window.Close();
-	}
-	
-	Window mWindow;
-	Canvas mCanvas;
-	CanvasCreationParams mCCparams;
-};
+            if(mRemaing <= 0 || mRate == 0) {
+               Ticked.Fire(this);
+               mRemaing = mRate;
+            }
 
-void ngen_main() {
-	auto app = Application::Current();
-	
-	// set off the alarms
-	auto alarm_token = Thread.Start([] () { 
-		while(app.IsRunnnig()) {
-			if(Alarm::Count() != 0) {
-				Alarm::TickAll();
-			}
-		}
-	});
+            mLastTick = Time::Now();
+         }
+      }
+
+      static uword Count() {
+         return mCache.Length();
+      }
+
+      event Activated;
+      event Deactivated;
+      event Ticked;
+
+      static void TickAll() {
+         for(uword i = 0; i < mCache.Length(); ++i) {
+            //mCache.Begin(i)->Tick();
+         }
+      }
+
+      static void ClearAll() {
+         mCache.Clear();
+      }
+
+   protected:
+      TTick mOnTick;
+      bool mIsActive;
+      uword mRate;
+      uword mRemaing;
+      timespan mLastTick;
+
+      static Array<Alarm*> mCache;
+   };
 }
-
-void on_keyboard_pressed(KeyboardEventArgs args) {
-	if(args.Key == EKey::Escape) {
-		args.Window()->Close();
-	}
-}
-
-class Game : public virtual GraphicalApplication {
-public:
-	Game(const string& name, const CanvasCreationParams& params) : GraphicalApplication(name, params) {
-		
-	}
-	
-	Keyboard* Keyboard(uword index=0) {
-		return this->mWindow.GetInputDevice("Keyboard", index);
-	}
-	
-	Mouse* Mouse(uword index=0) {
-		return this->mWindow.GetInputDevice("Mouse", index);
-	}
-	
-	Gamepad* Gamepad(uword index=0) {
-		return this->mWindow.GetInputDevice("Gamepad", index);
-	}
-	
-protected:
-	virtual override OnAppInitialized(Application* app) {
-		GraphicalApplication::OnAppInitialized(app);
-		
-	}
-};
-
-int main() {
-	auto app = MyApp();
-	auto keyboard = app.Window->GetInputDevice("Keyboard", 0);
-	auto mouse = app.Window->GetInputDevice("Mouse", 0);
-	
-	keyboard.KeyPress += &on_keyboard_pressed;
-	ngen_main();
-	app.Run();
-}
-
+#endif

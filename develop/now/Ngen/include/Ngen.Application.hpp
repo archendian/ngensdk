@@ -29,18 +29,59 @@ THE SOFTWARE.
 #ifndef __NGEN_APPLICATION_HPP
 #define __NGEN_APPLICATION_HPP
 
+#include "Ngen.Mirror.hpp"
 #include "Ngen.Task.hpp"
-#include "Ngen.Application.hpp"
 
 namespace Ngen {
    /**@brief
     */
-   class ngen_api Application {
-	public:
+   class Application {
+   public:
+      Application(const string& identity) : mId(identity), mIsRunning(false), mIsPaused(false) {
+      }
 
+      void Initialize() {
+         Initialized.Fire(this);
+      }
 
-	protected:
+      void Run(uword fps=0) {
+         Initialize();
 
+         mIsRunning = true;
+         Started.Fire(this);
+
+         while(mIsRunning) {
+            if(!mIsPaused) {
+               this->Update();
+            }
+         }
+
+         Close();
+      }
+
+      virtual void Update() {
+         Updated.Fire(this);
+      }
+
+      virtual void Close() {
+         if(mIsRunning) {
+            mIsRunning = false;
+            Closed.Fire(this);
+         }
+      }
+
+      event Started;
+      event Closed;
+      event Paused;
+      event Updated;
+      event Initialized;
+
+   protected:
+      static Application* mCurrent;
+
+      mirror mId;
+      bool mIsRunning;
+      bool mIsPaused;
    };
 }
 

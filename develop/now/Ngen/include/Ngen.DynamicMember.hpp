@@ -35,7 +35,7 @@ namespace Ngen {
    class DynamicObject;
    class DynamicMember;
 
-   using DynamicMethodDelegate = NonVoidDelegate<UnknownObject*, UnknownObject*, Array<UnknownObject>>;
+   using DynamicMethodDelegate = NonVoidDelegate<unknown, Array<unknown>>;
 
 
    /** Functor used to generate code for specialized types.
@@ -93,7 +93,7 @@ namespace Ngen {
           this(member, isnull(member) ? 0 : (Object*)&member->mParent, value) {
       }
 
-      dynamic_member_get(DynamicMember* member, Object* owner, DynamicMethodDelegate::TFunction value) {
+      dynamic_member_get(DynamicMember* member, Object* owner, DynamicMethodDelegate value) {
          if(isnull(member)) {
              THROW(NullReferenceException(const_string("member")));
          } else if(member->IsField()) {

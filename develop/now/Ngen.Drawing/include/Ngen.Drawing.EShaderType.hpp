@@ -12,9 +12,9 @@ namespace Ngen {
 
       GLenum gl_typeof(EShaderType type) {
          switch(type) {
-         case EShaderType::VERETX: return GL_VERTEX_SHADER;
-         case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;
-         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
+//         case EShaderType::VERETX: return GL_VERTEX_SHADER;
+//         case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;
+//         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
          default: return 0;
          }
       }

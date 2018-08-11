@@ -2,6 +2,7 @@
 #define __NGEN_FILESTREAM_HPP
 
 #include "Ngen.Stream.hpp"
+#include "Ngen.Exception.hpp"
 
 using namespace std;
 
@@ -15,11 +16,6 @@ namespace Ngen {
 
       }
 
-      FileStream(FileStream&& file) : mIsOpen(file.mIsOpen), mCursor(file.mCursor), mFileName(file.mFileName), mFile(file.mFile) {
-         file.mIsOpen = false;
-         file.mFileName = string::Empty();
-      }
-
       ~FileStream() {
          if(this->mIsOpen) {
             this->Close();
@@ -30,7 +26,7 @@ namespace Ngen {
          return mFile.good();
       }
 
-      uint64 Length() const {
+      uint64 Length() {
          if(mLength == 0) {
             this->Open();
             if(!mFile.good()) {
@@ -50,19 +46,19 @@ namespace Ngen {
 
       uint64 Cursor() const { return mCursor; }
 
-      void Close() const {
+      void Close() {
          mFile.close();
          mCursor = 0;
          mLength = 0;
       }
 
-      bool Open() const {
+      bool Open() {
          if(!mIsOpen) {
             try {
-            mFile.open(mFileName.Begin(), ios::in));
+            mFile.open(mFileName.Begin(), ios::in);
             mCursor = 0;
             } catch(exception) {
-               THROW(Exception(string::Format("FileStream::Open() - Failed to open file: ~", mFileName)));
+               THROW(Exception(E"FileStream::Open() - Failed to open file: ~"));
                return false;
             }
          }
@@ -70,10 +66,10 @@ namespace Ngen {
          return true;
       }
 
-      string8 ReadToEnd() const {
+      string8 ReadToEnd() {
          string8 result = string8::Empty();
          if(!mIsOpen) {
-            THROW(Exception(string::Format("FileStream::ReadToEnd() - File not open. ~", mFileName)));
+            THROW(Exception(E"FileStream::ReadToEnd() - File not open. ~"));
             return result;
          }
 
@@ -86,14 +82,10 @@ namespace Ngen {
           }
       }
 
-      template<typename T> T ReadData() {
-         return *(Read(sizeof(T)).BeginAs<T>());
-      }
-
       string8 Read(uint64 length=1) {
          string8 result = string8::Empty();
          if(!mIsOpen) {
-            THROW(Exception(string::Format("FileStream::ReadToEnd() - File not open. ~", mFileName)));
+            THROW(Exception(E"FileStream::ReadToEnd() - File not open. ~"));
             return result;
          }
 
@@ -114,11 +106,10 @@ namespace Ngen {
       string8 ReadTo(char8 c) {
          string8 result = string8::Empty();
          if(!mIsOpen) {
-            THROW(Exception(string::Format("FileStream::ReadToEnd() - File not open. ~", mFileName)));
+            THROW(Exception(E"FileStream::ReadToEnd() - File not open. ~"));
             return result;
          }
 
-         uword i = 0;
          result = string8::Empty();
          while (mFile.good()) {
             char8 tmp = (char8)mFile.get();
@@ -132,14 +123,13 @@ namespace Ngen {
          return result;
       }
 
-      string8 ReadTo(const Array<char8> any) {
+      string8 ReadTo(const Array<char8>& any) {
          string8 result = string8::Empty();
          if(!mIsOpen) {
-            THROW(Exception(string::Format("FileStream::ReadToEnd() - File not open. ~", mFileName)));
+            THROW(Exception(E"FileStream::ReadToEnd() - File not open. ~"));
             return result;
          }
 
-         uword i = 0;
          result = string8::Empty();
          while (mFile.good()) {
             char8 tmp = (char8)mFile.get();
@@ -156,7 +146,7 @@ namespace Ngen {
       string8 ReadTo(const string8& str) {
          string8 result = string8::Empty();
          if(!mIsOpen) {
-            THROW(Exception(string::Format("FileStream::ReadToEnd() - File not open. ~", mFileName)));
+            THROW(Exception(E"FileStream::ReadToEnd() - File not open. ~"));
             return result;
          }
 
@@ -194,15 +184,18 @@ namespace Ngen {
          return ReadTo("\n\r");
       }
 
-      ifstream& Stream() const { return mFile; }
+      const ifstream& StdStream() const { return mFile; }
+      ifstream& StdStream() { return mFile; }
 
-      template<typename... T> void Query(const string& format, T params) {
+      template<typename... T> void Query(const string& format, T... params) {
          fscanf(mFile, format.Std(), params...);
       }
+
    protected:
       bool mIsOpen;
       uint64 mCursor;
       string mFileName;
+      uint64 mLength;
       ifstream mFile;
    };
 
@@ -222,22 +215,23 @@ namespace Ngen {
 
       static Array<string8> ReadLines(const string& fileName) {
          auto result = Array<string8>(1);
-         string str = string8::Empty();
+         std::string str = std::string();
          ifstream file;
 
          file.open(fileName.Begin(), ios::in);
          while (file.good() && !file.eof()) {
-            std::getline(file, str)
-            result.Add(string8(str))
+            std::getline(file, str);
+            result.Add(string8(str));
           }
 
           file.close();
           return result;
       }
 
-      uint64 Size() const {
+      static uint64 Size(const string& fileName) {
          uint64 result;
          ifstream file;
+
          file.open(fileName.Begin(), ios::in);
          if(!file.good()) {
                return 0;

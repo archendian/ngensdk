@@ -37,16 +37,16 @@ namespace Ngen {
 
       class ngen_drawing_api GraphicBuffer {
       public:
-         GraphicBuffer(uword id, EGraphicBufferUsage usage) : mId(id), mShadow(), mUsage(usage) {}
+         GraphicBuffer(uword id, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_READ) : mId(id), mShadow(), mUsage(usage) {}
 
          virtual ~GraphicBuffer() {}
 
-         Array<ubyte> Shadow() { return mShadow; }
+         Array<byte> Shadow() { return mShadow; }
          uword BufferId() const { return mId; }
-         bool HasShadow() const { return !mShadow.IsEmpty(); }
+         bool HasShadow() const { return !mShadow.IsNullOrEmpty(); }
          EGraphicBufferUsage Usage() const { return mUsage; }
 
-         void Set(ubyte* data, uint64 length, EGraphicBufferUsage usage=EGraphicBufferUsage::DYNAMIC_DRAW, bool shadow=false) {
+         void Set(byte* data, uint64 length, EGraphicBufferUsage usage=EGraphicBufferUsage::DYNAMIC_DRAW, bool shadow=false) {
             if(shadow) {
                mShadow.AddRange(data, length, 0);
             }
@@ -64,10 +64,10 @@ namespace Ngen {
          }
 
       protected:
-         virtual void pSet(ubyte* data, uword length) pure;
+         virtual void pSet(byte* data, uword length) pure;
 
          uword mId;
-         Array<ubyte> mShadow;
+         Array<byte> mShadow;
          EGraphicBufferUsage mUsage;
       };
    }

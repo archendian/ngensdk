@@ -45,10 +45,10 @@ namespace Ngen {
 			DYNAMIC_READ,
 			DYNAMIC_COPY
 		};
-
+/*
 		GLenum typeof(EGraphicBufferUsage usage) {
 			switch(usage) {
-			case EGraphicBufferUsage::STATIC_DRAW:   return GL_STATIC_DRAW;
+			case EGraphicBufferUsage::STATIC_DRAW:   return GLenum::GL_STATIC_DRAW;
 			case EGraphicBufferUsage::STATIC_READ:   return GL_STATIC_READ;
 			case EGraphicBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
 			case EGraphicBufferUsage::STREAM_READ:   return GL_STREAM_READ;
@@ -60,6 +60,7 @@ namespace Ngen {
 			default: return 0;
 			}
 		}
+		*/
    }
 }
 

@@ -30,20 +30,23 @@ THE SOFTWARE.
 #define __NGEN_DRAWING_VERTEXELEMENT_HPP
 
 #include "Ngen.Drawing.Typedefs.hpp"
+#include "Ngen.Drawing.EVertexElementType.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
       class ngen_drawing_api VertexElement {
 		public:
+		   VertexElement() {}
+
 			VertexElement(const mirror& usage, uword usageIndex, EVertexElementType type, uword length) :
 				mUsage(usage), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(0) {
 			}
 
-			uword Size() { return sizeof(mType, mLength); }
-			const string& Id() { return mUsage.ToString() + string::From(mUsageIndex); }
-			const mirror& Usage() const { return mUsage; }
-			uword UsageIndex() const { return mUsageIndex; ]
+			uword Size() { return /*gl_sizeof(mType) **/ mLength; }
+			const string Id() { return mUsage.ToString() + string::From(mUsageIndex); }
+			const mirror Usage() const { return mUsage; }
+			uword UsageIndex() const { return mUsageIndex; }
 			EVertexElementType Type() const { return mType; }
 			uword ElementLength() const { return mLength; }
 			uword Offset() const { return mOffset; }

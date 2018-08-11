@@ -47,8 +47,8 @@ namespace Ngen {
 			LINE_LOOP,
 
 		};
-
-		GLenum typeof(EGraphicDrawMode mode) {
+      /*
+		GLenum gl_typeof(EGraphicDrawMode mode) {
 			switch(mode) {
 			case EGraphicDrawMode::POINT: return GL_POINTS;
 			case EGraphicDrawMode::QUAD: return GL_QUADS;
@@ -63,6 +63,7 @@ namespace Ngen {
 			default: return 0;
 			}
 		}
+		*/
    }
 }
 #endif // __NGEN_DRAWING_EGFXDRAWMODE_HPP

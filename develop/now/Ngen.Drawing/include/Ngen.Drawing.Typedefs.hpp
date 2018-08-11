@@ -35,7 +35,7 @@ namespace Ngen {
    namespace Drawing {
       class Canvas;
       class VertexElement;
-      class VertexSemantic;
+      class VertexScheme;
       class VertexBuffer;
       class MeshBuffer;
    }

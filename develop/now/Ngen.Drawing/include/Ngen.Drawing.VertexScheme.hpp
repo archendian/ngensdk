@@ -36,13 +36,17 @@ namespace Ngen {
 
 		class ngen_drawing_api VertexScheme {
 		public:
-			VertexScheme(const mirror& name, initialzer_list<VertexElement> init) : mName(name), mElementMap(init.length()) , mSize(0) {
+			VertexScheme(const string& name, std::initializer_list<VertexElement> init) : mName(name), mElementMap() , mSize(0) {
 				uword offset = 0;
-				for(uword i = 0; i < init.length(); ++i) {
-					mElementMap.Add(init[i].Id(), init[i]);
-					mElementMap[i].mOffset = offset;
-					mSize += init[i].Size();
-					offset += init[i].Size();
+            uword i = 0;
+
+				for(auto e : init) {
+               e.mOffset = offset;
+					mSize += e.Size();
+					offset += e.Size();
+
+               mElementMap.Add(e.Id(), e);
+					i++;
 				}
 			}
 
@@ -50,20 +54,34 @@ namespace Ngen {
 			const mirror Name() const { return mName; }
 
 			void Set() const {
-				for(uowrd i = 0; i < mElementMap.Length(); i++) {
-					 glVertexAttribIPointer(i, mElementMap[i].Length(), typeof(mElementMap[i].Type()), 0, mElementMap[i].Offset());
+				for(uword i = 0; i < mElementMap.Length(); i++) {
+				//	 glVertexP(i, mElementMap.Length(), typeof(mElementMap.ValueAt(i).Type()), 0, mElementMap.ValueAt(i).Offset());
 				}
 			}
 
 			VertexElement* Element(const string& usage, uword usageIndex) {
-				return mElementMap[usage+string::From(usageIndex)];
+				return &mElementMap[usage+string::From(usageIndex)];
 			}
 
-			/** @brief Xyz */       static VertexScheme* o3();
-			/** @brief Xyz, Rgb */  static VertexScheme* o3c3();
+			/** @brief Origin (XYZ) */
+			static VertexScheme* o3();
+
+			/** @brief Origin (XYZ),
+           *        Color (RGB)
+           */
+         static VertexScheme* o3c3();
+
+         /** @brief Origin (XYZ),
+           *        Color (RGB),
+           *        Normal (XYZ),
+           *        UV (XY)
+           */
+         static VertexScheme* o3c3n3u2();
+
 		protected:
 			const mirror mName;
 			Map<mirror, VertexElement> mElementMap;
+			uword mSize;
 		};
    }
 }

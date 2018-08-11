@@ -29,9 +29,11 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_VERTEXBUFFER_HPP
 #define __NGEN_DRAWING_VERTEXBUFFER_HPP
 
-#include "Ngen.Drawing.EGfxDrawMode.hpp"
-#include "Ngen.Drawing.EGfxBufferUsage.hpp"
-#include "Ngen.Drawing.VertexSemantic.hpp"
+#include "Ngen.Drawing.GraphicBuffer.hpp"
+#include "Ngen.Drawing.EGraphicDrawMode.hpp"
+#include "Ngen.Drawing.EGraphicBufferUsage.hpp"
+#include "Ngen.Drawing.VertexScheme.hpp"
+#include <GL/glu.h>
 
 namespace Ngen {
    namespace Drawing {
@@ -39,39 +41,27 @@ namespace Ngen {
 
 		class ngen_drawing_api VertexBuffer : public virtual GraphicBuffer {
 		public:
-				VertexBuffer() : GraphicBuffer(0, EGraphicBufferUsage::STATIC_DRAW), mScheme(0), mSize(0) {}
-
-				VertexBuffer(VertexScheme* scheme, uword length, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW) :
-				   GraphicBuffer(0, usage), mScheme(scheme), mSize(scheme->Size()*length) {
-					glGenVertexBuffer(1, &this->mId);
-					glBindVertexbuffer(GL_ARRAY_BUFFER, this->mId);
-					scheme->Set();
-					glBindVertexbuffer(GL_ARRAY_BUFFER, 0);
-				}
-
-				VertexBuffer(ubyte* vertex, VertexScheme* scheme, uword length, bool shadow=false, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW) :
-               GraphicBuffer(0, usage), mLength(length), mScheme(scheme){
-					glGenVertexBuffer(1, &this->mId);
-					glBindVertexbuffer(GL_ARRAY_BUFFER, this->mId);
-					scheme->Set();
-					this->Set(vertex, length, shadow);
-					glBindVertexbuffer(GL_ARRAY_BUFFER, 0);
-               this->mUsage = usage;
-				}
-
+				VertexBuffer() : GraphicBuffer(0, EGraphicBufferUsage::STATIC_DRAW), mSize(0), mLength(0), mScheme(null) {}
+				VertexBuffer(VertexScheme* scheme, uword length, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW);
+				VertexBuffer(VertexScheme* scheme, byte* vertex, uword length, bool shadow=false, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW);
 				VertexBuffer(VertexBuffer&& mov);
-
 				~VertexBuffer();
 
 				void Bind() const;
 				void Draw(EGraphicDrawMode drawMode);
 				void Draw(EGraphicDrawMode drawMode, uword begin, uword end);
-				void UnBind() const;
+				void Unbind() const;
 				uword Size() const;
+				VertexScheme* Scheme() { return mScheme; }
+				const VertexScheme* Scheme() const { return mScheme; }
+            uword Length() const { return mLength; }
 
 		protected:
-			uword mLength;
+
+         void pSet(byte* vertex, uword length);
+
 			uword mSize;
+			uword mLength;
 			VertexScheme* mScheme;
 		};
    }

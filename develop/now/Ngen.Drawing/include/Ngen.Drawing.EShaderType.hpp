@@ -10,7 +10,7 @@ namespace Ngen {
          VERTEX,
       };
 
-      GLenum typeof(EShaderType type) {
+      GLenum gl_typeof(EShaderType type) {
          switch(type) {
          case EShaderType::VERETX: return GL_VERTEX_SHADER;
          case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;

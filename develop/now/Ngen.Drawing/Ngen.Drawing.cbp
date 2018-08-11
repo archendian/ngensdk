@@ -8,12 +8,11 @@
 		<Option virtualFolders="include\;source\;include\Build\;doc\;shader\;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/Debug/Ngen" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/Debug/Ngen.Drawing" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
-				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-std=c++14" />
@@ -24,12 +23,11 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="../bin/Release/Ngen" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/Release/Ngen.Drawing" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin/Release" />
 				<Option object_output="obj/Release/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
-				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-Wall" />
@@ -64,7 +62,7 @@
 		<Unit filename="Ngen.Drawing.VertexBuffer.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Drawing.VertexSemantc.cpp">
+		<Unit filename="Ngen.Drawing.VertexScheme.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Drawing.Logic.hpp">
@@ -82,7 +80,9 @@
 		<Unit filename="include/Ngen.Drawing.EGraphicDrawMode.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EShaderType.hpp" />
+		<Unit filename="include/Ngen.Drawing.EShaderType.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.Drawing.EVertexElementType.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>

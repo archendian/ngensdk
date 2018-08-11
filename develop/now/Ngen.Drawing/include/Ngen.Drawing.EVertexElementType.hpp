@@ -53,9 +53,10 @@ namespace Ngen {
 #endif
 		};
 
-		GLenum typeof(EVertexElementType type) {
+		/*
+		GLenum gl_typeof(EVertexElementType type) {
 			switch(type) {
-			case EVertexElementType::FLOAT: return GL_FLOAT;
+			case EVertexElementType::FLOAT: return Glenum::;
 			case EVertexElementType::DOUBLE: return GL_DOUBLE;
 			case EVertexElementType::UINT: return GL_UINT;
 			case EVertexElementType::INT: return GL_INT;
@@ -65,7 +66,7 @@ namespace Ngen {
 			}
 		}
 
-		uword sizeof(EVertexElementType type, uword length=1) {
+		uword gl_sizeof(EVertexElementType type, uword length=1) {
 			switch(type) {
 			case EVertexElementType::FLOAT: return sizeof(float)*length;
 			case EVertexElementType::DOUBLE: return sizeof(double)*length;
@@ -76,6 +77,7 @@ namespace Ngen {
 			default: return 0;
 			}
 		}
+*/
    }
 }
 

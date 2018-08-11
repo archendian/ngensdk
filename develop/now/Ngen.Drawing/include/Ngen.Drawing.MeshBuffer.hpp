@@ -36,34 +36,51 @@ namespace Ngen {
 
 
 
-		class ngen_drawing_api MeshBuffer : public virtual GraphicBuffer {
+		class ngen_drawing_api MeshBuffer {
 		public:
 			template<typename TVertex>
-			MeshBuffer(EGfxBufferDrawMode mode, VertexScheme* scheme, TVertex* vertices, uword vertexCount, uword* indices, uword indexCount) :
-				mMode(mode), mVertex(vertices, scheme, vertexCount), mIndex(indices, indexCount) {
+			MeshBuffer(EGraphicDrawMode mode, VertexScheme* scheme, TVertex* vertices, uword vertexCount, uint32* indices, uword indexCount) :
+				mMode(mode), mVertex(vertices, scheme, vertexCount), mIndex(indices, indexCount), mIboId(0) {
+				   /*
+				   glGenBuffers(1, &mIboId);
+               glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIboId);
+               glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndex.Length() * sizeof(uint32), indices, GL_STATIC_DRAW);
+               glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+               */
 				}
 
-			MeshBuffer(EGfxBufferDrawMode mode, const VertexBuffer& vertex, const Array<uword>& index) :
-				mMode(mode), mVertex(&vertex), mIndex(index) {
+			MeshBuffer(EGraphicDrawMode mode, VertexBuffer* vertex, const Array<uint32>& index) :
+				mMode(mode), mVertex(vertex), mIndex(index), mIboId(0) {
+				   /*
+				   glGenBuffers(1, &mIboId);
+               glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIboId);
+               glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndex.Length() * sizeof(uint32), indices, GL_STATIC_DRAW);
+               glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+               */
          }
 
 			void Bind() const {
 				mVertex->Bind();
+           // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIboId);
 			}
 
 			void Unbind() {
 				mVertex->Unbind();
+           // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIboId);
 			}
 
-			EGfxBufferDrawMode DrawMode() const { return mMode; }
+			EGraphicDrawMode DrawMode() const { return mMode; }
 			VertexScheme* Scheme() const { return mVertex->Scheme(); }
 
 			void Draw() const;
 
+         static MeshBuffer GetSimpleCube();
+
 		protected:
-			EGraphicBufferDrawMode mMode;
+			EGraphicDrawMode mMode;
 			VertexBuffer* mVertex;
-			Array<uword> mIndex;
+			Array<uint32> mIndex;
+			uword mIboId;
 		};
    }
 }

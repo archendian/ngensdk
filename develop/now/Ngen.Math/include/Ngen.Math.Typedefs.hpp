@@ -33,19 +33,19 @@ THE SOFTWARE.
 
 namespace Ngen {
     namespace Math {
-        class Vector2;
+        template<typename R> class Vector2;
         class Vector3;
         class Vector4;
         class Matrix4;
         class Matrix3;
-        class Ray2D;
+        template<typename R> class Ray2D;
         class Ray3D;
-        class Line2D;
+        template<typename R> class Line2D;
         class Line3D;
         class Curve2D;
         class Curve3D;
         class Sphere3D;
-        class AABox2D;
+        template<typename R> class AABox2D;
         class AABox3D;
         class Color;
         class Plane;

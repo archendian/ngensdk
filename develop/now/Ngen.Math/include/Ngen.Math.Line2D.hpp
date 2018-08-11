@@ -33,16 +33,16 @@ THE SOFTWARE.
 
 namespace Ngen {
 	namespace Math {
-
+      template<typename R>
 		class Line2D {
 		public:
-			Vector2 A;
-			Vector2 B;
+			Vector2<R> A;
+			Vector2<R> B;
 
 			Line2D() : A(0), B(0) {}
 		};
 
-		typedef Line2D line2d;
+		typedef Line2D<real> line2d;
 	}
 }
 #endif

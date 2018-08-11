@@ -34,8 +34,7 @@ THE SOFTWARE.
 namespace Ngen {
 	namespace Math {
 
-      template<typename R>
-		class Vector2 {
+      template<typename R> class Vector2 {
 		public:
 		   typedef Vector2<R> TSelf;
 
@@ -115,15 +114,28 @@ namespace Ngen {
          }
 
          template<typename T> TSelf& Roatate(const Vector2<T>& center, R theta) const {
+            /** Irrlicht Engine: http://irrlicht.sourceforge.net/docu/vector2d_8h_source.html */
+            const float64 c = cos(theta);
+            const float64 s = sin(theta);
 
+            X -= center.X;
+            Y -= center.Y;
+
+            X = (R)(X * c - Y * s);
+            Y = (R)(X * s + Y * c);
+
+            X += center.X;
+            Y += center.Y;
+
+            return *this;
          }
 
          R Magnitude() const {
-            return Calculator::Sqrt((X*X) + (Y*Y))
+            return Calculator::Sqrt((X*X) + (Y*Y));
          }
 
          R MagnitudeSq() const {
-            return (X*X) + (Y*Y)
+            return (X*X) + (Y*Y);
          }
 
          TSelf& Normalize() {
@@ -151,11 +163,16 @@ namespace Ngen {
          template<typename T> static Vector2<T> Down() { return Vector2<T>(0, -1); }
          template<typename T> static Vector2<T> Left() { return Vector2<T>(-1, 0); }
          template<typename T> static Vector2<T> Right() { return Vector2<T>(1, 0); }
+         template<typename T> static Vector2<T> UnitX() { return Vector2<T>(1, 0); }
+         template<typename T> static Vector2<T> UnitY() { return Vector2<T>(0, 1); }
 		};
 
-		typedef Vector2<real> vec2r;
-		typedef Vector2<kilometer> vec2km;
-		typedef Vector2<meter> vec2m;
+		typedef Vector2<real> vec2;
+		typedef Vector2<uword> vec2u;
+		typedef Vector2<word> vec2w;
+		typedef Vector2<uint64> vec2u64;
+		typedef Vector2<int64> vec2i64;
+		typedef Vector2<float64> vec2f64;
 	}
 }
 #endif

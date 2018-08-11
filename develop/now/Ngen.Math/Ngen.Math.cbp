@@ -63,10 +63,7 @@
 		<Unit filename="include/Ngen.Math.AABox3D.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Math.Color.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
-		<Unit filename="include/Ngen.Math.ColorBox3D.hpp">
+		<Unit filename="include/Ngen.Math.Color4.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Math.Line2D.hpp">

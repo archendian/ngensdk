@@ -29,7 +29,8 @@ THE SOFTWARE.
 #ifndef __NGEN_TIME_HPP
 #define __NGEN_TIME_HPP
 
-#include "Ngen.TimeStamp.hpp"
+#include "Ngen.TimeSpan.hpp"
+#include "Ngen.Exception.hpp"
 
 using namespace std;
 using namespace chrono;
@@ -38,24 +39,13 @@ namespace Ngen {
 
       class Time {
       public:
-          static TimeStamp Now(bool utc=false) { return TimeStamp(utc); }
-          static TimeStamp UtcNow() { return Now(true); }
-          static uint64 TickPerMicrosecond() { return TickPerMillisecond() / 1000 < 1 ? 0 : TickPerMillisecond() / 1000; }
-          static uint64 TickPerMillisecond() { return TickPerSecond() / 1000; }
-          static uint64 TickPerSecond() { return (uint64)system_clock::period()::den; }
-
-
-           static uword DayNumber(string day=const_string("Sunday")) {
-               uword result = mDayName.Length();
-               if(!mDayName.Contains(day, inref result)) {
-                   THROW(InvalidArgumentException());
-               }
-
-               return result;
-           }
+          static TimeSpan Now(bool utc=false) { return TimeSpan(utc); }
+          static TimeSpan UtcNow() { return Now(true); }
+          //static uint64 TickPerMicrosecond() { return TickPerMillisecond() / 1000 < 1 ? 0 : TickPerMillisecond() / 1000; }
+          //static uint64 TickPerMillisecond() { return TickPerSecond() / 1000; }
+          //static uint64 TickPerSecond() { return (uint64)system_clock::period()::den; }
 
            static string DayByNumber(uword day=1) {
-               uword result = mDayName.Length();
                if(day > 12) {
                   THROW(Exception());
                }
@@ -63,18 +53,17 @@ namespace Ngen {
                return day == 0 ? const_string("Sunday") : mMonthName[day];
            }
 
-           static uint64 DayNumber(string day=const_string("Monday")) {
-               uint64 result = mDayName.Length();
+           static uword DayNumber(string day=const_string("Monday")) {
+               uword result = mDayName.Length();
 
                if(!mDayName.Contains(day, inref result)) {
-                   THROW(InvalidArgumentException());
+                   THROW(Exception());
                }
 
                return result;
            }
 
            static string MonthByNumber(uword month=1) {
-               uword result = mDayName.Length();
                if(month > 12) {
                   THROW(Exception());
                }
@@ -86,41 +75,16 @@ namespace Ngen {
                uword result = mDayName.Length();
 
                if(!mMonthName.Contains(month, inref result)) {
-                   THROW(InvalidArgumentException());
+                   THROW(Exception());
                }
 
                return result;
            }
-       protected:
 
+       protected:
            static Array<string> mDayName;
            static Array<string> mMonthName;
       };
-
-      Array<string> Ngen::Time::mDayName = Array<string>({
-         "Sunday",
-         "Monday",
-         "Tuesday",
-         "Wednesday",
-         "Thursday",
-         "Friday",
-         "Saturday",
-      });
-
-      Array<string> Ngen::Time::mMonthName = Array<string>({
-         "January",
-         "February",
-         "March",
-         "April",
-         "May",
-         "June",
-         "July",
-         "August",
-         "September",
-         "October",
-         "November",
-         "December",
-      });
 }
 
 

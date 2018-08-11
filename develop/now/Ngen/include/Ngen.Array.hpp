@@ -269,7 +269,8 @@ namespace Ngen {
 			mLength += length;
 
 			do {
-				*begin = *((rhsp+start)++);
+				*begin = *((rhsp+start));
+				rhsp++;
 			} while(End() != begin++);
 		}
 
@@ -338,6 +339,19 @@ namespace Ngen {
 			return false;
 		}
 
+
+		bool Contains(const T& item, uword& index) {
+			T* begin = mData;
+			index = 0;
+
+			do {
+            index++;
+				if(*begin == item) {
+					return true;
+				}
+			} while(End() != begin++);
+			return false;
+		}
 
 		/** @brief Iterates over each item and allocates them into a new collection based on a given predicate.
 		* @param predicate A function or lambda used to filter out unwanted items.

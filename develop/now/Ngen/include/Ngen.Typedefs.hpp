@@ -210,7 +210,8 @@ namespace Ngen {
    class Task;
    class Library;
    class Field;
-   class DateTime;
+   class Time;
+   class TimeSpan;
    class Event;
    class Exception;
    class Constructor;

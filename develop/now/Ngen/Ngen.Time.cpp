@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2017 FIXCOM, LLC
+Copyright (c) 2016 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,32 +26,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_BUILD_EXTERNAL_HPP
-#define __NGEN_BUILD_EXTERNAL_HPP
+#include "Ngen.Time.hpp"
 
-#include "Build.Ngen.Logic.hpp"
+namespace Ngen {
+   Array<string> Time::mDayName = Array<string>({
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+   });
 
-#include <exception>
-#include <new>
-#include <math.h>
-#include <initializer_list>
-#include <limits>
-#include <fstream>
-#include <chrono>
-#include <ctime>
-#include <time.h>
-#include <cmath>
-#include <cstdlib>
-
-#if _tkn_Platform == _tknval_Platform_Windows
-#	include <windows.h>
-#  include <wingdi.h>
-#else
-#	include <dlfcn.h>   // NOTE: Make sure this header is still required
-#endif
-
-#if _tkn_Platform == _tknval_Platform_Linux
-#elif _tkn_Platform == _tknval_Platform_Mac
-#endif
-
-#endif // __NGEN_BUILD_EXTERNAL_HPP
+   Array<string> Time::mMonthName = Array<string>({
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+   });
+}

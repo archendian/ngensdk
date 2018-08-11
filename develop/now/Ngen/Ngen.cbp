@@ -70,6 +70,9 @@
 		<Unit filename="Ngen.Task.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Time.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="Ngen.Win32.Window.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
@@ -203,7 +206,7 @@
 		<Unit filename="include/Ngen.Time.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.TimeStamp.hpp">
+		<Unit filename="include/Ngen.TimeSpan.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Trait.hpp">

@@ -117,6 +117,7 @@ namespace Ngen {
          unknown args[3] { lhs, rhs, Cast<uword>::To(length) };
          return Cast<bool>::From(mCompare(null, args));
       }
+
       const Mirror& Name() const { return mName; }
       uword Size() const { return mByteSize; }
    protected:

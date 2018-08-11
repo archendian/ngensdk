@@ -84,6 +84,10 @@ namespace Ngen {
 			return mLongName;
 		}
 
+		string ToString() const {
+		   return mLongName;
+      }
+
 	protected:
 		string mLongName;
 		uword mHashcode;

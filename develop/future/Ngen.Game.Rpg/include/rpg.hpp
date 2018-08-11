@@ -77,7 +77,7 @@ public:
 	BagSlot(Bag* parent, ItemScheme* item, uword count=1) : Count(count), Item(item), Parent(parent) {
 		if(count > item->MaxPerBagSlot()) {
 			Count = item->MaxPerBagSlot();
-			Parent->TryAdd(count - Count);
+			Parent->TryAddNew(item, count - Count);
 		}
 	}
 };
@@ -92,6 +92,17 @@ public:
 	}
 	
 	
+};
+
+class ngen_scene_rpg_api Bag {
+public:
+	Array<BagSlot*> Slot;
+	
+	Bag(BagSceheme* scheme) : Slot(count) {
+		for(unsigned i = 0; i < slotCount; i++) {
+			Slot[i] = BagSlot::Empty();
+		}
+	}
 };
 
 void rpg_on_character_equip(Character* c, Item* item);

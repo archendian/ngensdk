@@ -35,6 +35,41 @@ THE SOFTWARE.
 // length support for native C/C++ char arrays
 
 namespace Ngen {
+      const uint64 uint64_multiplier[15] = {
+      1,
+      10,
+      100,
+      1000,
+      10000,
+      100000,
+      1000000,
+      10000000,
+      100000000,
+      1000000000,
+      10000000000,
+      100000000000,
+      1000000000000,
+      10000000000000,
+      100000000000000,
+   };
+
+   const int64 int64_multiplier[15] = {
+      1,
+      10,
+      100,
+      1000,
+      10000,
+      100000,
+      1000000,
+      10000000,
+      100000000,
+      1000000000,
+      10000000000,
+      100000000000,
+      1000000000000,
+      10000000000000,
+      100000000000000,
+   };
 
    /** @brief A fixed-width string of characters. */
    template<typename T> class ngen_api String {
@@ -52,6 +87,12 @@ namespace Ngen {
 
       explicit String(uword capacity) : mData(capacity == 0 ? Memory::New<TChar>(1) : Memory::New<TChar>(capacity)), mLength(1), mCapacity(capacity == 0 ? 1 : capacity), mIsReadonly(false) {
          pTerminate();
+      }
+
+      explicit String(const std::string& str) : mData(Memory::New<TChar>(str.length())), mLength(str.length()), mCapacity(str.length()), mIsReadonly(false) {
+         for(uword i = 0; i < str.length(); i++) {
+            mData[i] = (TChar)str[i];
+         }
       }
 
       String(const TChar* str, bool readOnly) : mData((TChar*)str), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
@@ -224,6 +265,8 @@ namespace Ngen {
       // -------------------------------------
       // PUBLIC MEMBER FUNCTIONS
       // -------------------------------------
+
+      std::string Std() const { return std::string(mData); }
 
       /** @brief Get the total length of the string that represent actual characters that belong to the string. */
       uword Length() const {
@@ -597,10 +640,6 @@ namespace Ngen {
          return TSelf((TSelf&&)result);
 		}
 
-		template<typename T> T* BeginAs(uword at=0) {
-         return (T*)this->Begin(at);
-		}
-
       uint64 SizeInBytes() const { return mCapacity * sizeof(TChar); }
       uint64 LengthInBytes() const { return mLength * sizeof(TChar); }
 
@@ -645,7 +684,7 @@ namespace Ngen {
       }
 
       static TSelf From(uint64 integer) {
-         TSelf result = TSelf::Null();
+         TSelf result = TSelf::Empty();
 
          if(integer == 0) {
             result = TSelf("0");
@@ -755,7 +794,48 @@ namespace Ngen {
          return Format(str, Array<TSelf>(args));
       }
 
-      static TSelf FileName(const TSelf& path) {
+      uint64 ExtractUInt64(uword start=0) {
+         uint64 result = 0;
+         TChar* begin = this->Begin(start);
+         TChar* end = this->End();
+         uword digit = this->Length();
+
+         while(begin != end) {
+            result += ((uint64)(*begin - '0')) * uint64_multiplier[digit];
+            digit--;
+            begin++;
+         }
+
+         return result;
+      }
+
+      int64 ExtractInt64(uword start=0) {
+         int64 result = 0;
+         TChar* begin = this->Begin(start);
+         TChar* end = this->End();
+         uword digit = this->Length();
+         bool negate = false;
+
+         if(*begin == '-') {
+            negate = true;
+            begin++;
+         }
+
+         while(begin != end) {
+            if(negate) {
+               result -= ((int64)(*begin - '0')) * int64_multiplier[digit];
+            } else {
+               result += ((int64)(*begin - '0')) * int64_multiplier[digit];
+            }
+
+            digit--;
+            begin++;
+         }
+
+         return result;
+      }
+
+      static TSelf GetFileName(const TSelf& path) {
          auto begin = path.Begin();
          uword index = 0;
 
@@ -892,7 +972,7 @@ namespace Ngen {
 
 	/** @brief A macro used to create a constant text instance at compile-time. */
 #  if _tkn_UseUnicodeEncoding == _tknval_False
-#     define const_string(str) string(str, true)
+#     define const_string(str) Ngen::string(str, true)
 #  else
 #  if _tkn_UnicodeEncoding == __tknval_UnicodeEncoding_Utf32
 #     define const_string(str) string32(U##str, true)

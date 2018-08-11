@@ -220,5 +220,13 @@ t_begin_test(class_String, FormatThree) [] (TestResult& result) {
 }
 t_end_test
 
+t_begin_test(class_String, ExtractIntegers) [] (TestResult& result) {
+	auto wordform = const_string("989776729");
+	auto numberform = wordform.ExtractUInt64();
 
+	if(numberform != 989776729){
+      result.Error("The number was not extracted correctly.")
+	}
+}
+t_end_test
 

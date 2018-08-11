@@ -205,6 +205,14 @@ namespace Ngen {
 			mData.Reverse();
 		}
 
+		TValue& ValueAt(uword index) {
+         return Begin(index)->Value;
+		}
+
+      const TValue& ValueAt(uword index) const {
+         return Begin(index)->Value;
+		}
+
 		TSelf AsReadonly() const {
 			TSelf result = TSelf();
 			result.mData = mData.AsReadonly();

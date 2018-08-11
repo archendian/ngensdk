@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1534020513 source:c:\workspace\ngensdk\develop\now\ngen.app\main.cpp
+1534032192 source:c:\workspace\ngensdk\develop\now\ngen.app\main.cpp
 	"Ngen.hpp"
 	"Ngen.Drawing.hpp"
+	"Ngen.Math.hpp"
 
 1534016880 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
@@ -210,10 +211,10 @@
 	"Ngen.Drawing.CanvasCreationParams.hpp"
 	"Ngen.Drawing.Canvas.hpp"
 
-1522425938 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
+1534032277 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
 	"Ngen.Drawing.CanvasCreationParams.hpp"
 
-1522425938 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvascreationparams.hpp
+1534031862 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvascreationparams.hpp
 	"Ngen.Drawing.VertexBuffer.hpp"
 
 1533949905 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexbuffer.hpp
@@ -230,11 +231,12 @@
 1533937989 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicbufferusage.hpp
 	"Ngen.Drawing.Typedefs.hpp"
 
-1533939117 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
+1534020873 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
 	"Build.Ngen.Drawing.Logic.hpp"
 
-1521135144 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
+1534031862 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
 	<Ngen.hpp>
+	<Ngen.Math.hpp>
 	<GL/gl.h>
 
 1533950097 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicdrawmode.hpp
@@ -267,4 +269,74 @@
 
 1533940339 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.meshbuffer.hpp
 	"Ngen.Drawing.VertexBuffer.hpp"
+
+1534033000 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
+	"Build.Ngen.Math.Logic.hpp"
+	"Ngen.Typedefs.hpp"
+	"Ngen.Math.Vector2.hpp"
+	"Ngen.Math.Vector3.hpp"
+	"Ngen.Math.Vector4.hpp"
+	"Ngen.Math.Line2D.hpp"
+	"Ngen.Math.Line3D.hpp"
+	"Ngen.Math.Ray2D.hpp"
+	"Ngen.Math.Ray3D.hpp"
+	"Ngen.Math.AAbox2D.hpp"
+	"Ngen.Math.AAbox3D.hpp"
+	"Ngen.Math.Sphere3D.hpp"
+	"Ngen.Math.Color4.hpp"
+	"Ngen.Math.Matrix3.hpp"
+	"Ngen.Math.Matrix4.hpp"
+
+1521130186 c:\workspace\ngensdk\develop\now\ngen.math\include\build.ngen.math.logic.hpp
+	"Ngen.hpp"
+
+1534033169 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
+	"Ngen.Math.Typedefs.hpp"
+
+1534031328 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.typedefs.hpp
+	"Build.Ngen.Math.Logic.hpp"
+
+1521136348 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
+	"Ngen.Math.Typedefs.hpp"
+
+1521131690 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
+	"Ngen.Math.Typedefs.hpp"
+
+1534030314 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line2d.hpp
+	"Ngen.Math.Vector2.hpp"
+
+1534031363 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line3d.hpp
+	"Ngen.Math.Vector3.hpp"
+
+1534030321 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
+	"Ngen.Math.Vector2.hpp"
+
+1521071271 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray3d.hpp
+	"Ngen.Math.Vector3.hpp"
+
+1534031668 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
+	"Ngen.Math.Vector2.hpp"
+	"Ngen.Math.Line2D.hpp"
+	"Ngen.Math.CollisionResult.hpp"
+
+1534031804 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.collisionresult.hpp
+	"Ngen.Math.Line2D.hpp"
+	"Ngen.Math.Line3D.hpp"
+
+1534031281 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox3d.hpp
+	"Ngen.Math.Vector3.hpp"
+
+1534031259 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.sphere3d.hpp
+	"Ngen.Math.Line3D.hpp"
+
+1534032193 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.color4.hpp
+	"Ngen.Math.Typedefs.hpp"
+
+1521073698 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix3.hpp
+	"Ngen.Math.Typedefs.hpp"
+
+1534031591 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
+	"Ngen.Math.Typedefs.hpp"
+	"Ngen.Math.Vector3.hpp"
+	"Ngen.Math.Vector4.hpp"
 

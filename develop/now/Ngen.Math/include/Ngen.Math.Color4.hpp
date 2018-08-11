@@ -46,6 +46,9 @@ namespace Ngen {
 			Color4(const Color4& copy) : R(copy.R), G(copy.G), B(copy.B), A(copy.A) {}
 
 			static Color4 Blue() { return Color4(0.f,0.f,1.f,1.f); }
+			static Color4 Green() { return Color4(0.f,1.f,0.f,1.f); }
+			static Color4 Red() { return Color4(1.f,0.f,0.f,1.f); }
+			static Color4 CornflowerBlue() { return Color4(0.f,0.7f,1.f,1.f); }
 		};
 	}
 }

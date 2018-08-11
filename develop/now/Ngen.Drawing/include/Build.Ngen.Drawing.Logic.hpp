@@ -30,9 +30,8 @@ THE SOFTWARE.
 #define __NGEN_BUILD_DRAWING_LOGIC_HPP
 
 #include <Ngen.hpp>
+#include <Ngen.Math.hpp>
 #include <GL/gl.h>
-
-//#include <Ngen.Math.hpp>
 
 /** @brief Used to export or import public symbols from the framework. */
 #if _tkn_Platform == _tknval_Platform_Windows

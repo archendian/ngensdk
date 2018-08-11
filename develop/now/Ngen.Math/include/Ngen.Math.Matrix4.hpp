@@ -30,6 +30,8 @@ THE SOFTWARE.
 #define __NGEN_MATH_MATRIX4_HPP
 
 #include "Ngen.Math.Typedefs.hpp"
+#include "Ngen.Math.Vector3.hpp"
+#include "Ngen.Math.Vector4.hpp"
 
 namespace Ngen {
 	namespace Math {
@@ -78,7 +80,7 @@ namespace Ngen {
 		 	void M32(real m32) { M[14] = m32; }
 			void M33(real m33) { M[15] = m33; }
 
-			Matrix4() {};
+			Matrix4() {}
 
 			Matrix4(real m) {
 				for(int i = 0; i < 16; ++i) {

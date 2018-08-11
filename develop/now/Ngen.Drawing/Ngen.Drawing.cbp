@@ -52,8 +52,9 @@
 			<Add library="opengl32" />
 			<Add library="gdi32" />
 			<Add library="glu32" />
+			<Add library="Ngen.Math" />
 		</Linker>
-		<Unit filename="Ngen.Drawing.Canvas.cpp">
+		<Unit filename="Ngen.Drawing.Canvas.Win32.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="Ngen.Drawing.MeshBuffer.cpp">
@@ -67,6 +68,9 @@
 		</Unit>
 		<Unit filename="include/Build.Ngen.Drawing.Logic.hpp">
 			<Option virtualFolder="include/Build/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.Camera.hpp">
+			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.Canvas.hpp">
 			<Option virtualFolder="include/" />

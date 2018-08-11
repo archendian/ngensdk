@@ -38,7 +38,7 @@ namespace Ngen {
 		   Vector3 Location;
 			real Radius;
 
-			Sphere3D() : Location(0), Radius(0) {}
+			Sphere3D() : Location(), Radius() {}
 		};
 
 

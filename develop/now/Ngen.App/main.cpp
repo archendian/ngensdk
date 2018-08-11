@@ -1,6 +1,7 @@
 
 #include "Ngen.hpp"
 #include "Ngen.Drawing.hpp"
+#include "Ngen.Math.hpp"
 
 using namespace Ngen;
 using namespace Ngen::Drawing;
@@ -17,9 +18,10 @@ int main() {
    params.Stero = false;
    params.ZFar = 100.0f;
    params.ZNear = 0.01f;
+   params.Background = Color4::CornflowerBlue();
 
    // bind a canvas to the window
-   auto canvas = Canvas(&window, params);
+   auto canvas = Canvas(&window, &params);
 
    // load content
 

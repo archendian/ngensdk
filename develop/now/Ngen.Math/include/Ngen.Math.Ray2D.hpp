@@ -7,17 +7,17 @@
 
 namespace Ngen {
 	namespace Math {
-      template<typename R>
+
 		class Ray2D {
 		public:
-			Vector2<R> Location;
-			Vector2<R> Direction;
+			Vector2 Location;
+			Vector2 Direction;
 
-			Ray2D() : Location(0), Direction(0) {}
+			Ray2D() : Location(), Direction() {}
 		};
 
 
-		typedef Ray2D<real> ray2d;
+		typedef Ray2D ray2d;
 	}
 }
 #endif

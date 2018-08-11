@@ -34,9 +34,9 @@ namespace Ngen {
       HDC win32_HDC;
       HGLRC win32_HRC;
 
-      Canvas::Canvas(Window* window, const CanvasCreationParams& params) : mWindow(window), mParam(params) {
-         mParam.Width = mWindow->Width();
-         mParam.Height = mWindow->Height();
+      Canvas::Canvas(Window* window, CanvasCreationParams* params) : mWindow(window), mParam(params) {
+         mParam->Width = mWindow->Width();
+         mParam->Height = mWindow->Height();
 
          PIXELFORMATDESCRIPTOR pfd;
          int iFormat;
@@ -70,7 +70,7 @@ namespace Ngen {
       #endif
 
       void Canvas::Clear() const {
-         glClearColor(0.0f, 0.7f, 1.0f, 1.0f);
+         glClearColor(Background().R, Background().G, Background().B, Background().A);
          glClear(GL_COLOR_BUFFER_BIT);
       }
    }

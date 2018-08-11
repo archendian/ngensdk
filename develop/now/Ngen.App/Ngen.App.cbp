@@ -19,6 +19,7 @@
 				<Linker>
 					<Add library="Ngen" />
 					<Add library="Ngen.Drawing" />
+					<Add library="Ngen.Math" />
 					<Add directory="../bin/Debug" />
 				</Linker>
 			</Target>
@@ -43,10 +44,12 @@
 			<Add directory="include" />
 			<Add directory="../Ngen/include" />
 			<Add directory="../Ngen.Drawing/include" />
+			<Add directory="../Ngen.Math/include" />
 		</Compiler>
 		<Linker>
 			<Add library="Ngen" />
 			<Add library="Ngen.Drawing" />
+			<Add library="Ngen.Math" />
 		</Linker>
 		<Unit filename="main.cpp">
 			<Option virtualFolder="source/" />

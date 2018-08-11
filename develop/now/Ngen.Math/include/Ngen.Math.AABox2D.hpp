@@ -31,137 +31,76 @@ THE SOFTWARE.
 
 #include "Ngen.Math.Vector2.hpp"
 #include "Ngen.Math.Line2D.hpp"
+#include "Ngen.Math.CollisionResult.hpp"
 
 namespace Ngen {
 	namespace Math {
-      enum class ECollisionKind {
-         // Simple Collision Kind
-         /// @brief No collision.
-         NONE,
-         /// @brief No collision.  However, the boundaries of the two structures are the minimum distance away from the other.
-         OUTSIDE,
-         /// @brief Collision.  The boundaries of the two structures are resting inside the same space.
-         TOUCHING,
-         /// @brief Collision.  The structure is inside the boundary of the other structure.
-         INSIDE,
-         /// @brief Collision. The other structure is inside the boundary of this structure.
-         HOLDING,
-          /// @brief Collision. The other structure is partially inside the boundary of this structure.
-         CROSSING,
-      };
 
-      template<typename R>
-      class CollisionResult2D {
-      public:
-         /// @brief The information gathered for the testing structure.
-         ECollisionKind Lhs;
-
-         /// @brief The information gathered for the structure being tested.
-         ECollisionKind Rhs;
-
-         /// @brief The smallest distance from each of the two points of collision.
-         Line2D<R> CollisonSpace;
-      };
-
-      typedef CollisionResult2D<real> collision2d;
-
-      class CollisionResult3D {
-      public:
-         /// @brief The information gathered for the testing structure.
-         ECollisionKind Lhs;
-
-         /// @brief The information gathered for the structure being tested.
-         ECollisionKind Rhs;
-
-         /// @brief The smallest distance from each of the two colliding points on each structures.
-         Line3D CollisonSpace;
-      };
-
-      template<typename R>
 		class AxisAlignedBox2D {
+      public:
+			Vector2 TopLeft;
+			Vector2 BottomRight;
 
-      protected:
-         typedef AxisAlignedBox2D<R> TSelf;
-         typedef Vector2<R> TVec2;
-
-         // Fields
-			TVec2 mTopLeft;
-			TVec2 mBottomRight;
-
-		public:
-		   //Properties
-		   TVec2 TopLeft() const { return TVec2(mTopLeft); }
-		   void TopLeft(const TVec2& rhs) { mTopLeft = rhs; }
-
-		   TVec2 TopRight() const { return TVec2(mBottomRight.X, mTopLeft.Y); }
-		   void TopRight(const TVec2& rhs) { mBottomRight.X = rhs.X; mTopLeft.Y = rhs.Y; }
-
-		   TVec2 BottomRight() const { return TVec2(mBottomRight); }
-		   void BottomRight(const TVec2& rhs) { mBottomRight = rhs; }
-
-		   TVec2 BottomLeft() const { return TVec2(mTopLeft.X, mBottomRight.Y); }
-		   void BottomLeft(const TVec2& rhs) { mTopLeft.X = rhs.X; mBottomRight.Y = rhs.Y; }
-
-         bool IsValid() const { return mTopLeft.X < mBottomRight.X && mTopLeft.Y > mBottomRight.Y; }
-
-			//Init
-         AxisAlignedBox2D () : mTopLeft(0), mBottomRight(0) {}
-         AxisAlignedBox2D (const TSelf& copy) : mTopLeft(copy.mTopLeft), mBottomRight(copy.mBottomRight) {}
-         AxisAlignedBox2D (const TVec2& mTopLeft, const TVec2& mBottomRight) : mTopLeft(mTopLeft), mBottomRight(mBottomRight) {}
-         AxisAlignedBox2D (const TVec2& mTopLeftmBottomRight) : mTopLeft(mTopLeftmBottomRight), mBottomRight(mTopLeftmBottomRight) {}
+         AxisAlignedBox2D () : TopLeft(), BottomRight() {}
+         AxisAlignedBox2D (const AxisAlignedBox2D& copy) : TopLeft(copy.TopLeft), BottomRight(copy.BottomRight) {}
+         AxisAlignedBox2D (const Vector2& TopLeft, const Vector2& BottomRight) : TopLeft(TopLeft), BottomRight(BottomRight) {}
+         AxisAlignedBox2D (const Vector2& TopLeftBottomRight) : TopLeft(TopLeftBottomRight), BottomRight(TopLeftBottomRight) {}
 
          //Operators
-         template<typename T>
-         bool operator==(const AxisAlignedBox2D<T>& rhs) const {
-            return mTopLeft == (R)rhs.mTopLeft && mBottomRight == (R)rhs.mBottomRight;
+         bool operator==(const AxisAlignedBox2D& rhs) const {
+            return TopLeft == rhs.TopLeft && BottomRight == rhs.BottomRight;
          }
 
-         template<typename T>
-         bool operator!=(const AxisAlignedBox2D<T>& rhs) const {
-            return mTopLeft != (R)rhs.mTopLeft || mBottomRight != (R)rhs.mBottomRight;
+         bool operator!=(const AxisAlignedBox2D& rhs) const {
+            return TopLeft != rhs.TopLeft || BottomRight != rhs.BottomRight;
          }
 
-         template<typename T>
-         TSelf& operator+=(const AxisAlignedBox2D<T>& rhs) {
-            mTopLeft.X = mTopLeft.X > (R)rhs.mTopLeft.X ? (R)rhs.mTopLeft.X : mTopLeft.X;
-            mTopLeft.Y = mTopLeft.Y > (R)rhs.mTopLeft.Y ? mTopLeft.Y : (R)rhs.mTopLeft.Y;
-            mBottomRight.X = mBottomRight.X > (R)rhs.mBottomRight.X ? mBottomRight.X : (R)rhs.mBottomRight.X;
-            mBottomRight.Y = mBottomRight.Y < (R)rhs.mBottomRight.Y ? mBottomRight.Y : (R)rhs.mBottomRight.Y;
+         AxisAlignedBox2D& operator+=(const AxisAlignedBox2D& rhs) {
+            TopLeft.X = TopLeft.X > rhs.TopLeft.X ? rhs.TopLeft.X : TopLeft.X;
+            TopLeft.Y = TopLeft.Y > rhs.TopLeft.Y ? TopLeft.Y : rhs.TopLeft.Y;
+            BottomRight.X = BottomRight.X > rhs.BottomRight.X ? BottomRight.X : rhs.BottomRight.X;
+            BottomRight.Y = BottomRight.Y < rhs.BottomRight.Y ? BottomRight.Y : rhs.BottomRight.Y;
             return *this;
          }
-         template<typename T>
-         TSelf operator+(const AxisAlignedBox2D<T>& rhs) const {
-             auto result = TSelf(*this);
+
+         AxisAlignedBox2D operator+(const AxisAlignedBox2D& rhs) const {
+             auto result = AxisAlignedBox2D(*this);
              result += rhs;
              return result;
          }
 
-         template<typename T>
-         TSelf& operator-=(const TSelf& rhs) {
-            mTopLeft.X = mTopLeft.X < (R)rhs.mTopLeft.X ? (R)rhs.mTopLeft.X : mTopLeft.X;
-            mTopLeft.Y = mTopLeft.Y < (R)rhs.mTopLeft.Y ? mTopLeft.Y : (R)rhs.mTopLeft.Y;
-            mBottomRight.X = mBottomRight.X < (R)rhs.mBottomRight.X ? mBottomRight.X : (R)rhs.mBottomRight.X;
-            mBottomRight.Y = mBottomRight.Y > (R)rhs.mBottomRight.Y ? mBottomRight.Y : (R)rhs.mBottomRight.Y;
+         AxisAlignedBox2D& operator-=(const AxisAlignedBox2D& rhs) {
+            TopLeft.X = TopLeft.X < rhs.TopLeft.X ? rhs.TopLeft.X : TopLeft.X;
+            TopLeft.Y = TopLeft.Y < rhs.TopLeft.Y ? TopLeft.Y : rhs.TopLeft.Y;
+            BottomRight.X = BottomRight.X < rhs.BottomRight.X ? BottomRight.X : rhs.BottomRight.X;
+            BottomRight.Y = BottomRight.Y > rhs.BottomRight.Y ? BottomRight.Y : rhs.BottomRight.Y;
             return *this;
          }
 
-         template<typename T>
-         TSelf operator-(const AxisAlignedBox2D<T>& rhs) const {
-             auto result = TSelf(*this);
+         AxisAlignedBox2D operator-(const AxisAlignedBox2D& rhs) const {
+             auto result = AxisAlignedBox2D(*this);
              result -= rhs;
              return result;
          }
 
          // Methods
-         CollisionResult2D<R> CheckCollision(const TVec2& point) const {
-            CollisionResult2D<R> result;
+         Vector2 TopRight() const { return Vector2(BottomRight.X, TopLeft.Y); }
+		   void TopRight(const Vector2& rhs) { BottomRight.X = rhs.X; TopLeft.Y = rhs.Y; }
+
+		   Vector2 BottomLeft() const { return Vector2(TopLeft.X, BottomRight.Y); }
+		   void BottomLeft(const Vector2& rhs) { TopLeft.X = rhs.X; BottomRight.Y = rhs.Y; }
+
+         bool IsValid() const { return TopLeft.X < BottomRight.X && TopLeft.Y > BottomRight.Y; }
+
+         CollisionResult2D CheckCollision(const Vector2& point) const {
+            CollisionResult2D result;
             result.Lhs = result.Rhs = ECollisionKind::NONE;
 
-            bool isHolding = (point.X > mTopLeft.X && point.Y < mTopLeft.Y && point.Y > mBottomRight.Y && point.Y < mBottomRight.X);
-            bool isTouching = (point.X == mTopLeft.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
-                               (point.X == mBottomRight.X && point.Y >= mBottomRight.Y && point.Y <= mTopLeft.Y) ||
-                               (point.Y == mTopLeft.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X) ||
-                               (point.Y == mBottomRight.Y && point.X >= mTopLeft.X && point.X <= mBottomRight.X);
+            bool isHolding =  (point.X > TopLeft.X && point.Y < TopLeft.Y && point.Y > BottomRight.Y && point.Y < BottomRight.X);
+            bool isTouching = (point.X == TopLeft.X && point.Y >= BottomRight.Y && point.Y <= TopLeft.Y) ||
+                              (point.X == BottomRight.X && point.Y >= BottomRight.Y && point.Y <= TopLeft.Y) ||
+                              (point.Y == TopLeft.Y && point.X >= TopLeft.X && point.X <= BottomRight.X) ||
+                              (point.Y == BottomRight.Y && point.X >= TopLeft.X && point.X <= BottomRight.X);
 
             if(isHolding) {
                result.Lhs = ECollisionKind::HOLDING;
@@ -173,11 +112,12 @@ namespace Ngen {
             return result;
          }
 
-         CollisionResult2D<R> CheckCollision(R x, R y) const {
-            return CheckCollision(TVec2(x, y));
+         CollisionResult2D CheckCollision(real x, real y) const {
+            return CheckCollision(Vector2(x, y));
          }
 		};
 
-		typedef AxisAlignedBox2D<real> aabox2d;
+		typedef AxisAlignedBox2D aabox2d;
+	}
 }
 #endif

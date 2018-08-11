@@ -29,6 +29,8 @@ THE SOFTWARE.
 #ifndef __NGEN_MATH_HPP
 #define __NGEN_MATH_HPP
 
+#include "Build.Ngen.Math.Logic.hpp"
+
 #include "Ngen.Typedefs.hpp"
 #include "Ngen.Math.Vector2.hpp"
 #include "Ngen.Math.Vector3.hpp"
@@ -44,4 +46,7 @@ THE SOFTWARE.
 #include "Ngen.Math.Matrix3.hpp"
 #include "Ngen.Math.Matrix4.hpp"
 
+struct stub_t {
+static unsigned stub();
+};
 #endif // __NGEN_MATH_HPP_INCLUDED

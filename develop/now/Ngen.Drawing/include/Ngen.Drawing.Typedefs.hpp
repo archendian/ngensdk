@@ -34,6 +34,8 @@ THE SOFTWARE.
 namespace Ngen {
    namespace Drawing {
       class Canvas;
+      class Image;
+      class Texture;
       class VertexElement;
       class VertexScheme;
       class VertexBuffer;

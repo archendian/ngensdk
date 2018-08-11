@@ -41,23 +41,23 @@ namespace Ngen {
       public:
          Canvas() : mWindow(null), mParam() {}
 
-         Canvas(Window* window, const CanvasCreationParams& params);
+         Canvas(Window* window, CanvasCreationParams* params);
          virtual ~Canvas();
 
-         //Color4 Background() const {
-         //   return mParam.Background;
-         //}
+         Color4 Background() const {
+            return mParam->Background;
+         }
 
-         //Vector2 Size() const {
-         //   return Vector2(mParam.Width, mParam.Height);
-         //}
+         Vector2 Size() const {
+            return Vector2(mParam->Width, mParam->Height);
+         }
 
          void Clear() const;
          void Update() const;
 
       protected:
          Window* mWindow;
-         CanvasCreationParams mParam;
+         CanvasCreationParams* mParam;
       };
    }
 }

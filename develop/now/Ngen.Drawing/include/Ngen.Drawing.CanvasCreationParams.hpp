@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "Ngen.Drawing.VertexBuffer.hpp"
 
 using namespace Ngen;
-//using namespace Ngen::Math;
+using namespace Ngen::Math;
 
 namespace Ngen {
    namespace Drawing {
@@ -41,7 +41,7 @@ namespace Ngen {
 		public:
 			uword Width;
 			uword Height;
-			//Color4 Background;
+			Color4 Background;
 			uword ColorDepth;
 			real ZFar;
 			real ZNear;

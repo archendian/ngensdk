@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2017 FIXCOM, LLC
+COPYRIGHT (C) 2018 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,25 +26,45 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_MATH_LINE3D_HPP
-#define __NGEN_MATH_LINE3D_HPP
+#ifndef NGEN_DRAWING_CAMERA_HPP_INCLUDED
+#define NGEN_DRAWING_CAMERA_HPP_INCLUDED
 
-#include "Ngen.Math.Vector3.hpp"
+#include "Build.Ngen.Drawing.Logic.hpp"
 
 namespace Ngen {
+   namespace Scene {
 
-	namespace Math {
+      class Camera {
+      public:
+         Vector3 Origin;
+         Vector3 Target;
 
-		class Line3D {
-		public:
-			Vector3 Begin;
-			Vector3 End;
 
-			Line3D() : Begin(), End() {}
-		};
+         Camera() : Origin(), Target() {}
 
-		typedef Line3D line3d;
+         Vector3 Direction() const {
+            auto result = Vector3(Origin - Target);
+            result.Normalize();
+            return result;
+         }
 
-	}
+         Vector3 Right() const {
+            auto result = Vector3::Up().Cross(Direction());
+            result.Normalize();
+            return result;
+         }
+
+         Vector3 Up() const {
+            auto result = Vector3::Up().Cross(Direction());
+            result.Normalize();
+            return result;
+         }
+
+         Matrix4 View() const {
+
+         }
+      };
+   }
 }
-#endif
+
+#endif // NGEN_DRAWING_CAMERA_HPP_INCLUDED

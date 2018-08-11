@@ -39,7 +39,7 @@ namespace Ngen {
 			Vector3 Min;
 			Vector3 Max;
 
-         AxisAlignedBox3D () : Min(0), Max(0) {}
+         AxisAlignedBox3D () : Min(), Max() {}
 		};
 
 

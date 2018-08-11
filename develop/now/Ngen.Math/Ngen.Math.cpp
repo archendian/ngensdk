@@ -28,3 +28,5 @@ THE SOFTWARE.
 */
 
 #include "Ngen.Math.hpp"
+
+unsigned stub_t::stub() { return 0; };

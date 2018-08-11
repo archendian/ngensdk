@@ -26,26 +26,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_MATH_TYPEDEFS_HPP_INCLUDED
-#define __NGEN_MATH_TYPEDEFS_HPP_INCLUDED
+#ifndef __NGEN_MATH_TYPEDEFS_HPP
+#define __NGEN_MATH_TYPEDEFS_HPP
 
 #include "Build.Ngen.Math.Logic.hpp"
 
 namespace Ngen {
     namespace Math {
-        template<typename R> class Vector2;
+        class Vector2;
         class Vector3;
         class Vector4;
         class Matrix4;
         class Matrix3;
-        template<typename R> class Ray2D;
+        class Ray2D;
         class Ray3D;
-        template<typename R> class Line2D;
+        class Line2D;
         class Line3D;
         class Curve2D;
         class Curve3D;
         class Sphere3D;
-        template<typename R> class AABox2D;
+        class AABox2D;
         class AABox3D;
         class Color;
         class Plane;
@@ -54,4 +54,4 @@ namespace Ngen {
     }
 }
 
-#endif // __NGEN_MATH_TYPEDEFS_HPP_INCLUDED
+#endif // __NGEN_MATH_TYPEDEFS_HPP

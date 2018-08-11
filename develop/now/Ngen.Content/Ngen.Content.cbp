@@ -5,7 +5,7 @@
 		<Option title="Ngen.Content" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="source\;include\;doc\;" />
+		<Option virtualFolders="source\;include\;doc\;include\Build\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="../build/debug/Ngen" prefix_auto="1" extension_auto="1" />
@@ -52,10 +52,25 @@
 			<Option virtualFolder="doc/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Content.Logic.hpp">
+			<Option virtualFolder="include/Build/" />
+		</Unit>
+		<Unit filename="include/Ngen.Content.BmpResourceHandler.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Content.File.hpp">
-			<Option virtualFolder="source/" />
+		<Unit filename="include/Ngen.Content.JpegResourceHandler.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Content.ObjResourceHandler.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Content.Resource.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Content.Typedefs.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Content.hpp">
+			<Option virtualFolder="include/" />
 		</Unit>
 		<Extensions>
 			<code_completion />

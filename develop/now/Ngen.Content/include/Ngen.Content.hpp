@@ -30,52 +30,13 @@ THE SOFTWARE.
 #define __NGEN_CONTENT_FILE_HPP
 
 #include "Build.Ngen.Content.Logic.hpp"
+#include "Ngen.Content.Typedefs.hpp"
 
-namespace Ngen {
-    namespace Content {
+// 2D Texture
+#include "Ngen.Content.BmpResourceHandler.hpp"
+#include "Ngen.Content.JpegResourceHandler.hpp"
 
-        class ResourceManager {
-        public:
-            ResourceManager(const string& library="default") {
-
-            }
-        };
-
-        class ResourceHandler {
-         public:
-            ResourceHandler()
-
-            virtual bool IsSupportedFile(const string& fileName) const pure;
-            virtual bool IsSupportedExtension(const string& fileNameExtension) const pure;
-
-            template<typename TResource>
-            TResource* Load(const string& fileName, const mirror& id) const {
-               Resource* result = null;
-               if(!mResource.TryGetValue(id, inref result)) {
-                  result = (TResource*)pLoadResource(fileName, id);
-               }
-
-               return (TResource*)result;
-            }
-
-         protected:
-            virtual Resource* pLoadResource(const string& fileName, const mirror& id) pure;
-            virtual Resource* pUnloadResource(const string& fileName, const mirror& id) pure;
-            virtual Resource* pLoadResource(const string& fileName, uword id) pure;
-            virtual Resource* pUnloadResource(const string& fileName, uword id) pure;
-
-            Map<mirror, Resource*> mResource;
-        };
-
-        class Resource {
-        public:
-
-            Resource(const string& filename=const_string("")) {
-
-            }
-
-        };
-    }
-}
+// 3D Model
+#include "Ngen.Content.ObjResourceHandler.hpp"
 
 #endif // __NGEN_CONTENT_FILE_HPP

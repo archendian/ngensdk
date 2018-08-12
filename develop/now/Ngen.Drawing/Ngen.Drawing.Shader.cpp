@@ -26,31 +26,55 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_ESHADERTYPE_HPP
-#define __NGEN_DRAWING_ESHADERTYPE_HPP
 
-#include "Build.Ngen.Drawing.Logic.hpp"
+#include "Ngen.Drawing.Shader.hpp"
 
 namespace Ngen {
-
    namespace Drawing {
-      /** @brief The type of shaders known to the OpenGL graphic framework. */
-      enum class EShaderType {
-         FRAGMENT,
-         GEOMETERY,
-         VERTEX,
-      };
-/*
-      GLenum gl_typeof(EShaderType type) {
-         switch(type) {
-//         case EShaderType::VERETX: return GL_VERTEX_SHADER;
-//         case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;
-//         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
-         default: return 0;
+
+      Shader::Shader(EShaderType type, const string& fileName) : mId(0), mType(type) {
+         //mId = glCreateShader();
+         auto source = File::ReadAll(fileName);
+         //glShaderSource(mId, 1, (GLchar**)&source.Begin(), source.Length());
+      }
+
+      bool Shader::Compile() {
+         //glCompileShader(mId);
+
+         bool compiled = false;
+         //glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
+
+         if(!compiled) {
+            return false;
+         }
+
+         return true;
+      }
+
+      bool Shader::Compile(string& glerror) {
+         //glCompileShader(mId);
+
+         bool compiled = false;
+         //glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
+
+         if(!compiled) {
+            uword length = 0;
+
+            //glGetShaderiv(mId, GL_INFO_LOG_LENGTH, &length);
+            glerror = string(length);
+            //glGetShaderInfoLog(mId, length, &length, glerror.Begin());
+
+            return false;
+         }
+
+         return true;
+      }
+
+      void Shader::Delete() {
+         if(mId != null) {
+            //glDeleteShader(mId);
+            mId = null;
          }
       }
-*/
    }
 }
-
-#endif // __NGEN_DRAWING_ESHADERTYPE_HPP

@@ -32,6 +32,7 @@ THE SOFTWARE.
 #include <Ngen.hpp>
 #include <Ngen.Math.hpp>
 #include <GL/gl.h>
+//#include <GL/glext.h>
 
 /** @brief Used to export or import public symbols from the framework. */
 #if _tkn_Platform == _tknval_Platform_Windows

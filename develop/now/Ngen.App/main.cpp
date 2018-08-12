@@ -6,39 +6,6 @@
 using namespace Ngen;
 using namespace Ngen::Drawing;
 
-class Image {
-public:
-   Image(const string& fileName) : mFileName(filename) {
-      string ext = fileName.ReverseReadTo('.');
-   }
-
-   void Set(uword width, uword height, const Array<Color4>& bitmap) {
-      mBitmap = bitmap;
-      mWidth = width;
-      mHeight = height;
-   }
-
-   Color4* Pixel() {
-      return mBitmap.Begin();
-   }
-
-   Color4* PixelAt(uword x, uword y) {
-      return mBitmap.Begin(x*y);
-   }
-
-protected:
-   string mFileName;
-   uword mWidth;
-   uword mHeight;
-   Array<Color4> mBitmap;
-};
-
-class Texture {
-public:
-
-protected:
-   Image* mImage;
-};
 int main() {
    // create a window to bind a canvas to
    auto window = Window(0, 0, 800, 600, "NGen Framework v.1.0");
@@ -56,12 +23,13 @@ int main() {
    // bind a canvas to the window
    auto canvas = Canvas(&window, &params);
 
-   // load content
+   // load some content
 
    // the main loop for the application
    window.Show();
    while(window.HandleMessage()) {
       canvas.Clear();
+
       canvas.Update();
    }
 

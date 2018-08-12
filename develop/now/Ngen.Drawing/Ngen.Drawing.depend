@@ -19,13 +19,13 @@
 	"Ngen.Drawing.EGraphicBufferUsage.hpp"
 	"Ngen.Drawing.EGraphicDrawMode.hpp"
 
-1533937989 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicbufferusage.hpp
+1534085965 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicbufferusage.hpp
 	"Ngen.Drawing.Typedefs.hpp"
 
 1534020873 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
 	"Build.Ngen.Drawing.Logic.hpp"
 
-1534031862 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
+1534095796 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
 	<Ngen.hpp>
 	<Ngen.Math.hpp>
 	<GL/gl.h>
@@ -142,7 +142,7 @@
 1533950816 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1534017998 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1534035475 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
@@ -335,8 +335,23 @@
 1521073698 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix3.hpp
 	"Ngen.Math.Typedefs.hpp"
 
-1534031591 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
+1534035112 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
 	"Ngen.Math.Typedefs.hpp"
 	"Ngen.Math.Vector3.hpp"
 	"Ngen.Math.Vector4.hpp"
+
+1534093956 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.shader.cpp
+	"Ngen.Drawing.Shader.hpp"
+
+1534093956 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.shader.hpp
+	"Ngen.Drawing.EShaderType.hpp"
+
+1534095016 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.eshadertype.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+
+1534095982 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.gpuprogram.cpp
+	"Ngen.Drawing.GpuProgram.hpp"
+
+1534095958 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpuprogram.hpp
+	"Ngen.Drawing.Shader.hpp"
 

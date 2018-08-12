@@ -57,7 +57,13 @@
 		<Unit filename="Ngen.Drawing.Canvas.Win32.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Drawing.GpuProgram.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="Ngen.Drawing.MeshBuffer.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
+		<Unit filename="Ngen.Drawing.Shader.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="Ngen.Drawing.VertexBuffer.cpp">
@@ -88,6 +94,9 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.EVertexElementType.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.GpuProgram.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.GraphicBuffer.hpp">

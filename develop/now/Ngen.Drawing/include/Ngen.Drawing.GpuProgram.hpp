@@ -26,31 +26,38 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_ESHADERTYPE_HPP
-#define __NGEN_DRAWING_ESHADERTYPE_HPP
+#ifndef __NGEN_DRAWING_GPUPROGRAM_HPP
+#define __NGEN_DRAWING_GPUPROGRAM_HPP
 
-#include "Build.Ngen.Drawing.Logic.hpp"
+#include "Ngen.Drawing.Shader.hpp"
 
 namespace Ngen {
-
    namespace Drawing {
-      /** @brief The type of shaders known to the OpenGL graphic framework. */
-      enum class EShaderType {
-         FRAGMENT,
-         GEOMETERY,
-         VERTEX,
-      };
-/*
-      GLenum gl_typeof(EShaderType type) {
-         switch(type) {
-//         case EShaderType::VERETX: return GL_VERTEX_SHADER;
-//         case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;
-//         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
-         default: return 0;
+
+      class ngen_drawing_api GpuProgram {
+      public:
+         GpuProgram();
+         GpuProgram(initializer_list<Shader*> shader);
+
+         bool Compile();
+         bool Compile(string& glerror);
+         void Delete();
+         void Bind() const;
+         void Unbind() const;
+
+         void AddShader(Shader* shader) {
+            mShader.Add(shader);
          }
-      }
-*/
+
+         void RemoveShader(Shader* shader) {
+            mShader.Remove(shader);
+         }
+
+      protected:
+         uword mId;
+         Array<Shader*> mShader;
+      };
    }
 }
 
-#endif // __NGEN_DRAWING_ESHADERTYPE_HPP
+#endif // __NGEN_DRAWING_GPUPROGRAM_HPP

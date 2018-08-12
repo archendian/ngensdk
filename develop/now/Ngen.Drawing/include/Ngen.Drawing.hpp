@@ -41,6 +41,8 @@ THE SOFTWARE.
 #include "Ngen.Drawing.VertexScheme.hpp"
 #include "Ngen.Drawing.VertexBuffer.hpp"
 #include "Ngen.Drawing.MeshBuffer.hpp"
+#include "Ngen.Drawing.Shader.hpp"
+#include "Ngen.Drawing.GpuProgram.hpp"
 
 #include "Ngen.Drawing.CanvasCreationParams.hpp"
 #include "Ngen.Drawing.Canvas.hpp"

@@ -29,53 +29,30 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_SHADER_HPP
 #define __NGEN_DRAWING_SHADER_HPP
 
-#include "Ngen.Drawing.EShaderType"
+#include "Ngen.Drawing.EShaderType.hpp"
 
 namespace Ngen {
 
    namespace Drawing {
 
-      class ngen_drawing_api Shader : public class Content::Resource {
+      class ngen_drawing_api Shader {
       public:
-         Shader(const string& name, const string& filename) :
-            Content::Resource(name, filename, true), mObject(glCreateShader(typeof(mType))) {
-
-         }
-
-         Shader(const string& name) : Content::Resource(name), mObject(glCreateShader(typeof(mType))), m{
-
-         }
+         Shader(EShaderType type, const string& filename);
 
          virtual ~Shader() {
-            this->~Content::Resource();
+            Delete();
          }
 
-         static Shader FromSource(const string& name, const string& source, bool shadow) {
-            auto result = Shader(name);
-            result.pSetSource(source, shadow);
-            return result;
-         }
+         bool Compile();
+         bool Compile(string& glerror);
+         void Delete();
 
-         uword Object() const { return mObject; }
+         uword OpenGLId() const { return mId; }
+
       protected:
-         unknown pShadow(uword& length) {
-            length = mSource.Length();
-            return (unknown)mSource.ToPointer();
-         }
+         EShaderType mType;
+         uword mId;
 
-         void pSetSource(const string8& source, bool shadow) {
-            if(shadow) {
-               uword len = this->mShadow.Length();
-               this->pSetShadow(source.ToPointer());
-               glShaderSourceARB(mObject, 1, &this->mShadow.ToPointer(), &len);
-               return;
-            }
-
-            uword len = this->mShadow.Length();
-            glShaderSourceARB(mObject, 1, &this->mShadow.ToPointer(), &len);
-         }
-
-         uword mObject;
       };
    }
 }

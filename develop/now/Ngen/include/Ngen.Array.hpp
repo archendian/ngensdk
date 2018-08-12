@@ -224,7 +224,10 @@ namespace Ngen {
 
 		/** @brief Get an iterator beginning at the given index. */
 		T* Begin(uword at = 0) const {
-			if(at >= mLength) {
+		   if(mLength == 0) {
+            return null;
+		   }
+			else if(at >= mLength) {
 				THROW(InvalidParameterException("The parameter 'at' must be less-than the length of the array!"));
 			}
 

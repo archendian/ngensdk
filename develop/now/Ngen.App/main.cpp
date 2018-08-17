@@ -27,6 +27,7 @@ int main() {
 
    // the main loop for the application
    window.Show();
+
    while(window.HandleMessage()) {
       canvas.Clear();
 

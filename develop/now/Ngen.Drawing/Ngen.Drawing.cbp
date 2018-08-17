@@ -52,6 +52,7 @@
 			<Add library="opengl32" />
 			<Add library="Ngen.Math" />
 			<Add library="glew32" />
+			<Add library="gdi32" />
 			<Add directory="../external/bin" />
 			<Add directory="../external/lib" />
 		</Linker>

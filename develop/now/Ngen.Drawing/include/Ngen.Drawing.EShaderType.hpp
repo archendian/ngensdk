@@ -37,19 +37,18 @@ namespace Ngen {
       /** @brief The type of shaders known to the OpenGL graphic framework. */
       enum class EShaderType {
          FRAGMENT,
-         GEOMETERY,
+         GEOMETRY,
          VERTEX,
       };
-/*
+
       GLenum gl_typeof(EShaderType type) {
          switch(type) {
-//         case EShaderType::VERETX: return GL_VERTEX_SHADER;
-//         case EShaderType::GEOMETERY: return GL_GEOMETERY_SHADER;
-//         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
+         case EShaderType::VERTEX: return GL_VERTEX_SHADER;
+         case EShaderType::GEOMETRY: return GL_GEOMETRY_SHADER;
+         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
          default: return 0;
          }
       }
-*/
    }
 }
 

@@ -37,6 +37,7 @@ using namespace Ngen;
 namespace Ngen {
    namespace Drawing {
 
+
       class ngen_drawing_api Canvas {
       public:
          Canvas() : mWindow(null), mParam() {}
@@ -55,9 +56,12 @@ namespace Ngen {
          void Clear() const;
          void Update() const;
 
+         event Updated;
+         event Cleared;
       protected:
          Window* mWindow;
          CanvasCreationParams* mParam;
+
       };
    }
 }

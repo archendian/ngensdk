@@ -26,37 +26,52 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_CANVASCREATIONPARAMS_HPP
-#define __NGEN_DRAWING_CANVASCREATIONPARAMS_HPP
+#ifndef __NGEN_DRAWING_MATERIAL_HPP
+#define __NGEN_DRAWING_MATERIAL_HPP
 
-#include "Ngen.Drawing.MeshBuffer.hpp"
-
-using namespace Ngen;
-using namespace Ngen::Math;
+#include "Ngen.Drawing.GpuProgram.hpp"
 
 namespace Ngen {
-   namespace Drawing {
+   namespace Content {
 
-      class ngen_drawing_api CanvasCreationParams {
-		public:
-			uword Width;
-			uword Height;
-			Color4 Background;
-			uword ColorDepth;
-			real ZFar;
-			real ZNear;
-			bool Stero;
+      class ngen_drawing_api FrameBuffer {
+      public:
+         FrameBuffer() : mId(0) {
+            Initialize();
+         }
 
-			CanvasCreationParams(uword width=800, uword height=640, /*Color4 background,*/ uword depth=32, real zfar=-1.0, real znear=1.0, bool stero=false) :
-				Width(width), Height(height), /*Background(background),*/ ColorDepth(depth), ZFar(zfar), ZNear(znear), Stero(stero) {
-			}
+         void Initialize() {
+            if(mId == null) {
+               glGenFramebuffers(1, &mId);
+            }
+         }
 
-			CanvasCreationParams(const CanvasCreationParams& copy) :
-				Width(copy.Width), Height(copy.Height), /*Background(copy.Background),*/ ColorDepth(copy.ColorDepth),
-               ZFar(copy.ZFar), ZNear(copy.ZNear), Stero(copy.Stero) {
-			}
-		};
+         void Bind() const {
+            glBindFramebuffer(GL_FRAMEBUFFER, mId);
+         }
+
+         void BindForDraw() const {
+            glBindFramebuffer(GL_FDRAW_FRAMEBUFFER, mId);
+         }
+
+         void BindForRead() const {
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, mId);
+         }
+
+         void Delete() {
+            if(mId != null) {
+               glDeleteFramebuffers(1, &mId);
+               mId = null;
+            }
+         }
+
+         uword Id() const { return mId; }
+
+      protected:
+         uword mId;
+      };
    }
 }
 
-#endif // __NGEN_DRAWING_CANVASCREATIONPARAMS_HPP
+
+#endif // __NGEN_DRAWING_MATERIAL_HPP

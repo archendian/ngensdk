@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="all">
+		<Project filename="UnitTest.Ngen/UnitTest.Ngen.cbp" />
+		<Project filename="UnitTest.Ngen.Reflection/UnitTest.Ngen.Reflection.cbp">
+			<Depends filename="Ngen/Ngen.cbp" />
+			<Depends filename="Ngen.Reflection/Ngen.Reflection.cbp" />
+			<Depends filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
+		</Project>
+		<Project filename="Ngen/Ngen.cbp" />
+		<Project filename="Ngen.Reflection/Ngen.Reflection.cbp">
+			<Depends filename="Ngen/Ngen.cbp" />
+		</Project>
+		<Project filename="Ngen.Diagnostic/Ngen.Diagnostic.cbp" />
+		<Project filename="Ngen.Math/Ngen.Math.cbp" />
+		<Project filename="Ngen.Content/Ngen.Content.cbp" />
+		<Project filename="Ngen.Drawing/Ngen.Drawing.cbp" />
+		<Project filename="Ngen.App/Ngen.App.cbp" />
+		<Project filename="Ngen.Scene/Ngen.Scene.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

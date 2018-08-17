@@ -1,0 +1,70 @@
+/*  _______    ________
+    \      \  /  _____/  ____   ___
+    /   |   \/   \  ____/ __ \ /   \
+   /    |    \    \_\  \  ___/|   | \
+   \____|__  /\______  /\___  >___| /
+           \/        \/     \/    \/
+The MIT License (MIT)
+
+COPYRIGHT (C) 2018 FIXCOM, LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sub-license, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+#ifndef NGEN_DRAWING_CAMERA_HPP_INCLUDED
+#define NGEN_DRAWING_CAMERA_HPP_INCLUDED
+
+#include "Build.Ngen.Drawing.Logic.hpp"
+
+namespace Ngen {
+   namespace Scene {
+
+      class Camera {
+      public:
+         Vector3 Origin;
+         Vector3 Target;
+
+
+         Camera() : Origin(), Target() {}
+
+         Vector3 Direction() const {
+            auto result = Vector3(Origin - Target);
+            result.Normalize();
+            return result;
+         }
+
+         Vector3 Right() const {
+            auto result = Vector3::Up().Cross(Direction());
+            result.Normalize();
+            return result;
+         }
+
+         Vector3 Up() const {
+            auto result = Vector3::Up().Cross(Direction());
+            result.Normalize();
+            return result;
+         }
+
+         Matrix4 View() const {
+
+         }
+      };
+   }
+}
+
+#endif // NGEN_DRAWING_CAMERA_HPP_INCLUDED

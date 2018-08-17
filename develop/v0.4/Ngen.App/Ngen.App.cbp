@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Ngen.App" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="include\;source\;" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../bin/Debug/Ngen" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++14" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="Ngen" />
+					<Add library="Ngen.Drawing" />
+					<Add library="Ngen.Math" />
+					<Add directory="../bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../bin/Release/Ngen" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="../bin/Release" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c11" />
+			<Add option="-fexceptions" />
+			<Add directory="include" />
+			<Add directory="../Ngen/include" />
+			<Add directory="../Ngen.Drawing/include" />
+			<Add directory="../Ngen.Math/include" />
+		</Compiler>
+		<Linker>
+			<Add library="Ngen" />
+			<Add library="Ngen.Drawing" />
+			<Add library="Ngen.Math" />
+		</Linker>
+		<Unit filename="main.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

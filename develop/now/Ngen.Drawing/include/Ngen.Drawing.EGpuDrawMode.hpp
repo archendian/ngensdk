@@ -26,43 +26,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP
-#define __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP
+#ifndef __NGEN_DRAWING_EGPUDRAWMODE_HPP
+#define __NGEN_DRAWING_EGPURAWMODE_HPP
 
 #include "Ngen.Drawing.Typedefs.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
-		enum class EGraphicBufferUsage {
-			STATIC_DRAW,
-			STATIC_READ,
-			STATIC_COPY,
-			STREAM_READ,
-			STREAM_DRAW,
-			STREAM_COPY,
-			DYNAMIC_DRAW,
-			DYNAMIC_READ,
-			DYNAMIC_COPY
+      enum class EGpuDrawMode {
+			POINT,
+			QUAD,
+			QUAD_STRIP,
+			POLYGON,
+			TRIANGLE,
+			TRIANGLE_STRIP,
+			TRIANGLE_FAN,
+			LINE,
+			LINE_STRIP,
+			LINE_LOOP,
+
 		};
-/*
-		GLenum typeof(EGraphicBufferUsage usage) {
-			switch(usage) {
-			case EGraphicBufferUsage::STATIC_DRAW:   return GLenum::GL_STATIC_DRAW;
-			case EGraphicBufferUsage::STATIC_READ:   return GL_STATIC_READ;
-			case EGraphicBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
-			case EGraphicBufferUsage::STREAM_READ:   return GL_STREAM_READ;
-			case EGraphicBufferUsage::STREAM_DRAW:   return GL_STREAM_DRAW;
-			case EGraphicBufferUsage::STREAM_COPY:   return GL_STREAM_COPY;
-			case EGraphicBufferUsage::DYNAMIC_DRAW:  return GL_DYNAMIC_DRAW;
-			case EGraphicBufferUsage::DYNAMIC_READ:  return GL_DYNAMIC_READ;
-			case EGraphicBufferUsage::DYNAMIC_COPY:  return GL_DYNAMIC_COPY;
+
+		GLenum gl_typeof(EGpuDrawMode mode) {
+			switch(mode) {
+			case EGpuDrawMode::POINT: return GL_POINTS;
+			case EGpuDrawMode::QUAD: return GL_QUADS;
+			case EGpuDrawMode::POLYGON: return GL_POLYGON;
+			case EGpuDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
+			case EGpuDrawMode::TRIANGLE: return GL_TRIANGLES;
+			case EGpuDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
+			case EGpuDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
+			case EGpuDrawMode::LINE: return GL_LINES;
+			case EGpuDrawMode::LINE_STRIP: return GL_LINE_STRIP;
+			case EGpuDrawMode::LINE_LOOP: return GL_LINE_LOOP;
 			default: return 0;
 			}
 		}
-		*/
    }
 }
-
-
-#endif // __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP
+#endif // __NGEN_DRAWING_EGFXDRAWMODE_HPP

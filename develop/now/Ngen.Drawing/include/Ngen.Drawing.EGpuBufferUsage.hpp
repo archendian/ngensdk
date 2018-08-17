@@ -26,35 +26,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_SHADER_HPP
-#define __NGEN_DRAWING_SHADER_HPP
+#ifndef __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP
+#define __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP
 
-#include "Ngen.Drawing.EShaderType.hpp"
+#include "Ngen.Drawing.Typedefs.hpp"
 
 namespace Ngen {
-
    namespace Drawing {
 
-      class ngen_drawing_api Shader {
-      public:
-         Shader(EShaderType type, const string& filename);
+		enum class EGpuBufferUsage {
+			STATIC_DRAW,
+			STATIC_READ,
+			STATIC_COPY,
+			STREAM_READ,
+			STREAM_DRAW,
+			STREAM_COPY,
+			DYNAMIC_DRAW,
+			DYNAMIC_READ,
+			DYNAMIC_COPY
+		};
 
-         virtual ~Shader() {
-            Delete();
-         }
-
-         bool Compile();
-         bool Compile(string& glerror);
-         void Delete();
-
-         uword OpenGLId() const { return mId; }
-
-      protected:
-         EShaderType mType;
-         uword mId;
-
-      };
+		GLenum gl_typeof(EGpuBufferUsage usage) {
+			switch(usage) {
+			case EGpuBufferUsage::STATIC_DRAW:   return GL_STATIC_DRAW;
+			case EGpuBufferUsage::STATIC_READ:   return GL_STATIC_READ;
+			case EGpuBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
+			case EGpuBufferUsage::STREAM_READ:   return GL_STREAM_READ;
+			case EGpuBufferUsage::STREAM_DRAW:   return GL_STREAM_DRAW;
+			case EGpuBufferUsage::STREAM_COPY:   return GL_STREAM_COPY;
+			case EGpuBufferUsage::DYNAMIC_DRAW:  return GL_DYNAMIC_DRAW;
+			case EGpuBufferUsage::DYNAMIC_READ:  return GL_DYNAMIC_READ;
+			case EGpuBufferUsage::DYNAMIC_COPY:  return GL_DYNAMIC_COPY;
+			default: return 0;
+			}
+		}
    }
 }
 
-#endif // __NGEN_DRAWING_SHADER_HPP
+
+#endif // __NGEN_DRAWING_EGFXBUFFERUSAGE__HPP

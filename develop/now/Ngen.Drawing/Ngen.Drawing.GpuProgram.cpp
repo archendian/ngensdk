@@ -33,19 +33,19 @@ namespace Ngen {
    namespace Drawing {
       GpuProgram::GpuProgram() : mId(null), mShader(0) {}
 
-      GpuProgram::GpuProgram(initializer_list<Shader*> shader) : mId(0), mShader(shader.size()) {
-         //mId = glCreateProgram();
+      GpuProgram::GpuProgram(initializer_list<GpuShader*> shader) : mId(0), mShader(shader.size()) {
+         mId = glCreateProgram();
 
          for(uword i = 0; i < mShader.Length(); ++i){
-            //glAttachShader(mId, mShader[i]->OpenGLId())
+            glAttachShader(mId, mShader[i]->Id());
          }
       }
 
       bool GpuProgram::Compile() {
-         //glLinkProgram(mId);
+         glLinkProgram(mId);
 
          bool compiled = false;
-         //glGetProgramiv(mId, GL_COMPILE_STATUS, &compiled);
+         glGetProgramiv(mId, GL_COMPILE_STATUS, (GLint*)&compiled);
 
          if(!compiled) {
             return false;
@@ -55,17 +55,17 @@ namespace Ngen {
       }
 
       bool GpuProgram::Compile(string& glerror) {
-         //glLinkProgram(mId);
+         glLinkProgram(mId);
 
          bool compiled = false;
-         //glGetProgramiv(mId, GL_COMPILE_STATUS, &compiled);
+         glGetProgramiv(mId, GL_COMPILE_STATUS, (GLint*)&compiled);
 
          if(!compiled) {
-            uword length = 0;
+            GLint length = 0;
 
-            //glGetProgramiv(mId, GL_INFO_LOG_LENGTH, &length);
-            glerror = string(length);
-            //glGetProgramInfoLog(mId, length, &length, glerror.Begin());
+            glGetProgramiv(mId, GL_INFO_LOG_LENGTH, &length);
+            glerror = string((uword)length);
+            glGetProgramInfoLog(mId, length, &length, glerror.Begin());
 
             return false;
          }
@@ -75,17 +75,17 @@ namespace Ngen {
 
       void GpuProgram::Delete() {
          if(mId != null) {
-            //glDeleteProgram(mId);
+            glDeleteProgram(mId);
             mId = null;
          }
       }
 
       void GpuProgram::Bind() const {
-         //glUseProgram(mId);
+         glUseProgram(mId);
       }
 
       void GpuProgram::Unbind() const {
-         //glUseProgram(null);
+         glUseProgram(null);
       }
    }
 }

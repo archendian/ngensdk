@@ -26,55 +26,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+#ifndef __NGEN_DRAWING_GPUSHADER_HPP
+#define __NGEN_DRAWING_GPUSHADER_HPP
 
-#include "Ngen.Drawing.Shader.hpp"
+#include "Ngen.Drawing.EShaderType.hpp"
 
 namespace Ngen {
+
    namespace Drawing {
 
-      Shader::Shader(EShaderType type, const string& fileName) : mId(0), mType(type) {
-         //mId = glCreateShader();
-         auto source = File::ReadAll(fileName);
-         //glShaderSource(mId, 1, (GLchar**)&source.Begin(), source.Length());
-      }
+      class ngen_drawing_api GpuShader {
+      public:
+         GpuShader(EShaderType type, const string& filename);
 
-      bool Shader::Compile() {
-         //glCompileShader(mId);
+         bool Compile();
+         bool Compile(string& glerror);
+         void Delete();
 
-         bool compiled = false;
-         //glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
+         GLint Id() const { return mId; }
 
-         if(!compiled) {
-            return false;
-         }
-
-         return true;
-      }
-
-      bool Shader::Compile(string& glerror) {
-         //glCompileShader(mId);
-
-         bool compiled = false;
-         //glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
-
-         if(!compiled) {
-            uword length = 0;
-
-            //glGetShaderiv(mId, GL_INFO_LOG_LENGTH, &length);
-            glerror = string(length);
-            //glGetShaderInfoLog(mId, length, &length, glerror.Begin());
-
-            return false;
-         }
-
-         return true;
-      }
-
-      void Shader::Delete() {
-         if(mId != null) {
-            //glDeleteShader(mId);
-            mId = null;
-         }
-      }
+      protected:
+         GLint mId;
+         EShaderType mType;
+      };
    }
 }
+
+#endif // __NGEN_DRAWING_SHADER_HPP

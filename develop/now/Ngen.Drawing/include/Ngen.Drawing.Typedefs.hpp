@@ -34,12 +34,66 @@ THE SOFTWARE.
 namespace Ngen {
    namespace Drawing {
       class Canvas;
-      class Image;
+      class Shader;
       class Texture;
-      class VertexElement;
-      class VertexScheme;
-      class VertexBuffer;
+      class GpuElement;
+      class GpuScheme;
+      class GpuProgram;
       class MeshBuffer;
+
+      template<typename T> struct gl_set_uniform {
+         gl_set_uniform(uword location, const T& value) {
+            THROW(NotImplementedException());
+         }
+      };
+
+      template<> struct gl_set_uniform<float> {
+         gl_set_uniform(uword location, const real& value) {
+            glUniform1f(location, value);
+         }
+      };
+
+      template<> struct gl_set_uniform<double> {
+         gl_set_uniform(uword location, const real& value) {
+            glUniform1d(location, value);
+         }
+      };
+
+      template<> struct gl_set_uniform<uint32> {
+         gl_set_uniform(uword location, const uint32& value) {
+            glUniform1i(location, value);
+         }
+      };
+
+      template<> struct gl_set_uniform<Math::Vector2> {
+         gl_set_uniform(uword location, const Math::Vector2& value) {
+            glUniform2f(location, value.X, value.Y);
+         }
+      };
+
+      template<> struct gl_set_uniform<Math::Vector3> {
+         gl_set_uniform(uword location, const Math::Vector3& value) {
+            glUniform3f(location, value.X, value.Y, value.Z);
+         }
+      };
+
+      template<> struct gl_set_uniform<Math::Vector4> {
+         gl_set_uniform(uword location, const Math::Vector4& value) {
+            glUniform4f(location, value.X, value.Y, value.Z, value.W);
+         }
+      };
+
+      template<> struct gl_set_uniform<Math::Matrix3> {
+         gl_set_uniform(uword location, const Math::Matrix3& value) {
+            //glUniformMatrix3fv(location, 9, false, (GLfloat*)&value.M);
+         }
+      };
+
+      template<> struct gl_set_uniform<Math::Matrix4> {
+         gl_set_uniform(uword location, const Math::Matrix4& value) {
+            //glUniformMatrix4fv(location, 16, false, &value.M);
+         }
+      };
    }
 }
 

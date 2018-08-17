@@ -32,18 +32,19 @@ THE SOFTWARE.
 #include "Build.Ngen.Drawing.Logic.hpp"
 
 #include "Ngen.Drawing.Typedefs.hpp"
-#include "Ngen.Drawing.EGraphicBufferUsage.hpp"
-#include "Ngen.Drawing.EGraphicDrawMode.hpp"
+#include "Ngen.Drawing.EGpuBufferUsage.hpp"
+#include "Ngen.Drawing.EGpuDrawMode.hpp"
 #include "Ngen.Drawing.EShaderType.hpp"
-#include "Ngen.Drawing.EVertexElementType.hpp"
-
-#include "Ngen.Drawing.VertexElement.hpp"
-#include "Ngen.Drawing.VertexScheme.hpp"
-#include "Ngen.Drawing.VertexBuffer.hpp"
+#include "Ngen.Drawing.EGpuElementType.hpp"
+#include "Ngen.Drawing.GpuElement.hpp"
+#include "Ngen.Drawing.GpuScheme.hpp"
 #include "Ngen.Drawing.MeshBuffer.hpp"
-#include "Ngen.Drawing.Shader.hpp"
+#include "Ngen.Drawing.GpuShader.hpp"
 #include "Ngen.Drawing.GpuProgram.hpp"
-
+#include "Ngen.Drawing.FrameBuffer.hpp"
+#include "Ngen.Drawing.Texture.hpp"
+#include "Ngen.Drawing.SLight.hpp"
+#include "Ngen.Drawing.SVertex.hpp"
 #include "Ngen.Drawing.CanvasCreationParams.hpp"
 #include "Ngen.Drawing.Canvas.hpp"
 

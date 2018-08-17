@@ -29,7 +29,8 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_GPUPROGRAM_HPP
 #define __NGEN_DRAWING_GPUPROGRAM_HPP
 
-#include "Ngen.Drawing.Shader.hpp"
+#include "Ngen.Drawing.GpuShader.hpp"
+#include "Ngen.Drawing.Texture.hpp"
 
 namespace Ngen {
    namespace Drawing {
@@ -37,7 +38,7 @@ namespace Ngen {
       class ngen_drawing_api GpuProgram {
       public:
          GpuProgram();
-         GpuProgram(initializer_list<Shader*> shader);
+         GpuProgram(initializer_list<GpuShader*> shader);
 
          bool Compile();
          bool Compile(string& glerror);
@@ -45,17 +46,34 @@ namespace Ngen {
          void Bind() const;
          void Unbind() const;
 
-         void AddShader(Shader* shader) {
+         GLint Id() const {
+            return mId;
+         }
+
+         void AddShader(GpuShader* shader) {
             mShader.Add(shader);
          }
 
-         void RemoveShader(Shader* shader) {
+         void RemoveShader(GpuShader* shader) {
             mShader.Remove(shader);
          }
 
+         uword UniformLocation(const string& id) const {
+            return glGetUniformLocation(mId, id.Begin());
+         }
+
+         template<typename T>
+         void Uniform(const string& id, const T& value) {
+            gl_set_uniform(UniformLocation(id), value);
+         }
+
+         void Sampler2d(const string& id, uword index) {
+            glUniform1i(UniformLocation(id), index);
+         }
+
       protected:
-         uword mId;
-         Array<Shader*> mShader;
+         GLint mId;
+         Array<GpuShader*> mShader;
       };
    }
 }

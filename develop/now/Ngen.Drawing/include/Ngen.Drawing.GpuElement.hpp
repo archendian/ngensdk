@@ -26,45 +26,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_VERTEXBUFFER_HPP
-#define __NGEN_DRAWING_VERTEXBUFFER_HPP
+#ifndef __NGEN_DRAWING_GPUELEMENT_HPP
+#define __NGEN_DRAWING_GPUELEMENT_HPP
 
-#include "Ngen.Drawing.GraphicBuffer.hpp"
-#include "Ngen.Drawing.EGraphicDrawMode.hpp"
-#include "Ngen.Drawing.EGraphicBufferUsage.hpp"
-#include "Ngen.Drawing.VertexScheme.hpp"
-#include <GL/glu.h>
+#include "Ngen.Drawing.Typedefs.hpp"
+#include "Ngen.Drawing.EGpuElementType.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
-
-		class ngen_drawing_api VertexBuffer : public virtual GraphicBuffer {
+      class ngen_drawing_api GpuElement {
 		public:
-				VertexBuffer() : GraphicBuffer(0, EGraphicBufferUsage::STATIC_DRAW), mSize(0), mLength(0), mScheme(null) {}
-				VertexBuffer(VertexScheme* scheme, uword length, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW);
-				VertexBuffer(VertexScheme* scheme, byte* vertex, uword length, bool shadow=false, EGraphicBufferUsage usage=EGraphicBufferUsage::STATIC_DRAW);
-				VertexBuffer(VertexBuffer&& mov);
-				~VertexBuffer();
+		   GpuElement() {}
 
-				void Bind() const;
-				void Draw(EGraphicDrawMode drawMode);
-				void Draw(EGraphicDrawMode drawMode, uword begin, uword end);
-				void Unbind() const;
-				uword Size() const;
-				VertexScheme* Scheme() { return mScheme; }
-				const VertexScheme* Scheme() const { return mScheme; }
-            uword Length() const { return mLength; }
+			GpuElement(const mirror& usage, uword usageIndex, EGpuElementType type, uword length, uword offset=0) :
+				mUsage(usage), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(offset) {
+			}
+
+			GpuElement(const string& usage, uword usageIndex, EGpuElementType type, uword length, uword offset=0) :
+				mUsage(mirror(usage)), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(offset) {
+			}
+
+			uword Size() { return /*gl_sizeof(mType) **/ mLength; }
+			const string Id() { return mUsage.ToString() + string::From(mUsageIndex); }
+			const mirror Usage() const { return mUsage; }
+			uword UsageIndex() const { return mUsageIndex; }
+			EGpuElementType Type() const { return mType; }
+			uword ElementLength() const { return mLength; }
+			uword Offset() const { return mOffset; }
+         void Offset(uword offset) { mOffset = offset; }
 
 		protected:
-
-         void pSet(byte* vertex, uword length);
-
-			uword mSize;
+			mirror mUsage;
+			uword mUsageIndex;
+			EGpuElementType mType;
 			uword mLength;
-			VertexScheme* mScheme;
+			uword mOffset;
 		};
    }
 }
-
-#endif // __NGEN_DRAWING_VERTEXBUFFER_HPP
+#endif

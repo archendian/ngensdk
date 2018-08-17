@@ -31,8 +31,9 @@ THE SOFTWARE.
 
 #include <Ngen.hpp>
 #include <Ngen.Math.hpp>
-#include <GL/gl.h>
-//#include <GL/glext.h>
+#include <GL/glew.h>
+
+#define NGEN_DRAWING_MAX_LIGHT 100
 
 /** @brief Used to export or import public symbols from the framework. */
 #if _tkn_Platform == _tknval_Platform_Windows

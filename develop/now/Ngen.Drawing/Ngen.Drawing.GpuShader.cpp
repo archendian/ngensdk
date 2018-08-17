@@ -26,9 +26,57 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_MATERIAL_HPP
-#define __NGEN_DRAWING_MATERIAL_HPP
 
+#include "Ngen.Drawing.GpuShader.hpp"
 
+namespace Ngen {
+   namespace Drawing {
 
-#endif // __NGEN_DRAWING_MATERIAL_HPP
+      GpuShader::GpuShader(EShaderType type, const string& fileName) : mId(0), mType(type) {
+         mId = glCreateShader(gl_typeof(type));
+         auto source = File::ReadAll(fileName);
+         auto len = source.Length();
+         auto begin = (GLchar**)source.Begin();
+         glShaderSource(mId, 1, begin, (GLint*)&len);
+      }
+
+      bool GpuShader::Compile() {
+         glCompileShader(mId);
+
+         GLint compiled = false;
+         glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
+
+         if(!compiled) {
+            return false;
+         }
+
+         return true;
+      }
+
+      bool GpuShader::Compile(string& glerror) {
+         glCompileShader(mId);
+
+         GLint compiled = false;
+         glGetShaderiv(mId, GL_COMPILE_STATUS, &compiled);
+
+         if(!compiled) {
+            GLsizei length = 0;
+
+            glGetShaderiv(mId, GL_INFO_LOG_LENGTH, &length);
+            glerror = string(length);
+            glGetShaderInfoLog(mId, length, &length, glerror.Begin());
+
+            return false;
+         }
+
+         return true;
+      }
+
+      void GpuShader::Delete() {
+         if(mId != null) {
+            glDeleteShader(mId);
+            mId = null;
+         }
+      }
+   }
+}

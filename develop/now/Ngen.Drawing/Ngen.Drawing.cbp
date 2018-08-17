@@ -50,9 +50,9 @@
 		<Linker>
 			<Add library="Ngen" />
 			<Add library="opengl32" />
-			<Add library="gdi32" />
-			<Add library="glu32" />
 			<Add library="Ngen.Math" />
+			<Add library="glew32" />
+			<Add directory="../external/bin" />
 		</Linker>
 		<Unit filename="Ngen.Drawing.Canvas.Win32.cpp">
 			<Option virtualFolder="source/" />
@@ -60,16 +60,19 @@
 		<Unit filename="Ngen.Drawing.GpuProgram.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Drawing.GpuShader.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="Ngen.Drawing.MeshBuffer.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Drawing.Shader.cpp">
+		<Unit filename="Ngen.Drawing.SLight.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Drawing.VertexBuffer.cpp">
+		<Unit filename="Ngen.Drawing.SVertex.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
-		<Unit filename="Ngen.Drawing.VertexScheme.cpp">
+		<Unit filename="Ngen.Drawing.Texture.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
 		<Unit filename="include/Build.Ngen.Drawing.Logic.hpp">
@@ -84,43 +87,46 @@
 		<Unit filename="include/Ngen.Drawing.CanvasCreationParams.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EGraphicBufferUsage.hpp">
+		<Unit filename="include/Ngen.Drawing.EGpuBufferUsage.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EGraphicDrawMode.hpp">
+		<Unit filename="include/Ngen.Drawing.EGpuDrawMode.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.EGpuElementType.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.EShaderType.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.EVertexElementType.hpp">
+		<Unit filename="include/Ngen.Drawing.FrameBuffer.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.GpuElement.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.GpuProgram.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.GraphicBuffer.hpp">
+		<Unit filename="include/Ngen.Drawing.GpuScheme.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.Material.hpp">
+		<Unit filename="include/Ngen.Drawing.GpuShader.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.MeshBuffer.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Ngen.Drawing.Shader.hpp">
+		<Unit filename="include/Ngen.Drawing.SLight.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.SVertex.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.Drawing.Texture.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.Typedefs.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
-		<Unit filename="include/Ngen.Drawing.VertexBuffer.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
-		<Unit filename="include/Ngen.Drawing.VertexElement.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
-		<Unit filename="include/Ngen.Drawing.VertexScheme.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Drawing.hpp">

@@ -26,44 +26,51 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_EGFXDRAWMODE_HPP
-#define __NGEN_DRAWING_EGFXDRAWMODE_HPP
+#ifndef __NGEN_DRAWING_EGPUELEMENTTYPE_HPP
+#define __NGEN_DRAWING_EGPUELEMENTTYPE_HPP
 
 #include "Ngen.Drawing.Typedefs.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
-      enum class EGraphicDrawMode {
-			POINT,
-			QUAD,
-			QUAD_STRIP,
-			POLYGON,
-			TRIANGLE,
-			TRIANGLE_STRIP,
-			TRIANGLE_FAN,
-			LINE,
-			LINE_STRIP,
-			LINE_LOOP,
-
+      enum class EGpuElementType {
+         BOOLEAN,
+			FLOAT,
+			DOUBLE,
+			UINT,
+			INT,
+         BYTE,
+         BOOL,
+         REAL,
 		};
-      /*
-		GLenum gl_typeof(EGraphicDrawMode mode) {
-			switch(mode) {
-			case EGraphicDrawMode::POINT: return GL_POINTS;
-			case EGraphicDrawMode::QUAD: return GL_QUADS;
-			case EGraphicDrawMode::POLYGON: return GL_POLYGON;
-			case EGraphicDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
-			case EGraphicDrawMode::TRIANGLE: return GL_TRIANGLES;
-			case EGraphicDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
-			case EGraphicDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
-			case EGraphicDrawMode::LINE: return GL_LINES;
-			case EGraphicDrawMode::LINE_STRIP: return GL_LINE_STRIP;
-			case EGraphicDrawMode::LINE_LOOP: return GL_LINE_LOOP;
+
+		GLenum gl_typeof(EGpuElementType type) {
+			switch(type) {
+			case EGpuElementType::REAL: return GL_FLOAT;
+			case EGpuElementType::FLOAT: return GL_FLOAT;
+			case EGpuElementType::DOUBLE: return GL_DOUBLE;
+			case EGpuElementType::UINT: return GL_UNSIGNED_INT;
+			case EGpuElementType::INT: return GL_INT;
+			case EGpuElementType::BYTE: return GL_BYTE;
+			case EGpuElementType::BOOL: return GL_BOOL;
 			default: return 0;
 			}
 		}
-		*/
+
+		uword gl_sizeof(EGpuElementType type, uword length=1) {
+			switch(type) {
+			case EGpuElementType::REAL: return sizeof(float)*length;
+			case EGpuElementType::FLOAT: return sizeof(float)*length;
+			case EGpuElementType::DOUBLE: return sizeof(double)*length;
+			case EGpuElementType::UINT: return sizeof(uint32)*length;
+			case EGpuElementType::INT: return sizeof(int32)*length;
+			case EGpuElementType::BYTE: return sizeof(char8)*length;
+			case EGpuElementType::BOOL: return sizeof(bool)*length;
+			default: return 0;
+			}
+		}
    }
 }
-#endif // __NGEN_DRAWING_EGFXDRAWMODE_HPP
+
+#endif

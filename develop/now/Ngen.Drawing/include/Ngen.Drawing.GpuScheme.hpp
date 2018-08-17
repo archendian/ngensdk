@@ -26,22 +26,40 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_VERTEXSEMANTIC_HPP
-#define __NGEN_DRAWING_VERTEXSEMANTIC_HPP
+#ifndef __NGEN_DRAWING_GPUSCHEME_HPP
+#define __NGEN_DRAWING_GPUSCHEME_HPP
 
-#include "Ngen.Drawing.VertexElement.hpp"
+#include "Ngen.Drawing.GpuElement.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
-		class ngen_drawing_api VertexScheme {
+		class ngen_drawing_api GpuScheme {
 		public:
-			VertexScheme(const string& name, std::initializer_list<VertexElement> init) : mName(name), mElementMap() , mSize(0) {
+			GpuScheme(const string& name, std::initializer_list<GpuElement> init, VoidStaticDelegate<GpuScheme*>::TFunction initializer) :
+			   mName(name), mElementMap(), mInitialize(initializer), mSize(0) {
+
 				uword offset = 0;
             uword i = 0;
 
 				for(auto e : init) {
-               e.mOffset = offset;
+               e.Offset(offset);
+					mSize += e.Size();
+					offset += e.Size();
+
+               mElementMap.Add(e.Id(), e);
+					i++;
+				}
+			}
+
+         GpuScheme(const string& name, std::initializer_list<GpuElement> init) :
+			   mName(name), mElementMap(), mInitialize(), mSize(0) {
+
+				uword offset = 0;
+            uword i = 0;
+
+				for(auto e : init) {
+               e.Offset(offset);
 					mSize += e.Size();
 					offset += e.Size();
 
@@ -53,37 +71,25 @@ namespace Ngen {
 			uword Size() const { return mSize; }
 			const mirror Name() const { return mName; }
 
-			void Set() const {
-				for(uword i = 0; i < mElementMap.Length(); i++) {
-				//	 glVertexP(i, mElementMap.Length(), typeof(mElementMap.ValueAt(i).Type()), 0, mElementMap.ValueAt(i).Offset());
-				}
+			void Initialize() {
+			   mInitialize(this);
 			}
 
-			VertexElement* Element(const string& usage, uword usageIndex) {
+			GpuElement* Element(const string& usage, uword usageIndex) {
 				return &mElementMap[usage+string::From(usageIndex)];
 			}
 
-			/** @brief Origin (XYZ) */
-			static VertexScheme* o3();
-
-			/** @brief Origin (XYZ),
-           *        Color (RGB)
-           */
-         static VertexScheme* o3c3();
-
-         /** @brief Origin (XYZ),
-           *        Color (RGB),
-           *        Normal (XYZ),
-           *        UV (XY)
-           */
-         static VertexScheme* o3c3n3u2();
+         Array<GpuElement> Elements() const {
+            return mElementMap.Values();
+         }
 
 		protected:
 			const mirror mName;
-			Map<mirror, VertexElement> mElementMap;
+			Map<mirror, GpuElement> mElementMap;
+			VoidStaticDelegate<GpuScheme*>::TFunction mInitialize;
 			uword mSize;
 		};
    }
 }
 
-#endif // __NGEN_DRAWING_VERTEXSEMANTIC_HPP
+#endif // __NGEN_DRAWING_GPUSCHEME_HPP

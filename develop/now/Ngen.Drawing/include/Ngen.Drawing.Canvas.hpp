@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "Ngen.Drawing.CanvasCreationParams.hpp"
 
 using namespace Ngen;
-//using namespace Ngen::Math;
+using namespace Ngen::Math;
 
 namespace Ngen {
    namespace Drawing {

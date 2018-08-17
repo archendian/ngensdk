@@ -53,6 +53,7 @@
 			<Add library="Ngen.Math" />
 			<Add library="glew32" />
 			<Add directory="../external/bin" />
+			<Add directory="../external/lib" />
 		</Linker>
 		<Unit filename="Ngen.Drawing.Canvas.Win32.cpp">
 			<Option virtualFolder="source/" />

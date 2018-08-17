@@ -353,7 +353,7 @@ namespace Ngen {
       /** @brief Gets an array of each item in the list that falls between the given range. */
       Array<T> ToArray(uword start = 0, uword length = 0) const {
          if(mLength == 0) {
-            return Array<T>::Empty;
+            return Array<T>();
          } else if(start > mLength) {
             THROW(OutOfRangeException("The given argument 'start' cannot be larger than the length of the list."));
          } else if(length > mLength) {

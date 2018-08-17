@@ -220,6 +220,6 @@ namespace Ngen {
 		}
 	protected:
 		TDict mData;
-};
+	};
 }
 #endif // __NGEN_MAP_HPP

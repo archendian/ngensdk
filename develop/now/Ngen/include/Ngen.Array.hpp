@@ -56,7 +56,7 @@ namespace Ngen {
             Set((T*)copy.begin(), copy.size(), readOnly);
 		}
 
-        /** @brief Constructor. (T*, uword, bool)
+    /** @brief Constructor. (T*, uword, bool)
 		* @param copy The pointer where the data structures will be referenced to create the array.
 		* @param length The number of structures being copied.
 		* @param readOnly Determines if the array will copy the data structures or only reference them.
@@ -65,14 +65,24 @@ namespace Ngen {
             Set(((T*)copy.begin())+start, copy.size(), readOnly);
 		}
 
-		/** @brief Constructor. (T*, uword, bool)
+     /** @brief Constructor. (T*, uword, bool)
 		* @param copy The pointer where the data structures will be referenced to create the array.
 		* @param length The number of structures being copied.
 		* @param start The index offset to begin copying the data structures.
 		* @param readOnly Determines if the array will copy the data structures or only reference them.
 		*/
-		Array(T* copy, uword length, uword start=0, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
-			Set(copy+start, length, readOnly);
+		Array(T* copy, uword length, uword start, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
+			Set(copy, length+start, readOnly);
+		}
+
+      /** @brief Constructor. (T*, uword, bool)
+		* @param copy The pointer where the data structures will be referenced to create the array.
+		* @param length The number of structures being copied.
+		* @param start The index offset to begin copying the data structures.
+		* @param readOnly Determines if the array will copy the data structures or only reference them.
+		*/
+		Array(T* copy, uword length, bool readOnly = true) : mData(null), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
+			Set(copy, length, readOnly);
 		}
 
 		/** @brief Constructor. Copy. (const TSelf&)
@@ -519,7 +529,7 @@ namespace Ngen {
 	};
 
 
-	typedef Array<uint8> ByteArray;
+	typedef Array<byte> ByteArray;
 }
 
 #endif // __NGEN_ARRAY_HPP

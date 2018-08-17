@@ -77,6 +77,8 @@ THE SOFTWARE.
 
 #include "Ngen.Window.hpp"
 #include "Ngen.File.hpp"
+#include "Ngen.FileHandler.hpp"
+#include "Ngen.FileStream.hpp"
 
 
 // The C-API used to register reflected APIs through a binding language

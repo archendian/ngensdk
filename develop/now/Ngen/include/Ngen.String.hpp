@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2016 NGENWARE STUDIOS, LLC
+COPYRIGHT (C) 2018 NGENWARE STUDIOS, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -97,6 +97,14 @@ namespace Ngen {
 
       String(const TChar* str, bool readOnly) : mData((TChar*)str), mLength(0), mCapacity(0), mIsReadonly(readOnly) {
          mCapacity = mLength = TSelf::GetLength(str);
+         if(!readOnly) {
+            mData = Memory::New<TChar>(mCapacity);
+            Memory::Copy<TChar>(str, mData, mLength);
+            pTerminate();
+         }
+      }
+
+      String(const TChar* str, uword length, bool readOnly) : mData((TChar*)str), mLength(length), mCapacity(length), mIsReadonly(readOnly) {
          if(!readOnly) {
             mData = Memory::New<TChar>(mCapacity);
             Memory::Copy<TChar>(str, mData, mLength);
@@ -994,7 +1002,6 @@ namespace Ngen {
 #  define nstring8(str) string8(str, false)
 
 #  define incode_string(in_code_text) string(#in_code_text, true)
-
 }
 
 #endif // __NGEN_STRING_HPP

@@ -30,37 +30,39 @@ THE SOFTWARE.
 #define __NGEN_STREAM_HPP
 
 #include "Ngen.Exception.hpp"
+#include "Ngen.String.hpp"
 
 namespace Ngen {
 
 	class ngen_api Stream {
    public:
-      Stream();
-      virtual ~Stream();
+      Stream() {}
+      virtual ~Stream() {
+      }
 
       /** @brief Reads from the current position of the cursor to the end of the stream.
        */
-      virtual string8 ReadToEnd() const pure;
+      virtual Ngen::string8 ReadToEnd() pure;
 
       /** @brief Reads from the current position of the cursor until a given length or EOF is reached.
        */
-      virtual string8 Read(uint64 count) const pure;
+      virtual Ngen::string8 Read(uint64 count) pure;
 
       /** @brief Closes the stream.
        */
-      virtual void Close() const pure;
+      virtual void Close() pure;
 
       /** @brief Opens the stream.
        */
-      virtual bool Open() const pure;
+      virtual bool Open() pure;
 
       /** @brief Gets the current cursor position.
        */
-      virtual uint64 Cursor() const pure;
+      virtual Ngen::uint64 Cursor() const pure;
 
       /** @brief Sets the current cursor position.
        */
-      virtual void Cursor(uint64 set) const pure;
+      virtual void Cursor(Ngen::uint64 set) pure;
 	};
 }
 

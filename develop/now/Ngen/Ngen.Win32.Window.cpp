@@ -75,10 +75,30 @@ namespace Ngen {
    bool Window::HandleMessage() {
       if(mHandle != null) {
          if (PeekMessage(&win32_AppMessage, NULL, 0, 0, PM_REMOVE)) {
-            if (win32_AppMessage.message == WM_QUIT) {
-                this->Close();
-                win32_Quit = true;
-                return false;
+            auto message = win32_AppMessage.message;
+            uint32 lparam = (uint32)win32_AppMessage.lParam;
+            uint32 wparam = (uint32)win32_AppMessage.wParam;
+
+            switch(message) {
+            case WM_QUIT: {
+               this->Close();
+               win32_Quit=true;
+               return false;
+            }
+
+            case WM_MOVE: {
+               Move((uword)(uint16) LOWORD(lparam),
+                    (uword)(uint16) HIWORD(lparam));
+               break;
+            }
+
+            case WM_SIZE: {
+               Resize((uword)(uint16) LOWORD(lparam),
+                      (uword)(uint16) HIWORD(lparam));
+               break;
+            }
+
+            default: {}
             }
 
             TranslateMessage(&win32_AppMessage);
@@ -106,9 +126,10 @@ namespace Ngen {
       }
    }
 
-   void Window::Resize(uword width, uword y) {
+   void Window::Resize(uword width, uword height) {
       if(mHandle != null) {
-            //
+         mWidth = width;
+         mHeight = height;
          OnResized.Fire(this);
       }
    }
@@ -116,7 +137,8 @@ namespace Ngen {
 
    void Window::Move(uword x, uword y) {
       if(mHandle != null) {
-            //
+         mX = x;
+         mY = y;
          OnMoved.Fire(this);
       }
    }

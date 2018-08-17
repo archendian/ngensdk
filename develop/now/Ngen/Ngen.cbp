@@ -58,6 +58,9 @@
 		<Unit filename="Ngen.Console.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.FileHandler.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="Ngen.Library.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
@@ -152,6 +155,12 @@
 		<Unit filename="include/Ngen.File.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Ngen.FileHandler.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
+		<Unit filename="include/Ngen.FileStream.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Ngen.KeyValuePair.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -219,9 +228,6 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.Typedefs.hpp">
-			<Option virtualFolder="include/" />
-		</Unit>
-		<Unit filename="include/Ngen.UnknownObject.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Ngen.UnknownReference.hpp">

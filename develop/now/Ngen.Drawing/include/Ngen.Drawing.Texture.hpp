@@ -1,6 +1,8 @@
 #ifndef __NGEN_DRAWING_TEXTURE_HPP
 #define __NGEN_DRAWING_TEXTURE_HPP
 
+#include "Ngen.Drawing.Typedefs.hpp"
+
 namespace Ngen {
 
    namespace Drawing {

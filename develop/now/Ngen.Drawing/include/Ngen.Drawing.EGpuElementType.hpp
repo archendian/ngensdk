@@ -45,31 +45,8 @@ namespace Ngen {
          REAL,
 		};
 
-		GLenum gl_typeof(EGpuElementType type) {
-			switch(type) {
-			case EGpuElementType::REAL: return GL_FLOAT;
-			case EGpuElementType::FLOAT: return GL_FLOAT;
-			case EGpuElementType::DOUBLE: return GL_DOUBLE;
-			case EGpuElementType::UINT: return GL_UNSIGNED_INT;
-			case EGpuElementType::INT: return GL_INT;
-			case EGpuElementType::BYTE: return GL_BYTE;
-			case EGpuElementType::BOOL: return GL_BOOL;
-			default: return 0;
-			}
-		}
-
-		uword gl_sizeof(EGpuElementType type, uword length=1) {
-			switch(type) {
-			case EGpuElementType::REAL: return sizeof(float)*length;
-			case EGpuElementType::FLOAT: return sizeof(float)*length;
-			case EGpuElementType::DOUBLE: return sizeof(double)*length;
-			case EGpuElementType::UINT: return sizeof(uint32)*length;
-			case EGpuElementType::INT: return sizeof(int32)*length;
-			case EGpuElementType::BYTE: return sizeof(char8)*length;
-			case EGpuElementType::BOOL: return sizeof(bool)*length;
-			default: return 0;
-			}
-		}
+		GLenum gl_typeof(EGpuElementType type);
+		uword gl_sizeof(EGpuElementType type, uword length=1);
    }
 }
 

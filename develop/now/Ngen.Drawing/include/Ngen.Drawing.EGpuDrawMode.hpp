@@ -48,21 +48,7 @@ namespace Ngen {
 
 		};
 
-		GLenum gl_typeof(EGpuDrawMode mode) {
-			switch(mode) {
-			case EGpuDrawMode::POINT: return GL_POINTS;
-			case EGpuDrawMode::QUAD: return GL_QUADS;
-			case EGpuDrawMode::POLYGON: return GL_POLYGON;
-			case EGpuDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
-			case EGpuDrawMode::TRIANGLE: return GL_TRIANGLES;
-			case EGpuDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
-			case EGpuDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
-			case EGpuDrawMode::LINE: return GL_LINES;
-			case EGpuDrawMode::LINE_STRIP: return GL_LINE_STRIP;
-			case EGpuDrawMode::LINE_LOOP: return GL_LINE_LOOP;
-			default: return 0;
-			}
-		}
+		GLenum gl_typeof(EGpuDrawMode mode);
    }
 }
 #endif // __NGEN_DRAWING_EGFXDRAWMODE_HPP

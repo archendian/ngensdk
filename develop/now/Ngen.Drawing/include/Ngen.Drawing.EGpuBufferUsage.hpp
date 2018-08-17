@@ -46,20 +46,7 @@ namespace Ngen {
 			DYNAMIC_COPY
 		};
 
-		GLenum gl_typeof(EGpuBufferUsage usage) {
-			switch(usage) {
-			case EGpuBufferUsage::STATIC_DRAW:   return GL_STATIC_DRAW;
-			case EGpuBufferUsage::STATIC_READ:   return GL_STATIC_READ;
-			case EGpuBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
-			case EGpuBufferUsage::STREAM_READ:   return GL_STREAM_READ;
-			case EGpuBufferUsage::STREAM_DRAW:   return GL_STREAM_DRAW;
-			case EGpuBufferUsage::STREAM_COPY:   return GL_STREAM_COPY;
-			case EGpuBufferUsage::DYNAMIC_DRAW:  return GL_DYNAMIC_DRAW;
-			case EGpuBufferUsage::DYNAMIC_READ:  return GL_DYNAMIC_READ;
-			case EGpuBufferUsage::DYNAMIC_COPY:  return GL_DYNAMIC_COPY;
-			default: return 0;
-			}
-		}
+		GLenum gl_typeof(EGpuBufferUsage usage);
    }
 }
 

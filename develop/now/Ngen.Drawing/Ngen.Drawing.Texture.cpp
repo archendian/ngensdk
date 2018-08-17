@@ -30,8 +30,6 @@ THE SOFTWARE.
 
 namespace Ngen {
    namespace Drawing {
-      Texture* _currentTexture = null;
-      Texture* Texture::Current() { return _currentTexture; }
-      void Texture::Current(Texture* current) { _currentTexture = current; }
+
    }
 }

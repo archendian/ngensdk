@@ -75,6 +75,9 @@
 		<Unit filename="Ngen.Drawing.Texture.cpp">
 			<Option virtualFolder="source/" />
 		</Unit>
+		<Unit filename="Ngen.Drawing.cpp">
+			<Option virtualFolder="source/" />
+		</Unit>
 		<Unit filename="include/Build.Ngen.Drawing.Logic.hpp">
 			<Option virtualFolder="include/Build/" />
 		</Unit>

@@ -51,7 +51,7 @@ namespace Ngen {
          }
 
          void BindForDraw() const {
-            glBindFramebuffer(GL_FDRAW_FRAMEBUFFER, mId);
+            glBindFramebuffer(GL_FRAMEBUFFER, mId);
          }
 
          void BindForRead() const {
@@ -65,10 +65,10 @@ namespace Ngen {
             }
          }
 
-         uword Id() const { return mId; }
+         GLuint Id() const { return mId; }
 
       protected:
-         uword mId;
+         GLuint mId;
       };
    }
 }

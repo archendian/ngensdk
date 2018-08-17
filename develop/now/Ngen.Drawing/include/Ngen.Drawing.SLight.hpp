@@ -29,7 +29,6 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_SLIGHT_HPP
 #define __NGEN_DRAWING_SLIGHT_HPP
 
-#include "Ngen.Drawing.EGpuElementType.hpp"
 #include "Ngen.Drawing.GpuElement.hpp"
 #include "Ngen.Drawing.GpuScheme.hpp"
 

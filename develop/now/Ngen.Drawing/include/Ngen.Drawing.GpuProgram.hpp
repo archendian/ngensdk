@@ -64,7 +64,7 @@ namespace Ngen {
 
          template<typename T>
          void Uniform(const string& id, const T& value) {
-            gl_set_uniform(UniformLocation(id), value);
+            gl_set_uniform<T>(UniformLocation(id), value);
          }
 
          void Sampler2d(const string& id, uword index) {

@@ -37,8 +37,7 @@ namespace Ngen {
 		class ngen_drawing_api GpuScheme {
 		public:
 			GpuScheme(const string& name, std::initializer_list<GpuElement> init, VoidStaticDelegate<GpuScheme*>::TFunction initializer) :
-			   mName(name), mElementMap(), mInitialize(initializer), mSize(0) {
-
+            mName(name), mElementMap(), mInitialize(initializer), mSize(0) {
 				uword offset = 0;
             uword i = 0;
 
@@ -72,7 +71,7 @@ namespace Ngen {
 			const mirror Name() const { return mName; }
 
 			void Initialize() {
-			   mInitialize(this);
+			   mInitialize.Call(this);
 			}
 
 			GpuElement* Element(const string& usage, uword usageIndex) {
@@ -86,7 +85,7 @@ namespace Ngen {
 		protected:
 			const mirror mName;
 			Map<mirror, GpuElement> mElementMap;
-			VoidStaticDelegate<GpuScheme*>::TFunction mInitialize;
+			VoidStaticDelegate<GpuScheme*> mInitialize;
 			uword mSize;
 		};
    }

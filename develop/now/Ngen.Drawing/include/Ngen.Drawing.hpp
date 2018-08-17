@@ -33,7 +33,7 @@ THE SOFTWARE.
 
 #include "Ngen.Drawing.Typedefs.hpp"
 #include "Ngen.Drawing.EGpuBufferUsage.hpp"
-#include "Ngen.Drawing.EGpuDrawMode.hpp"
+//#include "Ngen.Drawing.EGpuDrawMode.hpp"
 #include "Ngen.Drawing.EShaderType.hpp"
 #include "Ngen.Drawing.EGpuElementType.hpp"
 #include "Ngen.Drawing.GpuElement.hpp"

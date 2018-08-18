@@ -49,9 +49,110 @@ namespace Ngen {
 			bool operator==(const Vector4 rhs) const {
             return X == rhs.X && Y == rhs.Y && Z == rhs.Z && W == rhs.W;
 			}
+
 			bool operator!=(const Vector4 rhs) const {
             return X != rhs.X || Y != rhs.Y || Z != rhs.Z || W != rhs.W;
 			}
+
+			Vector4& operator=(const Vector4& rhs) {
+            X = rhs.X;
+            Y = rhs.Y;
+            Z = rhs.Z;
+            W = rhs.W;
+            return *this;
+         }
+
+         Vector4 operator-() {
+            return Vector4(-X, -Y, -Z, -W);
+         }
+
+         Vector4 operator-(const Vector4& rhs) const {
+            return Vector4(X-rhs.X, Y-rhs.Y, Z-rhs.Z. W-rhs.W);
+         }
+
+         Vector4& operator-=(const Vector4& rhs) {
+            X -= rhs.X;
+            Y -= rhs.Y;
+            Z -= rhs.Z;
+            return *this;
+         }
+
+         Vector4 operator+(const Vector4& rhs) const {
+            return Vector4(X+rhs.X, Y+rhs.Y, Z+rhs.Z, W+rhs.W);
+         }
+
+         Vector4& operator+=(const Vector4& rhs) {
+            X += rhs.X;
+            Y += rhs.Y;
+            Z += rhs.Z;
+            Z += rhs.W;
+            return *this;
+         }
+
+         Vector4 operator/(real rhs) const {
+            return Vector3(X/rhs, Y/rhs, Z/rhs, W/rhs);
+         }
+
+         Vector4& operator/=(real rhs) {
+            X /= rhs;
+            Y /= rhs;
+            Z /= rhs;
+            W /= rhs;
+            return *this;
+         }
+
+         Vector4 operator*(real rhs) const {
+            return Vector4(X*rhs, Y*rhs, Z*rhs, W*rhs);
+         }
+
+         Vector4 &operator*=(real rhs) {
+            X *= rhs;
+            Y *= rhs;
+            Z *= rhs;
+            W *= rhs;
+            return *this;
+         }
+
+         real& operator[](uword index) {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            case 3: return W;
+            default: return 0.0f;
+            }
+         }
+
+         const real& operator[](uword index) const {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            case 3: return W;
+            default: return 0.0f;
+            }
+         }
+
+         real Dot(const Vector4& rhs) const {
+            return X*rhs.X+Y*rhs.Y+Z*rhs.Z+W*rhs.W;
+         }
+
+         real MagnitudeSq() const {
+            return (X*X)+(Y*Y)+(Z*Z)+(W*W);
+         }
+
+         real Magnitude() const {
+            return t_calc::Sqrt((X*X)+(Y*Y)+(Z*Z)+(W*W));
+         }
+
+         Vector4& Normalize() {
+            auto mag = Magnitude();
+            X /= mag;
+            Y /= mag;
+            Z /= mag;
+            W /= mag;
+            return *this;
+         }
 		};
 
 		typedef Vector4 vec4;

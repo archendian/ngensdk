@@ -51,6 +51,22 @@ namespace Ngen {
             return X != rhs.X && Y != rhs.Y;
          }
 
+         real& operator[](uword index) {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            default: return 0.0f;
+            }
+         }
+
+         const real& operator[](uword index) const {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            default: return 0.0f;
+            }
+         }
+
          static Vector2 Zero();
          static Vector2 Up();
          static Vector2 Down();

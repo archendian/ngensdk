@@ -6,7 +6,7 @@
            \/        \/     \/    \/
 The MIT License (MIT)
 
-COPYRIGHT (C) 2017 FIXCOM, LLC
+COPYRIGHT (C) 2018 FIXCOM, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,133 @@ namespace Ngen {
 			Vector3(real xyz) : X(xyz), Y(xyz), Z(xyz) {}
 			Vector3(real x, real y, real z) : X(x), Y(y), Z(z) {}
 			Vector3(const Vector3& copy) : X(copy.X), Y(copy.Y), Z(copy.Z) {}
+
+			bool operator==(const Vector3& rhs) const {
+            return X == rhs.X && Y == rhs.Y && Z == rhs.Z;
+			}
+
+			bool operator!=(const Vector3& rhs) const {
+            return X != rhs.X || Y != rhs.Y || Z != rhs.Z;
+			}
+
+         Vector3& operator=(const Vector3& rhs) {
+            X = rhs.X;
+            Y = rhs.Y;
+            Z = rhs.Z;
+            return *this;
+         }
+
+         Vector3 operator-() {
+            return Vector3(-X, -Y, -Z);
+         }
+
+         Vector3 operator-(const Vector3& rhs) const {
+            return rhsector3(X - rhs.X, Y - rhs.Y, Z - rhs.Z);
+         }
+
+         Vector3& operator-=(const Vector3& rhs) {
+            X -= rhs.X;
+            Y -= rhs.Y;
+            Z -= rhs.Z;
+            return *this;
+         }
+
+         Vector3 operator+(const Vector3& rhs) const {
+            return Vector3(X+rhs.X, Y+rhs.Y, Z+rhs.Z);
+         }
+
+         Vector3& operator+=(const Vector3& rhs) {
+            X += rhs.X;
+            Y += rhs.Y;
+            Z += rhs.Z;
+            return *this;
+         }
+
+         Vector3 operator/(real rhs) const {
+            return Vector3(X/rhs, Y/rhs, Z/rhs);
+         }
+
+         Vector3& operator/=(real rhs) {
+            X /= rhs;
+            Y /= rhs;
+            Z /= rhs;
+            return *this;
+         }
+
+         Vector3 operator*(real rhs) const {
+            return Vector3(X*rhs, Y*rhs, Z*rhs);
+         }
+
+         Vector3 &operator*=(real rhs) {
+            X *= rhs;
+            Y *= rhs;
+            Z *= rhs;
+            return *this;
+         }
+
+         real& operator[](uword index) {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            default: return 0.0f;
+            }
+         }
+
+         const real& operator[](uword index) const {
+            switch (index) {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            default: return 0.0f;
+            }
+         }
+
+         Vector3 Cross(const Vector3& rhs) const {
+            return Vector3(Y * rhs.Z - Z * rhs.Y,
+                           Z * rhs.X - X * rhs.Z,
+                           X * rhs.Y - Y * rhs.X);
+         }
+
+         real Dot(const Vector3& rhs) const {
+            X * rhs.X + Y * rhs.Y + Z * rhs.Z;
+         }
+
+         real MagnitudeSq() const {
+            return X*X + Y*Y + Z*Z;
+         }
+
+         real Magnitude() const {
+            return t_calc::Sqrt(X*X + Y*Y + Z*Z);
+         }
+
+         Vector3& Normalize() {
+            real mag = Magnitude();
+            X /= mag;
+            Y /= mag;
+            Z /= mag;
+            return *this;
+        }
+
+        static Vector3 Zero();
+        static Vector3 Up();
+        static Vector3 Down();
+        static Vector3 Forward();
+        static Vector3 Backward();
 		};
+
+		inline Vector3 operator*(real lhs, const Vector3& rhs) {
+         return rhs * lhs;
+		}
+		inline Vector3 operator-(real lhs, const Vector3& rhs) {
+         return rhs - lhs;
+		}
+		inline Vector3 operator+(real lhs, const Vector3& rhs) {
+         return rhs + lhs;
+		}
+		inline Vector3 operator/(real lhs, const Vector3& rhs) {
+         return rhs / lhs;
+		}
 
 		typedef Vector3 vec3;
 	}

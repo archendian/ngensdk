@@ -139,9 +139,42 @@ enum class EAtomicElementType {
 	METALLOID,
 };
 
-const real NUETRON_MASS_AMU = 1.008664f;
-const real PROTON_MASS_AMU = 1.007276f;
-const real ELECTRON_MASS_AMU = 0.00054858f;
+class Chemistry {
+	/** @brief The number of atoms or molecules that make up a single Mol for any substance. */
+	static const real ATOMS_PER_MOLE = 6.022e+23;
+	
+	
+	/** @brief The mass of a single nuetron in amu. */
+	static const real NUETRON_MASS_AMU = 1.008664r;
+	
+	/** @brief The mass of a single proton in amu. */
+	static const real PROTON_MASS_AMU = 1.007276r;
+	
+	/** @brief The mass of a single electron in amu. */
+	static const real ELECTRON_MASS_AMU = 0.00054858r;
+	
+	real NumberOfAtoms(real mol) {
+		return mol * real;
+	}
+};
+
+typedef Chemistry CHEM;
+
+class GeneralRelatvity {
+	/** @brief The gravity of Earth measured in meters per second squared (m/s^2). */
+	static const real EARTH_GRAVITY = 9.807r;
+	]
+	/** @brief The gravity of Mars measured in meters per second squared (m/s^2). */
+	static const real MARS_GRAVITY = 3.711r;
+	
+	/** @brief The gravity of the Sun measured in meters per second squared (m/s^2). */
+	static const real SUN_GRAVITY = 247.0r;
+	
+	/** @brief The gravity of the Moon measured in meters per second squared (m/s^2). */
+	static const real MOON_GRAVITY = 1.62r;
+};
+
+typedef GeneralRelatvity GR;
 
 class AtomicElement {
 public:
@@ -176,23 +209,23 @@ public:
 			ecount += Shell[i];
 		}
 		
-		real value = ELECTRON_MASS_AMU * ecount;
-		value += PROTON_MASS_AMU * Number;
-		value += NUETRON_MASS_AMU * Number;
+		real value = CHEM::ELECTRON_MASS_AMU * ecount;
+		value += CHEM::PROTON_MASS_AMU * Number;
+		value += CHEM::NUETRON_MASS_AMU * Number;
 		
 		return value;
 	}
 	
 	// in amus
-	real IsotopeMassInAmu(uword index) const {
+	real IsotopeMassInAmu(word index) const {
 		uword ecount = 0;
 		for(uword i = 0; i < Shell.Count(); ++i) {
 			ecount += Shell[i];
 		}
 		
-		real value = ELECTRON_MASS_AMU * ecount;
-		value += PROTON_MASS_AMU * Number;
-		value += NUETRON_MASS_AMU * Number + index;
+		real value = CHEM::ELECTRON_MASS_AMU * ecount;
+		value += CHEM::PROTON_MASS_AMU * Number;
+		value += CHEM::NUETRON_MASS_AMU * (Number + index);
 		
 		return value;
 	}
@@ -206,6 +239,14 @@ public:
 		return null;
 	}
 	
+	static AtomicElement& Get(const mirror& name) {
+		if mElement.ContainsKey(name)) {
+			return &mElement[name];
+		}
+		
+		return null;
+	}
+	
 	static AtomicElement& GetBySymbol(const string& symbol) {
 		if mElementBySymbol.ContainsKey(symbol)) {
 			return mElementBySymbol[symbol];
@@ -213,6 +254,7 @@ public:
 		
 		return null;
 	}
+	
 protected:
 	static Map<mirror, AtomicElement> mElement;
 	static Map<mirror, AtomicElement*> mElementBySymbol;

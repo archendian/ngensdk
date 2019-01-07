@@ -139,36 +139,34 @@ enum class EAtomicElementType {
 	METALLOID,
 };
 
-enum class EAtomicParticle {
-	PROTON,
-	ELECTRON,
-	NUETRON,
-};
-
 const real NUETRON_MASS_AMU = 1.008664f;
 const real PROTON_MASS_AMU = 1.007276f;
 const real ELECTRON_MASS_AMU = 0.00054858f;
 
 class AtomicElement {
 public:
-	string Name;
+	mirror Name;
 	string Symbol;
-	string Type;
+	EAtomicElementType Type;
 	real Weight;
 	uword Group;
 	uword Period;
 	Array<uword> Shell;
+	real MeltingPt;
+	real BoilingPt;
 	
-	AtomicElement(const string& name, const string& symbol, EAtomicElementType type, AtomicElementBuilder build) : Name(name), Symbol(symbol), Type(type), Weight(0.f),Group(0), Period(0), Shell(1), PerShell(0) {\
+	AtomicElement(const string& name, const string& symbol, EAtomicElementType type, AtomicElementBuilder build) :
+		Name(mirror(name)), Symbol(symbol), Type(type), Weight(0.f),Group(0), Period(0), Shell(1), MeltingPt(0.0), BoilingPt(0.0) {\
 		build(this);
-		mElement.Add(name, *this);
-		mELementBySymbol(symbol, &mElement[name]);
+		mElement.Add(mirror(name), *this);
+		mELementBySymbol(symbol, &mElement[mirror(name)]);
 	}
 	
-	AtomicElement(const string& name, const string& symbol, EAtomicElementType type,  uword shellCount, AtomicElementBuilder build) : Name(name), Symbol(symbol), Type(type), Weight(0.f),Group(0), Period(0), Shell(shellCount), PerShell(0) {
+	AtomicElement(const string& name, const string& symbol, EAtomicElementType type,  uword shellCount, AtomicElementBuilder build) : 
+		Name(mirror(name)), Symbol(symbol), Type(type), Weight(0.f),Group(0), Period(0), Shell(shellCount), MeltingPt(0.0), BoilingPt(0.0) {
 		build(this);
-		mElement.Add(name, *this);
-		mELementBySymbol(symbol, &mElement[name]);
+		mElement.Add(mirror(name), *this);
+		mELementBySymbol(symbol, &mElement[mirror(name)]);
 	}
 	
 	// in amus
@@ -181,7 +179,9 @@ public:
 		real value = ELECTRON_MASS_AMU * ecount;
 		value += PROTON_MASS_AMU * Number;
 		value += NUETRON_MASS_AMU * Number;
-	};
+		
+		return value;
+	}
 	
 	// in amus
 	real IsotopeMassInAmu(uword index) const {
@@ -193,55 +193,136 @@ public:
 		real value = ELECTRON_MASS_AMU * ecount;
 		value += PROTON_MASS_AMU * Number;
 		value += NUETRON_MASS_AMU * Number + index;
-	};
+		
+		return value;
+	}
+	
+	static AtomicElement& Get(const string& name) {
+		auto hash = mirror(name);
+		if mElement.ContainsKey(hash)) {
+			return &mElement[hash];
+		}
+		
+		return null;
+	}
+	
+	static AtomicElement& GetBySymbol(const string& symbol) {
+		if mElementBySymbol.ContainsKey(symbol)) {
+			return mElementBySymbol[symbol];
+		}
+		
+		return null;
+	}
 protected:
-	static Map<string, AtomicElement> mElement;
-	static Map<string, AtomicElement*> mElementBySymbol;
+	static Map<mirror, AtomicElement> mElement;
+	static Map<mirror, AtomicElement*> mElementBySymbol;
 };
 
-auto HYDROGEN = AtomicElement(const_string("hydrogen", "H", EAtomicElementType::NONMETAL, 1, [](AtomicElement* e) {
+#def TOE TableOfElements;
+namespace TableOfElements {
+	// all the elements (normal isotope)
+	AtomicElement HYDROGEN;
+	AtomicElement HELIUM;
+	AtomicElement LITHIUM;
+	AtomicElement BERYLLIUM;
+	AtomicElement BORON;
+	AtomicElement CARBON;
+	AtomicElement NITROGEN;
+	AtomicElement OXYGEN;
+	AtomicElement FLOURINE;
+
+}
+
+HYDROGEN = AtomicElement(const_string("hydrogen", "H", EAtomicElementType::NONMETAL, 1, [](AtomicElement* e) {
 	e->Weight = 1.0078;
 	e->Number = 1;
 	e->Group = 1;
 	e->Period = 1;
 	e->Shell[0] = 1;
+	e->MeltingPt = 13.99;
+	e->BoilingPt = 20.28;
 });
 
-auto HELIUM = AtomicElement(const_string("helium", "He", EAtomicElementType::NONMETAL, 1, [](AtomicElement* e) {
+HELIUM = AtomicElement(const_string("helium", "He", EAtomicElementType::NONMETAL, 1, [](AtomicElement* e) {
 	e->Weight = 4.0026;
 	e->Number = 2;
 	e->Group = 18;
 	e->Period = 1;
 	e->Shell[0] = 2;
+	e->MeltingPt = 0.95;
+	e->BoilingPt = 4.22;
 });
 
-auto LITHIUM = AtomicElement(const_string("lithium", "Li", EAtomicElementType::ALKALINE, 2, [](AtomicElement* e) {
+LITHIUM = AtomicElement(const_string("lithium", "Li", EAtomicElementType::ALKALINE, 2, [](AtomicElement* e) {
 	e->Weight = 6.938;
 	e->Number = 3;
 	e->Group = 1;
 	e->Period = 2;
 	e->Shell[0] = 2;
 	e->Shell[1] = 1;
+	e->MeltingPt = 453.7;
+	e->BoilingPt = 1603.0;
 });
 
-auto BERYLLIUM = AtomicElement(const_string("beryllium", "Be", EAtomicElementType::ALKALINE_EARTH, 2, [](AtomicElement* e) {
+BERYLLIUM = AtomicElement(const_string("beryllium", "Be", EAtomicElementType::ALKALINE_EARTH, 2, [](AtomicElement* e) {
 	e->Weight = 9.0122;
 	e->Number = 4;
 	e->Group = 2;
 	e->Period = 2;
 	e->Shell[0] = 2;
 	e->Shell[1] = 2;
+	e->MeltingPt = 1560.0;
+	e->BoilingPt = 3243.0;
 });
 
-auto BERYLLIUM = AtomicElement(const_string("boron", "B", EAtomicElementType::METALLOID, 2, [](AtomicElement* e) {
+BORON = AtomicElement(const_string("boron", "B", EAtomicElementType::METALLOID, 2, [](AtomicElement* e) {
 	e->Weight = 10.806;
 	e->Number = 5;
 	e->Group = 13;
 	e->Period = 2;
 	e->Shell[0] = 2;
 	e->Shell[1] = 3;
+	e->MeltingPt = 2349.0;
+	e->BoilingPt = 4200.0;
 });
 
+CARBON = AtomicElement(const_string("carbon", "C", EAtomicElementType::METALLOID, 2, [](AtomicElement* e) {
+	e->Weight = 12.0107;
+	e->Number = 6;
+	e->Group = 14;
+	e->Period = 2;
+	e->Shell[0] = 2;
+	e->Shell[1] = 4;
+	e->MeltingPt = 3825.0;
+	e->BoilingPt = 5100.0;
+});
+
+NITROGEN = AtomicElement(const_string("nitrogen", "N", EAtomicElementType::METALLOID, 2, [](AtomicElement* e) {
+	e->Weight = 14.2087;
+	e->Number = 7;
+	e->Group = 15;
+	e->Period = 2;
+	e->Shell[0] = 2;
+	e->Shell[1] = 5;
+	e->MeltingPt = 63.15
+	e->BoilingPt = 77.36;
+});
+
+OXYGEN = AtomicElement(const_string("oxygen", "O", EAtomicElementType::METALLOID, 2, [](AtomicElement* e) {
+	e->Weight = 15.9994;
+	e->Number = 8;
+	e->Group = 15;
+	e->Period = 2;
+	e->Shell[0] = 2;
+	e->Shell[1] = 6;
+	e->MeltingPt = 54.36;
+	e->BoilingPt = 90.19;
+});
+
+class AtomicBond {
+	AtomicElement* Begin;
+	AtomicElement* End;
+};
 class ItemScheme {
 public:
 	ItemScheme(const string& name, const string& desc, ItemUseFunction use, ItemThrowFunction thro) : 

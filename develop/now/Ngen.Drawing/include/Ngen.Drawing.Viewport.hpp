@@ -29,31 +29,32 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_SLIGHT_HPP
 #define __NGEN_DRAWING_SLIGHT_HPP
 
-#include "Ngen.Drawing.GpuElement.hpp"
-#include "Ngen.Drawing.GpuScheme.hpp"
+#include "Ngen.Drawing.Typedefs.hpp"
 
 using namespace Ngen::Math;
 
 namespace Ngen {
    namespace Drawing {
 
-      class ngen_drawing_api SLightPoint {
+      class ngen_drawing_api Viewport {
       public:
-          Vector3 Origin;
-          Color4 Color;
-          real Strength;
+         static Viewport* Current();
 
-          GpuScheme* Scheme();
-      };
+         Viewport(Canvas* parent, real x, real y, real width, real height) : mParent(parent), mBounds(x,y,width,height) {}
 
-      class ngen_drawing_api SLightDirectional {
-      public:
-          Vector3 Origin;
-          Color4 Color;
-          Vector3 Direction;
-          real Strength;
+         uword X() const { return (uword)mBounds.X(); }
+         uword Y() const { return (uword)mBounds.Y(); }
+         uword Width() const { return (uword)mBounds.Width(); }
+         uword Height() const { return (uword)mBounds.Height(); }
 
-          GpuScheme* Scheme();
+         void Bind();
+         void Unbind(Viewport* next=null);
+
+         Canvas* Parent() { return mParent; }
+
+      protected:
+         Canvas* mParent;
+         aabox2d mBounds;
       };
    }
 }

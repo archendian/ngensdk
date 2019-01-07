@@ -65,7 +65,7 @@ namespace Ngen {
          }
 
          Vector3 operator-(const Vector3& rhs) const {
-            return rhsector3(X - rhs.X, Y - rhs.Y, Z - rhs.Z);
+            return Vector3(X - rhs.X, Y - rhs.Y, Z - rhs.Z);
          }
 
          Vector3& operator-=(const Vector3& rhs) {
@@ -113,7 +113,7 @@ namespace Ngen {
             case 0: return X;
             case 1: return Y;
             case 2: return Z;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
 
@@ -122,7 +122,7 @@ namespace Ngen {
             case 0: return X;
             case 1: return Y;
             case 2: return Z;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
 
@@ -133,7 +133,7 @@ namespace Ngen {
          }
 
          real Dot(const Vector3& rhs) const {
-            X * rhs.X + Y * rhs.Y + Z * rhs.Z;
+            return X * rhs.X + Y * rhs.Y + Z * rhs.Z;
          }
 
          real MagnitudeSq() const {
@@ -155,8 +155,9 @@ namespace Ngen {
         static Vector3 Zero();
         static Vector3 Up();
         static Vector3 Down();
-        static Vector3 Forward();
-        static Vector3 Backward();
+        static Vector3 UnitX();
+        static Vector3 UnitY();
+        static Vector3 UnitZ();
 		};
 
 		inline Vector3 operator*(real lhs, const Vector3& rhs) {

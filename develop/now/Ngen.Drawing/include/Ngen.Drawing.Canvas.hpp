@@ -30,13 +30,13 @@ THE SOFTWARE.
 #define __NGEN_DRAWING_CANVAS_HPP
 
 #include "Ngen.Drawing.CanvasCreationParams.hpp"
+#include "Ngen.Drawing.Viewport.hpp"
 
 using namespace Ngen;
 using namespace Ngen::Math;
 
 namespace Ngen {
    namespace Drawing {
-
 
       class ngen_drawing_api Canvas {
       public:
@@ -53,11 +53,12 @@ namespace Ngen {
             return Vector2(mParam->Width, mParam->Height);
          }
 
+         real Width() const { return mParam->Width; }
+         real Height() const { return mParam->Height; }
+
          void Clear() const;
          void Update() const;
 
-         event Updated;
-         event Cleared;
       protected:
          Window* mWindow;
          CanvasCreationParams* mParam;

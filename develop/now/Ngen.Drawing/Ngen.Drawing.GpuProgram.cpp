@@ -26,11 +26,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-
 #include "Ngen.Drawing.GpuProgram.hpp"
 
 namespace Ngen {
    namespace Drawing {
+      GpuProgram* _currentGpuProgram;
+
+      GpuProgram* GpuProgram::Current() { return _currentGpuProgram; }
+
       GpuProgram::GpuProgram() : mId(null), mShader(0) {}
 
       GpuProgram::GpuProgram(initializer_list<GpuShader*> shader) : mId(0), mShader(shader.size()) {
@@ -77,15 +80,20 @@ namespace Ngen {
          if(mId != null) {
             glDeleteProgram(mId);
             mId = null;
+            if(_currentGpuProgram == this) {
+               _currentGpuProgram = null;
+            }
          }
       }
 
-      void GpuProgram::Bind() const {
+      void GpuProgram::Bind() {
          glUseProgram(mId);
+         _currentGpuProgram = this;
       }
 
-      void GpuProgram::Unbind() const {
+      void GpuProgram::Unbind() {
          glUseProgram(null);
+         _currentGpuProgram = null;
       }
    }
 }

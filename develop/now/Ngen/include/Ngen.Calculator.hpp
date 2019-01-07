@@ -141,7 +141,7 @@ namespace Ngen {
 		}
    };
 
-   /** @brief A type definition for the  calculator class. */
+   /** @brief A type definition for the Calculator class. */
    typedef Calculator t_calc;
 }
 #endif // __NGEN_CALCULATOR_HPP

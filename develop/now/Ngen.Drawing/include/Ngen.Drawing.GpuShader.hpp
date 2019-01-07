@@ -29,7 +29,7 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_GPUSHADER_HPP
 #define __NGEN_DRAWING_GPUSHADER_HPP
 
-#include "Ngen.Drawing.EShaderType.hpp"
+#include "Ngen.Drawing.EGpuShaderType.hpp"
 
 namespace Ngen {
 
@@ -37,7 +37,7 @@ namespace Ngen {
 
       class ngen_drawing_api GpuShader {
       public:
-         GpuShader(EShaderType type, const string& filename);
+         GpuShader(EGpuShaderType type, const string& filename);
 
          bool Compile();
          bool Compile(string& glerror);
@@ -47,7 +47,7 @@ namespace Ngen {
 
       protected:
          GLint mId;
-         EShaderType mType;
+         EGpuShaderType mType;
       };
    }
 }

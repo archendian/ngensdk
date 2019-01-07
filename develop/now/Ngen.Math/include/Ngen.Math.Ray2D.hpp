@@ -14,6 +14,8 @@ namespace Ngen {
 			Vector2 Direction;
 
 			Ray2D() : Location(), Direction() {}
+			Ray2D(const Vector2& location, Vector2& direction) : Location(location), Direction(direction) {}
+			Ray2D(const Ray2D& copy) : Location(copy.Location), Direction(copy.Direction) {}
 		};
 
 

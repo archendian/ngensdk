@@ -7,15 +7,36 @@ namespace Ngen {
 
    namespace Drawing {
 
+      class ngen_drawing_api Model {
+      public:
+         Model(MeshBuffer* buffer, initializer_list<Texture*> texture) : mBuffer(buffer), mTexture(texture) {
+         }
+
+
+         void Initialize() {}
+
+         void Draw() {}
+
+         void Delete
+      protected:
+         MeshBuffer* mBuffer;
+         Material* mMaterial;
+         Array<Texture*> mTexture;
+
+      };
       class ngen_drawing_api Texture {
       public:
-         Texture() : mId(0) {}
+         Texture() : ,Name(), mId(0), mWidth(0), mHeigh(0) {}
 
-         Texture(uword width, uword height, byte* data) : mId(0), mWidth(width), mHeight(height) {
+         Texture(const string& varName, uword width, uword height, byte* data) : mName(varName), mId(0), mWidth(width), mHeight(height) {
             Initialize();
             Bind();
             SetData(width, height, data);
             Unbind();
+         }
+
+         void Delete() {
+            glDeleteTextures(1, &mId);
          }
 
          void Initialize() {
@@ -32,19 +53,33 @@ namespace Ngen {
             }
          }
 
+         void AttachTo(GpuProgram* program, uword index) const {
+            if(mId != null) {
+               program->Sampler2d(mName, index)
+            } else {
+               THROW(Exception(E"Attempted to call Bind() on null texture!"));
+            }
+         }
+
          void Unbind() const {
             glBindTexture(GL_TEXTURE_2D, 0);
          }
 
-         void SetData(uword width, uword height, byte* data) {
+         /** @brief Sets the RGBA image data for the texture.*/
+         void SetImage(uword width, uword height, byte* image) {
             mWidth = width;
             mHeight = height;
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, mWidth, mHeight, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, mWidth, mHeight, 0, GL_BGR, GL_UNSIGNED_BYTE, image);
          }
+
+         string Name() const { return mName; }
+         void Name(const string& name) { mName = name; }
 
          GLuint Id() const { return mId; };
 
+
       protected:
+         string mName;
          GLuint mId;
          uword mWidth;
          uword mHeight;

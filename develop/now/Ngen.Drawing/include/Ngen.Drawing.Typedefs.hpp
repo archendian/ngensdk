@@ -34,11 +34,13 @@ THE SOFTWARE.
 namespace Ngen {
    namespace Drawing {
       class Canvas;
-      class Shader;
+      class Viewport;
       class Texture;
-      class GpuElement;
-      class GpuScheme;
+      class VertexElement;
+      class VertexScheme;
+      class GpuShader;
       class GpuProgram;
+
       class MeshBuffer;
 
       template<typename T> struct gl_set_uniform {

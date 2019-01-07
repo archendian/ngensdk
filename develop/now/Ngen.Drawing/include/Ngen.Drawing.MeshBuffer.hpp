@@ -29,7 +29,7 @@ THE SOFTWARE.
 #ifndef __NGEN_DRAWING_MESHBUFFER_HPP
 #define __NGEN_DRAWING_MESHBUFFER_HPP
 
-#include "Ngen.Drawing.GpuScheme.hpp"
+#include "Ngen.Drawing.VertexScheme.hpp"
 #include "Ngen.Drawing.EGpuDrawMode.hpp"
 #include "Ngen.Drawing.EGpuBufferUsage.hpp"
 
@@ -45,19 +45,19 @@ namespace Ngen {
             mIndexBufferPtr(0), mMode(EGpuDrawMode::POINT) {
          }
 
-         MeshBuffer(GpuScheme* scheme, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
+         MeshBuffer(VertexScheme* scheme, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
             mScheme(scheme), mVertexBufferId(0), mVertexBufferSize(0), mVertexBufferLength(0),
             mUsage(usage), mIndexBufferId(0), mIndexBufferLength(0), mIndexBufferHasChanged(false), mVertexBufferHasChanged(false),
             mIndexBufferPtr(0), mMode(mode) {
          }
 
-         MeshBuffer(GpuScheme* scheme, byte* vertexSubData, uword vertexCount, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
+         MeshBuffer(VertexScheme* scheme, byte* vertexSubData, uword vertexCount, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
             mScheme(scheme), mVertexBufferId(0), mVertexBufferSize(mScheme->Size() * vertexCount), mVertexBufferLength(vertexCount), mUsage(usage), mIndexBufferId(0),
             mIndexBufferLength(0), mIndexBufferHasChanged(false), mVertexBufferHasChanged(false), mIndexBufferPtr(0), mMode(mode) {
             SetVertexData(vertexSubData, vertexCount);
          }
 
-         MeshBuffer(GpuScheme* scheme, byte* vertexSubData, uword vertexCount, uint32* indexSubData, uword indexCount, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
+         MeshBuffer(VertexScheme* scheme, byte* vertexSubData, uword vertexCount, uint32* indexSubData, uword indexCount, EGpuDrawMode mode = EGpuDrawMode::TRIANGLE, EGpuBufferUsage usage = EGpuBufferUsage::STATIC_DRAW) :
             mScheme(scheme), mVertexBufferId(0), mVertexBufferSize(mScheme->Size() * vertexCount),mVertexBufferLength(vertexCount), mUsage(usage), mIndexBufferId(0),
             mIndexBufferLength(0), mIndexBufferHasChanged(false), mVertexBufferHasChanged(false), mIndexBufferPtr(0), mMode(mode) {
             SetVertexData(vertexSubData, vertexCount);
@@ -159,7 +159,7 @@ namespace Ngen {
             if(mVertexBufferId == 0) {
                glGenBuffers(1, &mVertexBufferId);
                glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
-               mScheme->Initialize();
+               mScheme->BindElementArray();
                glBindBuffer(GL_ARRAY_BUFFER, 0);
             }
 
@@ -179,11 +179,11 @@ namespace Ngen {
          }
 
          void Draw() {
-            glDrawElements(gl_typeof(mMode), mVertexBufferLength, GL_UNSIGNED_INT, IndexBufferPtr());
+            glDrawElements(gl_typeof(mMode), mVertexBufferLength, GL_UNSIGNED_INT, mIndexBufferPtr);
          }
 
       protected:
-         GpuScheme* mScheme;
+         VertexScheme* mScheme;
          GLuint mVertexBufferId;
          uword mVertexBufferSize;
          uword mVertexBufferLength;

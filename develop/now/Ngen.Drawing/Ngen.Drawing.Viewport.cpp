@@ -26,43 +26,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_GPUELEMENT_HPP
-#define __NGEN_DRAWING_GPUELEMENT_HPP
-
-#include "Ngen.Drawing.Typedefs.hpp"
-#include "Ngen.Drawing.EGpuElementType.hpp"
+#include "Ngen.Drawing.Viewport.hpp"
+#include "Ngen.Drawing.Canvas.hpp"
 
 namespace Ngen {
    namespace Drawing {
+      Viewport* _currentViewport;
 
-      class ngen_drawing_api GpuElement {
-		public:
-		   GpuElement() {}
+      Viewport* Viewport::Current() { return _currentViewport; }
 
-			GpuElement(const mirror& usage, uword usageIndex, EGpuElementType type, uword length, uword offset=0) :
-				mUsage(usage), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(offset) {
-			}
+      void Viewport::Bind() {
+         glViewport(X(), Y(), Width(), Height());
+         _currentViewport = this;
+      }
 
-			GpuElement(const string& usage, uword usageIndex, EGpuElementType type, uword length, uword offset=0) :
-				mUsage(mirror(usage)), mUsageIndex(usageIndex), mType(type), mLength(length), mOffset(offset) {
-			}
-
-			uword Size() { return /*gl_sizeof(mType) **/ mLength; }
-			const string Id() { return mUsage.ToString() + string::From(mUsageIndex); }
-			const mirror Usage() const { return mUsage; }
-			uword UsageIndex() const { return mUsageIndex; }
-			EGpuElementType Type() const { return mType; }
-			uword ElementLength() const { return mLength; }
-			uword Offset() const { return mOffset; }
-         void Offset(uword offset) { mOffset = offset; }
-
-		protected:
-			mirror mUsage;
-			uword mUsageIndex;
-			EGpuElementType mType;
-			uword mLength;
-			uword mOffset;
-		};
+      void Viewport::Unbind(Viewport* next) {
+         if(!isnull(next)) {
+            next->Bind();
+         } else {
+            glViewport(0, 0, mParent->Width(), mParent->Height());
+            _currentViewport = null;
+         }
+      }
    }
 }
-#endif

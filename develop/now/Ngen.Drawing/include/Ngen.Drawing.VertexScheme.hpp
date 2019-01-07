@@ -26,21 +26,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-#ifndef __NGEN_DRAWING_GPUSCHEME_HPP
-#define __NGEN_DRAWING_GPUSCHEME_HPP
+#ifndef __NGEN_DRAWING_VERTEXSCHEME_HPP
+#define __NGEN_DRAWING_VERTEXSCHEME_HPP
 
-#include "Ngen.Drawing.GpuElement.hpp"
+#include "Ngen.Drawing.VertexElement.hpp"
 
 namespace Ngen {
    namespace Drawing {
 
-		class ngen_drawing_api GpuScheme {
+		class ngen_drawing_api VertexScheme {
 		public:
-			GpuScheme(const string& name, std::initializer_list<GpuElement> init, VoidStaticDelegate<GpuScheme*>::TFunction initializer) :
-            mName(name), mElementMap(), mInitialize(initializer), mSize(0) {
+		   /** @brief Creates a new scheme that describes a vertex structure used in a GPU program.
+		    * @param name A unique identifier that describes the vertex structure scheme.
+          * @param init An ordered list of vertex element information constructs that detail the
+          * vertex structure of the scheme.
+		    */
+			VertexScheme(const string& name, std::initializer_list<VertexElement> init) :
+            mName(name), mElementMap(), mSize(0) {
 				uword offset = 0;
             uword i = 0;
 
+            // build element offsets and vertex structure size
 				for(auto e : init) {
                e.Offset(offset);
 					mSize += e.Size();
@@ -51,44 +57,42 @@ namespace Ngen {
 				}
 			}
 
-         GpuScheme(const string& name, std::initializer_list<GpuElement> init) :
-			   mName(name), mElementMap(), mInitialize(), mSize(0) {
-
-				uword offset = 0;
-            uword i = 0;
-
-				for(auto e : init) {
-               e.Offset(offset);
-					mSize += e.Size();
-					offset += e.Size();
-
-               mElementMap.Add(e.Id(), e);
-					i++;
-				}
-			}
-
+			/** @brief The byte-size of the vertex structure being represented by the scheme.  */
 			uword Size() const { return mSize; }
+
+			/** @brief The unique identifier that represents the scheme. */
 			const mirror Name() const { return mName; }
 
-			void Initialize() {
-			   mInitialize.Call(this);
-			}
-
-			GpuElement* Element(const string& usage, uword usageIndex) {
+			/** @brief
+			 * @param usage An identifier that describes how the vertex element is used by the program.
+			 * @param usageIndex The index describing the processing method of the vertex element. Default: 0
+			 */
+			VertexElement* Element(const string& usage, uword usageIndex=0) {
 				return &mElementMap[usage+string::From(usageIndex)];
 			}
 
-         Array<GpuElement> Elements() const {
+         Array<VertexElement> Elements() const {
             return mElementMap.Values();
          }
 
+         void BindElementArray() const {
+            auto element = Elements();
+            if(!element.IsNullOrEmpty()) {
+               auto begin = element.Begin();
+               auto end = element.End();
+               uword index = 0;
+
+               do {
+                  glVertexAttribPointer(index, element.Length(), gl_typeof(begin->Type()), 0, begin->Offset(), 0);
+               } while(begin++ != end);
+            }
+         }
 		protected:
 			const mirror mName;
-			Map<mirror, GpuElement> mElementMap;
-			VoidStaticDelegate<GpuScheme*> mInitialize;
+			Map<mirror, VertexElement> mElementMap;
 			uword mSize;
 		};
    }
 }
 
-#endif // __NGEN_DRAWING_GPUSCHEME_HPP
+#endif // __NGEN_DRAWING_VERTEXSCHEME_HPP

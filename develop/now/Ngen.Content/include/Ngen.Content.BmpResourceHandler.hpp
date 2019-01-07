@@ -21,9 +21,7 @@ namespace Ngen {
 				mHandler.Remove(const_mirror(".bmp"));
 			}
 
-		protected:
-
-			virtual void pLoad(const string& fileName) {
+			virtual Texture Load(const string& fileName) {
 				auto data = File::ReadAll(fileName);
 
 			}

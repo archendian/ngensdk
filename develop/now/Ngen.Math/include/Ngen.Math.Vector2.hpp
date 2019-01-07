@@ -43,6 +43,12 @@ namespace Ngen {
          Vector2(real x, real y) : X(x), Y(y) {}
          Vector2(const Vector2& copy) : X(copy.X), Y(copy.Y) {}
 
+         Vector2& operator=(const Vector2& copy) {
+            X = copy.X;
+            Y = copy.Y;
+            return *this;
+         }
+
          bool operator==(const Vector2& rhs) const {
             return X == rhs.X && Y == rhs.Y;
          }
@@ -51,11 +57,91 @@ namespace Ngen {
             return X != rhs.X && Y != rhs.Y;
          }
 
+         Vector2 operator+(const Vector2& rhs) const {
+            return Vector2(X + rhs.X, Y + rhs.Y);
+         }
+
+         Vector2& operator+=(const Vector2& rhs) {
+            X += rhs.X;
+            Y += rhs.Y;
+            return *this;
+         }
+
+         Vector2 operator-(const Vector2& rhs) const {
+            return Vector2(X - rhs.X, Y - rhs.Y);
+         }
+
+         Vector2& operator-=(const Vector2& rhs) {
+            X -= rhs.X;
+            Y -= rhs.Y;
+            return *this;
+         }
+
+         Vector2 operator*(const Vector2& rhs) const {
+            return Vector2(X * rhs.X, Y * rhs.Y);
+         }
+
+         Vector2& operator*=(const Vector2& rhs) {
+            X *= rhs.X;
+            Y *= rhs.Y;
+            return *this;
+         }
+
+         Vector2 operator/(const Vector2& rhs) const {
+            return Vector2(X / rhs.X, Y / rhs.Y);
+         }
+
+         Vector2& operator/=(const Vector2& rhs) {
+            X /= rhs.X;
+            Y /= rhs.Y;
+            return *this;
+         }
+
+         Vector2 operator+(real rhs) const {
+            return Vector2(X + rhs, Y + rhs);
+         }
+
+         Vector2& operator+=(real rhs) {
+            X += rhs;
+            Y += rhs;
+            return *this;
+         }
+
+         Vector2 operator-(real rhs) const {
+            return Vector2(X - rhs, Y - rhs);
+         }
+
+         Vector2& operator-=(real rhs) {
+            X -= rhs;
+            Y -= rhs;
+            return *this;
+         }
+
+         Vector2 operator*(real rhs) const {
+            return Vector2(X * rhs, Y * rhs);
+         }
+
+         Vector2& operator*=(real rhs) {
+            X *= rhs;
+            Y *= rhs;
+            return *this;
+         }
+
+         Vector2 operator/(real rhs) const {
+            return Vector2(X / rhs, Y / rhs);
+         }
+
+         Vector2& operator/=(real rhs) {
+            X /= rhs;
+            Y /= rhs;
+            return *this;
+         }
+
          real& operator[](uword index) {
             switch (index) {
             case 0: return X;
             case 1: return Y;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
 
@@ -63,9 +149,10 @@ namespace Ngen {
             switch (index) {
             case 0: return X;
             case 1: return Y;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
+
 
          static Vector2 Zero();
          static Vector2 Up();

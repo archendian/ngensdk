@@ -140,6 +140,34 @@ namespace Ngen {
 					M[i] = copy.M[i];
 				}
 			}
+
+			static Matrix4 CreateLookAtPerspective(const Vector3& position, const Vector3& target, const Vector3& up) {
+            auto result = Matrix4::Identity();
+            auto zaxis = (position - target).Normalize();
+            auto xaxis = up.Cross(zaxis).Normalize();
+            auto yaxis = zaxis.Cross(xaxis);
+
+            result.M[0] = xaxis.X;
+            result.M[1] = yaxis.X;
+            result.M[2] = zaxis.X;
+            result.M[3] = 0;
+            result.M[4] = xaxis.Y;
+            result.M[5] = yaxis.Y;
+            result.M[6] = zaxis.Y;
+            result.M[7] = 0;
+            result.M[8] = xaxis.Z;
+            result.M[9] = yaxis.Z;
+            result.M[10] = zaxis.Z;
+            result.M[11] = 0;
+            result.M[12] = -xaxis.Dot(position);
+            result.M[13] = -yaxis.Dot(position);
+            result.M[14] = -zaxis.Dot(position);
+            result.M[15] = 1;
+
+            return result;
+			}
+
+			static Matrix4 Identity();
 		};
 
 		typedef Matrix4 mat4;

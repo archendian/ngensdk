@@ -42,6 +42,7 @@ namespace Ngen {
 			Vector2 BottomRight;
 
          AxisAlignedBox2D () : TopLeft(), BottomRight() {}
+         AxisAlignedBox2D(real x, real y, real width, real height) : TopLeft(x, y), BottomRight(x+width, y+height) {}
          AxisAlignedBox2D (const AxisAlignedBox2D& copy) : TopLeft(copy.TopLeft), BottomRight(copy.BottomRight) {}
          AxisAlignedBox2D (const Vector2& TopLeft, const Vector2& BottomRight) : TopLeft(TopLeft), BottomRight(BottomRight) {}
          AxisAlignedBox2D (const Vector2& TopLeftBottomRight) : TopLeft(TopLeftBottomRight), BottomRight(TopLeftBottomRight) {}
@@ -89,6 +90,11 @@ namespace Ngen {
 
 		   Vector2 BottomLeft() const { return Vector2(TopLeft.X, BottomRight.Y); }
 		   void BottomLeft(const Vector2& rhs) { TopLeft.X = rhs.X; BottomRight.Y = rhs.Y; }
+
+		   real X() const { return TopLeft.X; }
+		   real Y() const { return TopLeft.Y; }
+		   real Width() const { return BottomRight.X - TopLeft.X; }
+		   real Height() const { return BottomRight.Y - TopLeft.Y; }
 
          bool IsValid() const { return TopLeft.X < BottomRight.X && TopLeft.Y > BottomRight.Y; }
 

@@ -37,18 +37,18 @@ namespace Ngen {
 
       class ngen_drawing_api GpuProgram {
       public:
+         static GpuProgram* Current();
+
          GpuProgram();
          GpuProgram(initializer_list<GpuShader*> shader);
 
          bool Compile();
          bool Compile(string& glerror);
          void Delete();
-         void Bind() const;
-         void Unbind() const;
+         void Bind();
+         void Unbind();
 
-         GLint Id() const {
-            return mId;
-         }
+         GLint Id() const { return mId; }
 
          void AddShader(GpuShader* shader) {
             mShader.Add(shader);

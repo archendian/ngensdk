@@ -2,13 +2,14 @@
 1521135644 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.canvas.cpp
 	"Ngen.Drawing.Canvas.hpp"
 
-1534032277 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
+1535311682 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvas.hpp
 	"Ngen.Drawing.CanvasCreationParams.hpp"
+	"Ngen.Drawing.Viewport.hpp"
 
-1534031862 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvascreationparams.hpp
-	"Ngen.Drawing.VertexBuffer.hpp"
+1534472106 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.canvascreationparams.hpp
+	"Ngen.Drawing.MeshBuffer.hpp"
 
-1533949905 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexbuffer.hpp
+1534114632 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexbuffer.hpp
 	"Ngen.Drawing.GraphicBuffer.hpp"
 	"Ngen.Drawing.EGraphicDrawMode.hpp"
 	"Ngen.Drawing.EGraphicBufferUsage.hpp"
@@ -22,15 +23,15 @@
 1534085965 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicbufferusage.hpp
 	"Ngen.Drawing.Typedefs.hpp"
 
-1534020873 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
+1535300117 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.typedefs.hpp
 	"Build.Ngen.Drawing.Logic.hpp"
 
-1534095796 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
+1534485301 c:\workspace\ngensdk\develop\now\ngen.drawing\include\build.ngen.drawing.logic.hpp
 	<Ngen.hpp>
 	<Ngen.Math.hpp>
-	<GL/gl.h>
+	<GL/glew.h>
 
-1534016880 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
+1534468356 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
 	"Build.Ngen.Configuration.hpp"
 	"Build.Ngen.Macro.hpp"
@@ -71,6 +72,8 @@
 	"Ngen.Assembly.hpp"
 	"Ngen.Window.hpp"
 	"Ngen.File.hpp"
+	"Ngen.FileHandler.hpp"
+	"Ngen.FileStream.hpp"
 
 1517942904 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
 
@@ -124,13 +127,13 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.reference.hpp
 	"Ngen.BitField.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
+1534467684 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.keyvaluepair.hpp
 	"Ngen.Algorithm.hpp"
 
-1521071409 c:\workspace\ngensdk\develop\now\ngen\include\ngen.calculator.hpp
+1534551792 c:\workspace\ngensdk\develop\now\ngen\include\ngen.calculator.hpp
 	"Ngen.Exception.hpp"
 
 1508644401 c:\workspace\ngensdk\develop\now\ngen\include\ngen.library.hpp
@@ -139,10 +142,10 @@
 1533938053 c:\workspace\ngensdk\develop\now\ngen\include\ngen.mirror.hpp
 	"Ngen.string.hpp"
 
-1533950816 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
+1534469205 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1534035475 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1534462852 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
@@ -163,14 +166,14 @@
 	"Ngen.Delegate.hpp"
 	"Ngen.Cast.hpp"
 
-1533939052 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
+1534471174 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
 	"Ngen.KeyValuePair.hpp"
 	"Ngen.List.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
+1534471627 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
 	"Ngen.Array.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stack.hpp
+1534463696 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stack.hpp
 	"Ngen.Array.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.table.hpp
@@ -190,8 +193,9 @@
 	"Ngen.TimeSpan.hpp"
 	"Ngen.Exception.hpp"
 
-1534016948 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
+1534471918 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
 	"Ngen.Exception.hpp"
+	"Ngen.String.hpp"
 
 1534007226 c:\workspace\ngensdk\develop\now\ngen\include\ngen.task.hpp
 	"Ngen.Exception.hpp"
@@ -233,33 +237,36 @@
 1534016727 c:\workspace\ngensdk\develop\now\ngen\include\ngen.dynamicmember.hpp
 	"Ngen.Type.hpp"
 
-1521070154 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
+1534464782 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
 	"Ngen.Map.hpp"
 	"Ngen.Event.hpp"
 	"Ngen.String.hpp"
 
-1534018577 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
+1534468263 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
 	"Ngen.Stream.hpp"
 	"Ngen.Exception.hpp"
+	"Ngen.FileStream.hpp"
 
 1533950097 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egraphicdrawmode.hpp
 	"Ngen.Drawing.Typedefs.hpp"
 
-1533949945 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexscheme.hpp
+1535296990 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexscheme.hpp
 	"Ngen.Drawing.VertexElement.hpp"
 
-1533950197 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexelement.hpp
+1535307451 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.vertexelement.hpp
 	"Ngen.Drawing.Typedefs.hpp"
-	"Ngen.Drawing.EVertexElementType.hpp"
+	"Ngen.Drawing.EGpuElementType.hpp"
 
 1533950132 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.evertexelementtype.hpp
 	"Ngen.Drawing.Typedefs.hpp"
 
-1533947760 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.meshbuffer.cpp
+1534456124 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.meshbuffer.cpp
 	"Ngen.Drawing.MeshBuffer.hpp"
 
-1533940339 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.meshbuffer.hpp
-	"Ngen.Drawing.VertexBuffer.hpp"
+1535309344 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.meshbuffer.hpp
+	"Ngen.Drawing.VertexScheme.hpp"
+	"Ngen.Drawing.EGpuDrawMode.hpp"
+	"Ngen.Drawing.EGpuBufferUsage.hpp"
 
 1533949905 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.vertexbuffer.cpp
 	"Ngen.Drawing.VertexBuffer.hpp"
@@ -267,10 +274,10 @@
 1533949945 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.vertexscheme.cpp
 	"Ngen.Drawing.VertexScheme.hpp"
 
-1534032711 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.canvas.win32.cpp
+1534483037 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.canvas.win32.cpp
 	"Ngen.Drawing.Canvas.hpp"
 
-1534033000 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
+1535303474 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
 	"Build.Ngen.Math.Logic.hpp"
 	"Ngen.Typedefs.hpp"
 	"Ngen.Math.Vector2.hpp"
@@ -290,16 +297,16 @@
 1521130186 c:\workspace\ngensdk\develop\now\ngen.math\include\build.ngen.math.logic.hpp
 	"Ngen.hpp"
 
-1534033169 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
+1535303375 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
 	"Ngen.Math.Typedefs.hpp"
 
 1534031328 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.typedefs.hpp
 	"Build.Ngen.Math.Logic.hpp"
 
-1521136348 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
+1535311906 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
 	"Ngen.Math.Typedefs.hpp"
 
-1521131690 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
+1535306614 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
 	"Ngen.Math.Typedefs.hpp"
 
 1534030314 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line2d.hpp
@@ -308,13 +315,13 @@
 1534031363 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line3d.hpp
 	"Ngen.Math.Vector3.hpp"
 
-1534030321 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
+1535066032 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
 	"Ngen.Math.Vector2.hpp"
 
 1521071271 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray3d.hpp
 	"Ngen.Math.Vector3.hpp"
 
-1534031668 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
+1535295820 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
 	"Ngen.Math.Vector2.hpp"
 	"Ngen.Math.Line2D.hpp"
 	"Ngen.Math.CollisionResult.hpp"
@@ -335,7 +342,7 @@
 1521073698 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix3.hpp
 	"Ngen.Math.Typedefs.hpp"
 
-1534035112 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
+1535159458 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
 	"Ngen.Math.Typedefs.hpp"
 	"Ngen.Math.Vector3.hpp"
 	"Ngen.Math.Vector4.hpp"
@@ -343,15 +350,110 @@
 1534093956 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.shader.cpp
 	"Ngen.Drawing.Shader.hpp"
 
-1534093956 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.shader.hpp
+1534116830 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.shader.hpp
 	"Ngen.Drawing.EShaderType.hpp"
 
-1534095016 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.eshadertype.hpp
+1535296880 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.eshadertype.hpp
 	"Build.Ngen.Drawing.Logic.hpp"
 
-1534095982 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.gpuprogram.cpp
+1535312151 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.gpuprogram.cpp
 	"Ngen.Drawing.GpuProgram.hpp"
 
-1534095958 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpuprogram.hpp
-	"Ngen.Drawing.Shader.hpp"
+1535309441 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpuprogram.hpp
+	"Ngen.Drawing.GpuShader.hpp"
+	"Ngen.Drawing.Texture.hpp"
+
+1534480425 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpuscheme.hpp
+	"Ngen.Drawing.GpuElement.hpp"
+
+1534479117 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpuelement.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+	"Ngen.Drawing.EGpuElementType.hpp"
+
+1534471741 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filestream.hpp
+	"Ngen.String.hpp"
+	"Ngen.Stream.hpp"
+	"Ngen.Exception.hpp"
+
+1534471822 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filehandler.hpp
+	"Ngen.Mirror.hpp"
+	"Ngen.File.hpp"
+	"Ngen.Map.hpp"
+
+1535311798 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egpuelementtype.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1535307266 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.gpushader.hpp
+	"Ngen.Drawing.EGpuShaderType.hpp"
+
+1534480481 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.texture.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1535309506 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.gpushader.cpp
+	"Ngen.Drawing.GpuShader.hpp"
+
+1535311783 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egpudrawmode.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1535311783 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egpubufferusage.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1534478895 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.slight.cpp
+	"Ngen.Drawing.SLight.hpp"
+
+1534481072 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.slight.hpp
+	"Ngen.Drawing.GpuElement.hpp"
+	"Ngen.Drawing.GpuScheme.hpp"
+
+1535297588 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.svertex.cpp
+	"Ngen.Drawing.SVertex.hpp"
+
+1535296990 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.svertex.hpp
+	"Ngen.Drawing.EGpuBufferUsage.hpp"
+	"Ngen.Drawing.VertexScheme.hpp"
+
+1534480532 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.texture.cpp
+	"Ngen.Drawing.Texture.hpp"
+
+1535311783 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.cpp
+	"Ngen.Drawing.hpp"
+
+1535306541 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+	"Ngen.Drawing.Typedefs.hpp"
+	"Ngen.Drawing.EGpuBufferUsage.hpp"
+	"Ngen.Drawing.EGpuDrawMode.hpp"
+	"Ngen.Drawing.EGpuShaderType.hpp"
+	"Ngen.Drawing.EGpuElementType.hpp"
+	"Ngen.Drawing.VertexElement.hpp"
+	"Ngen.Drawing.VertexScheme.hpp"
+	"Ngen.Drawing.MeshBuffer.hpp"
+	"Ngen.Drawing.GpuShader.hpp"
+	"Ngen.Drawing.GpuProgram.hpp"
+	"Ngen.Drawing.FrameBuffer.hpp"
+	"Ngen.Drawing.Texture.hpp"
+	"Ngen.Drawing.Viewport.hpp"
+	"Ngen.Drawing.SVertex.hpp"
+	"Ngen.Drawing.CanvasCreationParams.hpp"
+	"Ngen.Drawing.Canvas.hpp"
+
+1534480975 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.framebuffer.hpp
+	"Ngen.Drawing.GpuProgram.hpp"
+
+1535311582 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.viewport.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1535311783 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.egpushadertype.hpp
+	"Build.Ngen.Drawing.Logic.hpp"
+
+1535311549 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.camera.cpp
+	"Ngen.Drawing.Camera.hpp"
+	"Ngen.Drawing.GpuProgram.hpp"
+
+1535311456 c:\workspace\ngensdk\develop\now\ngen.drawing\include\ngen.drawing.camera.hpp
+	"Ngen.Drawing.Typedefs.hpp"
+
+1535311629 source:c:\workspace\ngensdk\develop\now\ngen.drawing\ngen.drawing.viewport.cpp
+	"Ngen.Drawing.Viewport.hpp"
+	"Ngen.Drawing.Canvas.hpp"
 

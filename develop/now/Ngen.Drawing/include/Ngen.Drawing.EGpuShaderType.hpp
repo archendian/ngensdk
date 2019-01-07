@@ -35,13 +35,13 @@ namespace Ngen {
 
    namespace Drawing {
       /** @brief The type of shaders known to the OpenGL graphic framework. */
-      enum class EShaderType {
+      enum class EGpuShaderType {
          FRAGMENT,
          GEOMETRY,
          VERTEX,
       };
 
-      GLenum gl_typeof(EShaderType type);
+      GLenum gl_typeof(EGpuShaderType type);
    }
 }
 

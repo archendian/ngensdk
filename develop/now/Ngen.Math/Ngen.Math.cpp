@@ -29,4 +29,30 @@ THE SOFTWARE.
 
 #include "Ngen.Math.hpp"
 
-unsigned stub_t::stub() { return 0; };
+namespace Ngen {
+   namespace Math {
+      // Vector3 constants
+
+      Vector3 _zeroVector3 = Vector3(0.f, 0.f, 0.f);
+      Vector3 _upVector3 = Vector3(0.f, 1.f, 0.f);
+      Vector3 _downVector3 = Vector3(0.f, -1.f, 0.f);
+      Vector3 _unitXVector3 = Vector3(1.f, 0.f, 0.f);
+      Vector3 _unitYVector3 = Vector3(0.f, 1.f, 0.f);
+      Vector3 _unitZVector3 = Vector3(0.f, 0.f, 1.f);
+
+      Vector3 Vector3::Up() { return _upVector3; }
+      Vector3 Vector3::Down() { return _downVector3; }
+      Vector3 Vector3::UnitX() { return _unitXVector3; }
+      Vector3 Vector3::UnitY() { return _unitYVector3; }
+      Vector3 Vector3::UnitZ() { return _unitZVector3; }
+
+      // Matrix4 constants
+
+      Matrix4 _identityMatrix4 = Matrix4(1.0f, 0.f, 0.f, 0.f,
+                                         0.f, 1.0f, 0.f, 0.f,
+                                         0.f, 0.f, 1.0f, 0.f,
+                                         0.f, 0.f, 0.f, 1.0f);
+
+      Matrix4 Matrix4::Identity() { return _identityMatrix4; }
+   }
+}

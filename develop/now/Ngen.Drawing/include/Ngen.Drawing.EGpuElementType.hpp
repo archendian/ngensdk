@@ -46,7 +46,7 @@ namespace Ngen {
 		};
 
 		GLenum gl_typeof(EGpuElementType type);
-		uword gl_sizeof(EGpuElementType type, uword length=1);
+		uword gl_sizeof(EGpuElementType type, uword length);
    }
 }
 

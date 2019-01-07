@@ -48,7 +48,7 @@ namespace Ngen {
 
 		};
 
-		GLenum gl_typeof(EGpuDrawMode mode);
+      GLenum gl_typeof(EGpuDrawMode mode);
    }
 }
 #endif // __NGEN_DRAWING_EGFXDRAWMODE_HPP

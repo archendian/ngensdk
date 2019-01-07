@@ -30,14 +30,37 @@ THE SOFTWARE.
 
 namespace Ngen {
    namespace Drawing {
-      GLenum gl_typeof(EShaderType type) {
-         switch(type) {
-         case EShaderType::VERTEX: return GL_VERTEX_SHADER;
-         case EShaderType::GEOMETRY: return GL_GEOMETRY_SHADER;
-         case EShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
-         default: return 0;
-         }
-      }
+
+		GLenum gl_typeof(EGpuBufferUsage usage) {
+			switch(usage) {
+			case EGpuBufferUsage::STATIC_DRAW:   return GL_STATIC_DRAW;
+			case EGpuBufferUsage::STATIC_READ:   return GL_STATIC_READ;
+			case EGpuBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
+			case EGpuBufferUsage::STREAM_READ:   return GL_STREAM_READ;
+			case EGpuBufferUsage::STREAM_DRAW:   return GL_STREAM_DRAW;
+			case EGpuBufferUsage::STREAM_COPY:   return GL_STREAM_COPY;
+			case EGpuBufferUsage::DYNAMIC_DRAW:  return GL_DYNAMIC_DRAW;
+			case EGpuBufferUsage::DYNAMIC_READ:  return GL_DYNAMIC_READ;
+			case EGpuBufferUsage::DYNAMIC_COPY:  return GL_DYNAMIC_COPY;
+			default: return 0;
+			}
+		}
+
+		GLenum gl_typeof(EGpuDrawMode mode) {
+			switch(mode) {
+			case EGpuDrawMode::POINT: return GL_POINTS;
+			case EGpuDrawMode::QUAD: return GL_QUADS;
+			case EGpuDrawMode::POLYGON: return GL_POLYGON;
+			case EGpuDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
+			case EGpuDrawMode::TRIANGLE: return GL_TRIANGLES;
+			case EGpuDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
+			case EGpuDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
+			case EGpuDrawMode::LINE: return GL_LINES;
+			case EGpuDrawMode::LINE_STRIP: return GL_LINE_STRIP;
+			case EGpuDrawMode::LINE_LOOP: return GL_LINE_LOOP;
+			default: return 0;
+			}
+		}
 
 		GLenum gl_typeof(EGpuElementType type) {
 			switch(type) {
@@ -65,37 +88,13 @@ namespace Ngen {
 			}
 		}
 
-		GLenum gl_typeof(EGpuDrawMode mode) {
-			switch(mode) {
-			case EGpuDrawMode::POINT: return GL_POINTS;
-			case EGpuDrawMode::QUAD: return GL_QUADS;
-			case EGpuDrawMode::POLYGON: return GL_POLYGON;
-			case EGpuDrawMode::QUAD_STRIP: return GL_QUAD_STRIP;
-			case EGpuDrawMode::TRIANGLE: return GL_TRIANGLES;
-			case EGpuDrawMode::TRIANGLE_FAN: return GL_TRIANGLE_FAN;
-			case EGpuDrawMode::TRIANGLE_STRIP: return GL_TRIANGLE_STRIP;
-			case EGpuDrawMode::LINE: return GL_LINES;
-			case EGpuDrawMode::LINE_STRIP: return GL_LINE_STRIP;
-			case EGpuDrawMode::LINE_LOOP: return GL_LINE_LOOP;
-			default: return 0;
-			}
-		}
-
-		GLenum gl_typeof(EGpuBufferUsage usage) {
-			switch(usage) {
-			case EGpuBufferUsage::STATIC_DRAW:   return GL_STATIC_DRAW;
-			case EGpuBufferUsage::STATIC_READ:   return GL_STATIC_READ;
-			case EGpuBufferUsage::STATIC_COPY:   return GL_STATIC_COPY;
-			case EGpuBufferUsage::STREAM_READ:   return GL_STREAM_READ;
-			case EGpuBufferUsage::STREAM_DRAW:   return GL_STREAM_DRAW;
-			case EGpuBufferUsage::STREAM_COPY:   return GL_STREAM_COPY;
-			case EGpuBufferUsage::DYNAMIC_DRAW:  return GL_DYNAMIC_DRAW;
-			case EGpuBufferUsage::DYNAMIC_READ:  return GL_DYNAMIC_READ;
-			case EGpuBufferUsage::DYNAMIC_COPY:  return GL_DYNAMIC_COPY;
-			default: return 0;
-			}
-		}
-
-
+		GLenum gl_typeof(EGpuShaderType type) {
+         switch(type) {
+         case EGpuShaderType::VERTEX: return GL_VERTEX_SHADER;
+         case EGpuShaderType::GEOMETRY: return GL_GEOMETRY_SHADER;
+         case EGpuShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
+         default: return 0;
+         }
+      }
    }
 }

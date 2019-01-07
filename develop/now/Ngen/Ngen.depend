@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1508797587 source:c:\workspace\ngensdk\develop\now\ngen\ngen.attribute.cpp
+1534103854 source:c:\workspace\ngensdk\develop\now\ngen\ngen.attribute.cpp
 
 1507844206 source:c:\workspace\ngensdk\develop\now\ngen\ngen.console.cpp
 	"Ngen.Console.hpp"
@@ -10,10 +10,10 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.console.hpp
 	"Ngen.String.hpp"
 
-1533950816 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
+1534469205 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1534035475 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1534462852 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
@@ -79,7 +79,7 @@
 1533938053 c:\workspace\ngensdk\develop\now\ngen\include\ngen.mirror.hpp
 	"Ngen.string.hpp"
 
-1533939052 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
+1534471174 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
 	"Ngen.KeyValuePair.hpp"
 	"Ngen.List.hpp"
 
@@ -89,7 +89,7 @@
 1515342652 c:\workspace\ngensdk\develop\now\ngen\include\ngen.algorithm.hpp
 	"Ngen.Memory.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
+1534471627 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
 	"Ngen.Array.hpp"
 
 1518364946 source:c:\workspace\ngensdk\develop\now\ngen\ngen.object.cpp
@@ -118,7 +118,7 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.reference.hpp
 	"Ngen.BitField.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
+1534467684 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
 1533863360 c:\workspace\ngensdk\develop\now\ngen\include\ngen.structure.hpp
@@ -150,10 +150,10 @@
 
 1521064223 source:c:\workspace\ngensdk\develop\now\ngen\ngen.win32.cpp
 
-1521133385 source:c:\workspace\ngensdk\develop\now\ngen\ngen.win32.window.cpp
+1534470247 source:c:\workspace\ngensdk\develop\now\ngen\ngen.win32.window.cpp
 	"Ngen.Window.hpp"
 
-1521070154 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
+1534464782 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
 	"Ngen.Map.hpp"
 	"Ngen.Event.hpp"
 	"Ngen.String.hpp"
@@ -170,4 +170,27 @@
 	"Ngen.String.hpp"
 	"Ngen.Event.hpp"
 	"Ngen.Time.hpp"
+
+1534471935 source:c:\workspace\ngensdk\develop\now\ngen\ngen.filehandler.cpp
+	"Ngen.File.hpp"
+	"Ngen.FileHandler.hpp"
+
+1534468263 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
+	"Ngen.Stream.hpp"
+	"Ngen.Exception.hpp"
+	"Ngen.FileStream.hpp"
+
+1534471918 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
+	"Ngen.Exception.hpp"
+	"Ngen.String.hpp"
+
+1534471741 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filestream.hpp
+	"Ngen.String.hpp"
+	"Ngen.Stream.hpp"
+	"Ngen.Exception.hpp"
+
+1534471822 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filehandler.hpp
+	"Ngen.Mirror.hpp"
+	"Ngen.File.hpp"
+	"Ngen.Map.hpp"
 

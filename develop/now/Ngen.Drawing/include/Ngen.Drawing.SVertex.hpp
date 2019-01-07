@@ -30,7 +30,7 @@ THE SOFTWARE.
 #define __NGEN_DRAWING_SVERTEX_HPP
 
 #include "Ngen.Drawing.EGpuBufferUsage.hpp"
-#include "Ngen.Drawing.GpuScheme.hpp"
+#include "Ngen.Drawing.VertexScheme.hpp"
 
 using namespace Ngen::Math;
 
@@ -43,7 +43,7 @@ namespace Ngen {
 
          Vector3 Origin;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
 
       class ngen_drawing_api SVertexOC {
@@ -53,7 +53,7 @@ namespace Ngen {
          Vector3 Origin;
          Color4 Color;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
 
       class ngen_drawing_api ONUU {
@@ -65,7 +65,7 @@ namespace Ngen {
          Vector2 Uv1;
          Vector2 Uv2;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
 
       class ngen_drawing_api SVertexOCNU {
@@ -77,7 +77,7 @@ namespace Ngen {
          Vector3 Normal;
          Vector2 Uv;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
 
       class ngen_drawing_api SVertexOCNUW {
@@ -90,7 +90,7 @@ namespace Ngen {
          Vector2 Uv;
          real Weight;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
 
       class ngen_drawing_api SVertexOCNUU {
@@ -103,7 +103,7 @@ namespace Ngen {
          Vector2 Uv1;
          Vector2 Uv2;
 
-         static GpuScheme* Scheme();
+         static VertexScheme* Scheme();
       };
    }
 }

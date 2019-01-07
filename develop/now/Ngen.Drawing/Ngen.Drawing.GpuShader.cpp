@@ -32,7 +32,7 @@ THE SOFTWARE.
 namespace Ngen {
    namespace Drawing {
 
-      GpuShader::GpuShader(EShaderType type, const string& fileName) : mId(0), mType(type) {
+      GpuShader::GpuShader(EGpuShaderType type, const string& fileName) : mId(0), mType(type) {
          mId = glCreateShader(gl_typeof(type));
          auto source = File::ReadAll(fileName);
          auto len = source.Length();

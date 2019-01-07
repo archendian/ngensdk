@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1534033235 source:c:\workspace\ngensdk\develop\now\ngen.math\ngen.math.cpp
+1535311878 source:c:\workspace\ngensdk\develop\now\ngen.math\ngen.math.cpp
 	"Ngen.Math.hpp"
 
-1534033000 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
+1535303474 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.hpp
 	"Build.Ngen.Math.Logic.hpp"
 	"Ngen.Typedefs.hpp"
 	"Ngen.Math.Vector2.hpp"
@@ -22,7 +22,7 @@
 1521130186 c:\workspace\ngensdk\develop\now\ngen.math\include\build.ngen.math.logic.hpp
 	"Ngen.hpp"
 
-1534016880 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
+1534468356 c:\workspace\ngensdk\develop\now\ngen\include\ngen.hpp
 	"Build.Ngen.Token.hpp"
 	"Build.Ngen.Configuration.hpp"
 	"Build.Ngen.Macro.hpp"
@@ -63,6 +63,8 @@
 	"Ngen.Assembly.hpp"
 	"Ngen.Window.hpp"
 	"Ngen.File.hpp"
+	"Ngen.FileHandler.hpp"
+	"Ngen.FileStream.hpp"
 
 1517942904 c:\workspace\ngensdk\develop\now\ngen\include\build.ngen.token.hpp
 
@@ -116,13 +118,13 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.reference.hpp
 	"Ngen.BitField.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
+1534467684 c:\workspace\ngensdk\develop\now\ngen\include\ngen.bitfield.hpp
 	"Ngen.Typedefs.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.keyvaluepair.hpp
 	"Ngen.Algorithm.hpp"
 
-1521071409 c:\workspace\ngensdk\develop\now\ngen\include\ngen.calculator.hpp
+1534551792 c:\workspace\ngensdk\develop\now\ngen\include\ngen.calculator.hpp
 	"Ngen.Exception.hpp"
 
 1508644401 c:\workspace\ngensdk\develop\now\ngen\include\ngen.library.hpp
@@ -131,10 +133,10 @@
 1533938053 c:\workspace\ngensdk\develop\now\ngen\include\ngen.mirror.hpp
 	"Ngen.string.hpp"
 
-1533950816 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
+1534469205 c:\workspace\ngensdk\develop\now\ngen\include\ngen.string.hpp
 	"Ngen.Array.hpp"
 
-1534035475 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
+1534462852 c:\workspace\ngensdk\develop\now\ngen\include\ngen.array.hpp
 	"Ngen.StaticDelegate.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.staticdelegate.hpp
@@ -155,14 +157,14 @@
 	"Ngen.Delegate.hpp"
 	"Ngen.Cast.hpp"
 
-1533939052 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
+1534471174 c:\workspace\ngensdk\develop\now\ngen\include\ngen.map.hpp
 	"Ngen.KeyValuePair.hpp"
 	"Ngen.List.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
+1534471627 c:\workspace\ngensdk\develop\now\ngen\include\ngen.list.hpp
 	"Ngen.Array.hpp"
 
-1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stack.hpp
+1534463696 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stack.hpp
 	"Ngen.Array.hpp"
 
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.table.hpp
@@ -182,8 +184,9 @@
 	"Ngen.TimeSpan.hpp"
 	"Ngen.Exception.hpp"
 
-1534016948 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
+1534471918 c:\workspace\ngensdk\develop\now\ngen\include\ngen.stream.hpp
 	"Ngen.Exception.hpp"
+	"Ngen.String.hpp"
 
 1534007226 c:\workspace\ngensdk\develop\now\ngen\include\ngen.task.hpp
 	"Ngen.Exception.hpp"
@@ -219,25 +222,26 @@
 1507844206 c:\workspace\ngensdk\develop\now\ngen\include\ngen.assembly.hpp
 	"Ngen.Attribute.hpp"
 
-1521070154 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
+1534464782 c:\workspace\ngensdk\develop\now\ngen\include\ngen.window.hpp
 	"Ngen.Map.hpp"
 	"Ngen.Event.hpp"
 	"Ngen.String.hpp"
 
-1534018577 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
+1534468263 c:\workspace\ngensdk\develop\now\ngen\include\ngen.file.hpp
 	"Ngen.Stream.hpp"
 	"Ngen.Exception.hpp"
+	"Ngen.FileStream.hpp"
 
-1534033169 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
+1535303375 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector2.hpp
 	"Ngen.Math.Typedefs.hpp"
 
 1534031328 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.typedefs.hpp
 	"Build.Ngen.Math.Logic.hpp"
 
-1521136348 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
+1535311906 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector3.hpp
 	"Ngen.Math.Typedefs.hpp"
 
-1521131690 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
+1535306614 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.vector4.hpp
 	"Ngen.Math.Typedefs.hpp"
 
 1534030314 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line2d.hpp
@@ -246,13 +250,13 @@
 1534031363 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.line3d.hpp
 	"Ngen.Math.Vector3.hpp"
 
-1534030321 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
+1535066032 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray2d.hpp
 	"Ngen.Math.Vector2.hpp"
 
 1521071271 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.ray3d.hpp
 	"Ngen.Math.Vector3.hpp"
 
-1534031668 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
+1535295820 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.aabox2d.hpp
 	"Ngen.Math.Vector2.hpp"
 	"Ngen.Math.Line2D.hpp"
 	"Ngen.Math.CollisionResult.hpp"
@@ -273,8 +277,18 @@
 1521073698 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix3.hpp
 	"Ngen.Math.Typedefs.hpp"
 
-1534035112 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
+1535159458 c:\workspace\ngensdk\develop\now\ngen.math\include\ngen.math.matrix4.hpp
 	"Ngen.Math.Typedefs.hpp"
 	"Ngen.Math.Vector3.hpp"
 	"Ngen.Math.Vector4.hpp"
+
+1534471741 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filestream.hpp
+	"Ngen.String.hpp"
+	"Ngen.Stream.hpp"
+	"Ngen.Exception.hpp"
+
+1534471822 c:\workspace\ngensdk\develop\now\ngen\include\ngen.filehandler.hpp
+	"Ngen.Mirror.hpp"
+	"Ngen.File.hpp"
+	"Ngen.Map.hpp"
 

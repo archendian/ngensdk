@@ -67,13 +67,14 @@ namespace Ngen {
          }
 
          Vector4 operator-(const Vector4& rhs) const {
-            return Vector4(X-rhs.X, Y-rhs.Y, Z-rhs.Z. W-rhs.W);
+            return Vector4(X-rhs.X, Y-rhs.Y, Z-rhs.Z, W-rhs.W);
          }
 
          Vector4& operator-=(const Vector4& rhs) {
             X -= rhs.X;
             Y -= rhs.Y;
             Z -= rhs.Z;
+            W -= rhs.W;
             return *this;
          }
 
@@ -89,8 +90,32 @@ namespace Ngen {
             return *this;
          }
 
+         Vector4 operator*(const Vector4& rhs) const {
+            return Vector4(X*rhs.X, Y*rhs.Y, Z*rhs.Z, W*rhs.W);
+         }
+
+         Vector4& operator*=(const Vector4& rhs) {
+            X *= rhs.X;
+            Y *= rhs.Y;
+            Z *= rhs.Z;
+            Z *= rhs.Z;
+            return *this;
+         }
+
+         Vector4 operator/(const Vector4& rhs) const {
+            return Vector4(X/rhs.X, Y/rhs.Y, Z/rhs.Z, W/rhs.W);
+         }
+
+         Vector4& operator/=(const Vector4& rhs) {
+            X /= rhs.X;
+            Y /= rhs.Y;
+            Z /= rhs.Z;
+            W /= rhs.W;
+            return *this;
+         }
+
          Vector4 operator/(real rhs) const {
-            return Vector3(X/rhs, Y/rhs, Z/rhs, W/rhs);
+            return Vector4(X/rhs, Y/rhs, Z/rhs, W/rhs);
          }
 
          Vector4& operator/=(real rhs) {
@@ -119,7 +144,7 @@ namespace Ngen {
             case 1: return Y;
             case 2: return Z;
             case 3: return W;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
 
@@ -129,7 +154,7 @@ namespace Ngen {
             case 1: return Y;
             case 2: return Z;
             case 3: return W;
-            default: return 0.0f;
+            default: THROW(InvalidParameterException());
             }
          }
 
